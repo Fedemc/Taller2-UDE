@@ -26,30 +26,24 @@ public class Inscripcion {
 		return calificacion;
 	}
 
-	
 	public void setCalificacion(int calificacion) {
 		this.calificacion = calificacion;
 	}
 	
-
 	public int getNroInscripcion() {
 		return nroInscripcion;
 	}
 	
-
 	public int getAnioLectivo() {
 		return anioLectivo;
 	}
 
-	
 	public int getMontoBase() {
 		return montoBase;
 	}
 
-	
 	public Asignatura getAsignatura() {
 		return asignatura;
 	}
-	
 	
 }

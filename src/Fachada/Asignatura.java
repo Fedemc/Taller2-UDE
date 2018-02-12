@@ -29,5 +29,7 @@ public class Asignatura {
 		return descripcion;
 	}
 	
-	
+	public String toString() {
+		return "Codigo: " + getCodigo() + " - Nombre: " + getNombre() + " - Descripcion: " + getDescripcion();
+	}
 }
