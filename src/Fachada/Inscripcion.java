@@ -11,7 +11,6 @@ public class Inscripcion {
 	//Constructor
 	
 	public Inscripcion(int nroInscripcion, int anioLectivo, int montoBase, int calificacion, Asignatura asignatura) {
-		super();
 		this.nroInscripcion = nroInscripcion;
 		this.anioLectivo = anioLectivo;
 		this.montoBase = montoBase;

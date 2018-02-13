@@ -1,6 +1,6 @@
 package Fachada;
 
-public class Alumno extends Alumnos {
+public class Alumno {
 
 	private long cedula;
 	private String nombre;
@@ -15,7 +15,6 @@ public class Alumno extends Alumnos {
 	//Constructor
 	public Alumno(long cedula, String nombre, String apellido, String domicilio, int telefono, String email,
 			int cantAprobaciones) {
-		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
