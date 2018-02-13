@@ -1,7 +1,7 @@
 package Fachada;
 
 import java.util.TreeMap;
-//import java.util.SortedMap;
+import java.util.Iterator;
 import Fachada.Alumno;
 
 public class Alumnos {
@@ -10,9 +10,24 @@ public class Alumnos {
 	
 	//Constructor
 	public Alumnos() {
+		alumnos = new TreeMap();
 	}
 	
-	//public ListadoAlumnosApe
+	public boolean member(Long clave) {
+		return alumnos.containsKey(clave);
+	}
+	
+	public void insert(Alumno a) {
+		alumnos.put(a.getCedula(),a);
+	}
+	
+	public Alumno find(Long clave) {
+		return alumnos.get(clave);
+	}
+	
+	//public  ListadoAlumnosApe(String ape) {
+		
+	//}
 	
 
 }
