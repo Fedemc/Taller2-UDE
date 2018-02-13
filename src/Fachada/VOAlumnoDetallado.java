@@ -25,6 +25,12 @@ public class VOAlumnoDetallado extends VOAlumno {
 	public String getDirCorreo() {
 		return dirCorreo;
 	}
+
+	@Override
+	public String toString() {
+		return "VOAlumnoDetallado [domicilio=" + domicilio + ", telefono=" + telefono + ", dirCorreo=" + dirCorreo
+				+ ", toString()=" + super.toString() + "]";
+	}
 	
 	
 	

@@ -7,7 +7,7 @@ public class Becado extends Alumno {
 	
 	//Constructor
 	public Becado(long cedula, String nombre, String apellido, String domicilio, int telefono, String email,
-			int cantAprobaciones, int porcentaje, String descripcionBeca) {
+			Inscripciones inscripcion, int cantAprobaciones, int porcentaje, String descripcionBeca) {
 		super(cedula, nombre, apellido, domicilio, telefono, email, cantAprobaciones);
 		this.porcentaje = porcentaje;
 		this.descripcionBeca = descripcionBeca;
@@ -21,6 +21,11 @@ public class Becado extends Alumno {
 
 	public String getDescripcionBeca() {
 		return descripcionBeca;
+	}
+
+	@Override
+	public String toString() {
+		return "Becado [porcentaje=" + porcentaje + ", descripcionBeca=" + descripcionBeca + "]";
 	}
 	
 	

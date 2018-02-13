@@ -24,5 +24,11 @@ public class VOAlumno {
 	public String getApellido() {
 		return apellido;
 	}
+
+	@Override
+	public String toString() {
+		return "VOAlumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+	}
+	
 	
 }

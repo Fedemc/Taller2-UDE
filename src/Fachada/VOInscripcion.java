@@ -30,6 +30,12 @@ public class VOInscripcion {
 	public int getCalificacion() {
 		return calificacion;
 	}
+
+	@Override
+	public String toString() {
+		return "VOInscripcion [numero=" + numero + ", nombreAsignatura=" + nombreAsignatura + ", anioLectivo="
+				+ anioLectivo + ", calificacion=" + calificacion + ", toString()=" + super.toString() + "]";
+	}
 	
 		
 	

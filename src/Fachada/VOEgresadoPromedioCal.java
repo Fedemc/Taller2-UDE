@@ -13,6 +13,11 @@ public class VOEgresadoPromedioCal extends VOAlumno {
 	public Float getPromedioCal() {
 		return promedioCal;
 	}
+
+	@Override
+	public String toString() {
+		return "VOEgresadoPromedioCal [promedioCal=" + promedioCal + ", toString()=" + super.toString() + "]";
+	}
 	
 	
 }

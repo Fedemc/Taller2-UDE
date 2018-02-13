@@ -8,10 +8,12 @@ public class Alumnos {
 	
 	private TreeMap<Long,Alumno> alumnos;
 	
+	/*
 	//Constructor
 	public Alumnos() {
 		alumnos = new TreeMap();
 	}
+	*/
 	
 	public boolean member(Long clave) {
 		return alumnos.containsKey(clave);

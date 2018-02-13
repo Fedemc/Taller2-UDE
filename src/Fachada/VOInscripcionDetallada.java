@@ -13,5 +13,11 @@ public class VOInscripcionDetallada extends VOInscripcion {
 	public Float getMontoBase() {
 		return montoBase;
 	}
+
+	@Override
+	public String toString() {
+		return "VOInscripcionDetallada [montoBase=" + montoBase + ", toString()=" + super.toString() + "]";
+	}
+	
 	
 }

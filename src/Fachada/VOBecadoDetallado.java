@@ -19,6 +19,13 @@ public class VOBecadoDetallado extends VOAlumnoDetallado {
 	public String getDescripcion() {
 		return descripcion;
 	}
+
+	@Override
+	public String toString() {
+		return "VOBecadoDetallado [porcentaje=" + porcentaje + ", descripcion=" + descripcion + ", toString()="
+				+ super.toString() + "]";
+	}
+	
 	
 		
 }

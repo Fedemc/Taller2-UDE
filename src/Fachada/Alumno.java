@@ -1,5 +1,7 @@
 package Fachada;
 
+import java.io.LineNumberInputStream;
+
 public class Alumno {
 
 	private long cedula;
@@ -12,9 +14,12 @@ public class Alumno {
 	private int cantAprobaciones;
 	
 	
+	
+	
+
 	//Constructor
-	public Alumno(long cedula, String nombre, String apellido, String domicilio, int telefono, String email,
-			int cantAprobaciones) {
+	public Alumno(long cedula, String nombre, String apellido, String domicilio, int telefono, String email, int cantAprobaciones) {
+		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -69,6 +74,15 @@ public class Alumno {
 	public void setCantAprobaciones(int cantAprobaciones) {
 		this.cantAprobaciones = cantAprobaciones;
 	}
+
+	@Override
+	public String toString() {
+		return "Alumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
+				+ ", telefono=" + telefono + ", email=" + email + ", inscripcion=" + inscripcion + ", cantAprobaciones="
+				+ cantAprobaciones + "]";
+	}
+
+	
 	
 	
 	
