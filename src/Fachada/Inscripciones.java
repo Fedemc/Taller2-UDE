@@ -19,7 +19,6 @@ public class Inscripciones {
 		listaInscripciones.add(i);
 	}
 	
-	
 	//Calculo el monto total del costo de las inscripciones que estan activas (nota == 0)
 	public float calcularCuotasAlumno()
 	{
@@ -33,4 +32,30 @@ public class Inscripciones {
 
 		return cuotaTotal;
 	}
+	
+	public float calcularPromedioTotal()
+	{
+		float promedioTotal=0;
+		for(int i=0;i<listaInscripciones.size();i++)
+		{
+			Inscripcion auxIns=listaInscripciones.get(i);
+			promedioTotal = promedioTotal + (auxIns.getCalificacion());
+		}
+		promedioTotal = promedioTotal / listaInscripciones.size();
+		return promedioTotal;
+	}
+	
+	public float calcularPromedioAprob()
+	{
+		float promedioAprob=0;
+		for(int i=0;i<listaInscripciones.size();i++)
+		{
+			Inscripcion auxIns=listaInscripciones.get(i);
+			if(auxIns.getCalificacion() != 0)
+				promedioAprob = promedioAprob + (auxIns.getCalificacion());
+		}
+		promedioAprob = promedioAprob / 10;
+		return promedioAprob;
+	}
+	
 }

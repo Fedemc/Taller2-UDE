@@ -58,13 +58,4 @@ public class Alumnos {
 		return vobd;
 	}
 	
-	public Float calcularPromTotal() {
-		float promedio = 0;
-		Iterator it = alumnos.keySet().iterator();
-		while (it.hasNext()) {
-			Long clave = (Long) it.next();
-			promedio = promedio + alumnos.get(clave).devolverPromedioAlumno();
-		}
-		return promedio;
-	}
 }
