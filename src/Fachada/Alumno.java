@@ -10,15 +10,12 @@ public class Alumno {
 	private String domicilio;
 	private int telefono;
 	private String email;
-	private Inscripciones inscripcion;
+	private Inscripciones inscripciones;
 	private int cantAprobaciones;
 	
 	
-	
-	
-
 	//Constructor
-	public Alumno(long cedula, String nombre, String apellido, String domicilio, int telefono, String email, int cantAprobaciones) {
+	public Alumno(long cedula, String nombre, String apellido, String domicilio, int telefono, String email) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -26,7 +23,8 @@ public class Alumno {
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
-		this.cantAprobaciones = cantAprobaciones;
+		this.cantAprobaciones = 0;
+		this.inscripciones = new Inscripciones();
 	}
 
 	//get y set
@@ -74,12 +72,33 @@ public class Alumno {
 	public void setCantAprobaciones(int cantAprobaciones) {
 		this.cantAprobaciones = cantAprobaciones;
 	}
+	
+	public Inscripciones getInscripciones()
+	{
+		return this.inscripciones;
+	}
 
 	@Override
 	public String toString() {
 		return "Alumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
-				+ ", telefono=" + telefono + ", email=" + email + ", inscripcion=" + inscripcion + ", cantAprobaciones="
+				+ ", telefono=" + telefono + ", email=" + email + ", inscripcion=" + inscripciones + ", cantAprobaciones="
 				+ cantAprobaciones + "]";
+	}
+	
+	//Calcular cuota total del Alumno
+	public float calcularCuotaAlumno()
+	{
+		float cuotaTotal=0;
+		cuotaTotal=this.inscripciones.calcularCuotasAlumno();
+		
+		return cuotaTotal;
+	}
+	
+	public float devolverPromedioAlumno()
+	{
+		float promedio=0;
+		
+		return promedio;
 	}
 
 	

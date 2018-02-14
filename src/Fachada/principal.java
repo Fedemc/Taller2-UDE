@@ -12,9 +12,9 @@ public class principal {
 		TreeMap<Long,Alumno> a = new TreeMap<Long,Alumno>();
 		
 		
-		Alumno a1 =  new Alumno(1,"andres","zubi","br",99,"sss@",0);
-		Alumno a2 =  new Alumno(5,"car","cha","sr",88,"hooo@",0);
-		Alumno a3 =  new Alumno(2,"fed","kol","pp",66,"ppp@",0);
+		Alumno a1 =  new Alumno(1,"andres","zubi","br",99,"sss@");
+		Alumno a2 =  new Alumno(5,"car","cha","sr",88,"hooo@");
+		Alumno a3 =  new Alumno(2,"fed","kol","pp",66,"ppp@");
 		a.put(a1.getCedula(), a1);
 		a.put(a2.getCedula(), a2);
 		a.put(a3.getCedula(), a3);

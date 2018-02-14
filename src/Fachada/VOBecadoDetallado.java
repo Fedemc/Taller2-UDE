@@ -11,6 +11,8 @@ public class VOBecadoDetallado extends VOAlumnoDetallado {
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}
+	
+	
 
 	public Float getPorcentaje() {
 		return porcentaje;
@@ -25,7 +27,5 @@ public class VOBecadoDetallado extends VOAlumnoDetallado {
 		return "VOBecadoDetallado [porcentaje=" + porcentaje + ", descripcion=" + descripcion + ", toString()="
 				+ super.toString() + "]";
 	}
-	
-	
 		
 }

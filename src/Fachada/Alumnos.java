@@ -54,7 +54,7 @@ public class Alumnos {
 	public VOBecadoDetallado ListadoAlumnoCedulaBec(Long clave) {
 		Becado tempBec = (Becado) alumnos.get(clave);
 		VOBecadoDetallado vobd = new VOBecadoDetallado(tempBec.getCedula(),tempBec.getNombre(),tempBec.getApellido(),tempBec.getDomicilio(),
-					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno());
+					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno(),tempBec.getPorcentaje(), tempBec.getDescripcionBeca());
 		return vobd;
 	}
 	
