@@ -44,5 +44,19 @@ public class Alumnos {
 		return vOAlumnos;
 	}
 	
+	public VOAlumnoDetallado ListadoAlumnoCedulaCom(Long clave) {
+		Alumno tempAlu = (Alumno) alumnos.get(clave);
+		VOAlumnoDetallado voad = new VOAlumnoDetallado(tempAlu.getCedula(),tempAlu.getNombre(),tempAlu.getApellido(),tempAlu.getDomicilio(),
+					tempAlu.getTelefono(),tempAlu.getEmail(),tempAlu.calcularCuotaAlumno());
+		return voad;
+	}
+	
+	public VOBecadoDetallado ListadoAlumnoCedulaBec(Long clave) {
+		Becado tempBec = (Becado) alumnos.get(clave);
+		VOBecadoDetallado vobd = new VOBecadoDetallado(tempBec.getCedula(),tempBec.getNombre(),tempBec.getApellido(),tempBec.getDomicilio(),
+					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno());
+		return vobd;
+	}
+	
 	
 }

@@ -5,9 +5,9 @@ public class VOBecadoDetallado extends VOAlumnoDetallado {
 	private Float porcentaje;
 	private String descripcion;
 	
-	public VOBecadoDetallado(Long cedula, String nombre, String apellido, String domicilio, int telefono, String dirCorreo,
+	public VOBecadoDetallado(Long cedula, String nombre, String apellido, String domicilio, int telefono, String dirCorreo, Float cuotaMensual,
 			Float porcentaje, String descripcion) {
-		super(cedula,nombre,apellido,domicilio,telefono,dirCorreo);
+		super(cedula,nombre,apellido,domicilio,telefono,dirCorreo,cuotaMensual);
 		this.porcentaje = porcentaje;
 		this.descripcion = descripcion;
 	}
