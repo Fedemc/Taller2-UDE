@@ -10,11 +10,11 @@ public class Inscripcion {
 	
 	//Constructor
 	
-	public Inscripcion(int nroInscripcion, int anioLectivo, int montoBase, int calificacion, Asignatura asignatura) {
+	public Inscripcion(int nroInscripcion, int anioLectivo, int montoBase, Asignatura asignatura) {
 		this.nroInscripcion = nroInscripcion;
 		this.anioLectivo = anioLectivo;
 		this.montoBase = montoBase;
-		this.calificacion = calificacion;
+		this.calificacion = 0;
 		this.asignatura = asignatura;
 	}
 
@@ -44,5 +44,6 @@ public class Inscripcion {
 	public Asignatura getAsignatura() {
 		return asignatura;
 	}
+	
 	
 }

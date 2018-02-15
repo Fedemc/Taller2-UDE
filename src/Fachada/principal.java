@@ -22,8 +22,6 @@ public class principal {
 		a.insert(a2);
 		a.insert(b1);
 		
-		/*
-		
 		//Prueba registrar asignatura
 		Asignatura asig1 = new Asignatura("asignatura 1",  "Taller", "Taller de programacion en JAVA");
 		Asignatura asig2 = new Asignatura("asignatura 2",  "S.O.", "Sistemas Operativos");
@@ -35,6 +33,20 @@ public class principal {
 		arrayAsignaturas.insertAsignatura(asig1);
 		arrayAsignaturas.insertAsignatura(asig2);
 		
+		Calendar fecha = Calendar.getInstance();
+	    int anioLec = fecha.get(Calendar.YEAR);
+		
+		Inscripcion insc1 = new Inscripcion(a1.getInscripciones().getListaInscripciones().size()+1, anioLec, 100, asig1);
+		a1.agregarInscripcion(insc1);
+		
+		//sin probar!!!!
+		//List<VOInscripcion> vOInscripcion = new ArrayList<>();
+		//vOInscripcion = (List<VOInscripcion>) a1.getInscripciones();	
+		//while(it.hasNext()) {
+			//System.out.println(it.next());
+		//}
+		
+		/*
 		List<VOAsignatura> vOAsignaturas = new ArrayList<>();
 		vOAsignaturas = arrayAsignaturas.listadoAsignaturas();
 		Iterator it = vOAsignaturas.iterator();
@@ -45,8 +57,8 @@ public class principal {
 		}
 		//verifico cuanto vale el tope del array
 		 System.out.println(arrayAsignaturas.getTope());
-		
 		*/
+		
 		
 		/*
 		//prueba datos del becado

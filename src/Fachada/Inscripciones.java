@@ -13,6 +13,12 @@ public class Inscripciones {
 		listaInscripciones= new ArrayList<Inscripcion>();
 	}
 	
+	public ArrayList<Inscripcion> getListaInscripciones() {
+		return listaInscripciones;
+	}
+
+
+
 	//Inserta una inscripcion en la lista
 	public void insertInscripcion(Inscripcion i) 
 	{
@@ -57,5 +63,6 @@ public class Inscripciones {
 		promedioAprob = promedioAprob / 10;
 		return promedioAprob;
 	}
+	
 	
 }

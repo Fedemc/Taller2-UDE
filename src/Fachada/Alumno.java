@@ -1,6 +1,7 @@
 package Fachada;
 
-
+import java.io.LineNumberInputStream;
+import java.util.Iterator;
 
 public class Alumno {
 
@@ -108,7 +109,11 @@ public class Alumno {
 		return promedioAprob;
 	}
 	
+	//Agregar una inscripcion a la lista del alumno
 	
+	public void agregarInscripcion( Inscripcion i) {
+		inscripciones.insertInscripcion(i);
+	}
 	
-	
+
 }
