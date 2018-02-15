@@ -30,12 +30,12 @@ public class Alumnos {
 	}
 	
 	public List<VOAlumno> ListadoAlumnosApe(String ape) {
-		Iterator it = alumnos.keySet().iterator();
+		Iterator it = alumnos.keySet().iterator();	//Me genero un iterador con el set de cedulas del treemap
 		List<VOAlumno> vOAlumnos = new ArrayList<>();
 		while (it.hasNext()) {
-			Long clave = (Long) it.next();
-			Alumno tempAlu = alumnos.get(clave);
-			if (tempAlu.getApellido().startsWith(ape)) {
+			Long clave = (Long) it.next();	//El iterador solo tiene cedulas, casteo como long para traerme las cedulas
+			Alumno tempAlu = alumnos.get(clave);	//me genero un alumno temporal para almacenar los datos del que estoy leyendo con el iterador
+			if (tempAlu.getApellido().startsWith(ape)) {	//comparo si el apellido del alumno empieza con el string que se ingresó por parametro
 				//Convertir a VOAlumno y almacenar
 				VOAlumno voa = new VOAlumno(tempAlu.getCedula(),tempAlu.getNombre(),tempAlu.getApellido());
 				vOAlumnos.add(voa);

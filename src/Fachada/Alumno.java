@@ -23,8 +23,8 @@ public class Alumno {
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
-		this.cantAprobaciones = 0;
 		this.inscripciones = new Inscripciones();
+		this.cantAprobaciones = 0;
 	}
 
 	//get y set
@@ -78,11 +78,11 @@ public class Alumno {
 		return this.inscripciones;
 	}
 
-	@Override
-	public String toString() {
+	@Override	
+	public String toString() {		//Ver si realmente es necesario este metodo
 		return "Alumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
 				+ ", telefono=" + telefono + ", email=" + email + ", inscripcion=" + inscripciones + ", cantAprobaciones="
-				+ cantAprobaciones + "]";
+				+ cantAprobaciones + "]";	//al devolver ese inscripciones va a explotar
 	}
 	
 	//Calcular cuota total del Alumno
