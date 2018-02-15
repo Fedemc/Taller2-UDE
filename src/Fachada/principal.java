@@ -15,13 +15,38 @@ public class principal {
 		Alumno a1 =  new Alumno(1,"andres","zubbb","br",99,"sss@");
 		Alumno a2 =  new Alumno(5,"car","zulll","sr",88,"hooo@");
 		Becado b1 =  new Becado(2,"fed","chaa","pp",66,"ppp@",null, 20,"alumno estudioso");
-		
-		
+				
 		Alumnos a = new Alumnos();
 		
 		a.insert(a1);
 		a.insert(a2);
 		a.insert(b1);
+		
+		/*
+		
+		//Prueba registrar asignatura
+		Asignatura asig1 = new Asignatura("asignatura 1",  "Taller", "Taller de programacion en JAVA");
+		Asignatura asig2 = new Asignatura("asignatura 2",  "S.O.", "Sistemas Operativos");
+		Asignatura asig3 = new Asignatura("asignatura 3",  "BD", "Base de Datos");
+		
+		Asignaturas arrayAsignaturas = new Asignaturas();
+		
+		arrayAsignaturas.insertAsignatura(asig3);
+		arrayAsignaturas.insertAsignatura(asig1);
+		arrayAsignaturas.insertAsignatura(asig2);
+		
+		List<VOAsignatura> vOAsignaturas = new ArrayList<>();
+		vOAsignaturas = arrayAsignaturas.listadoAsignaturas();
+		Iterator it = vOAsignaturas.iterator();
+		
+		while(it.hasNext()) {
+			System.out.println(it.next());
+			
+		}
+		//verifico cuanto vale el tope del array
+		 System.out.println(arrayAsignaturas.getTope());
+		
+		*/
 		
 		/*
 		//prueba datos del becado

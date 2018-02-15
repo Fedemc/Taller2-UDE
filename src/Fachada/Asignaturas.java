@@ -1,12 +1,18 @@
 package Fachada;
 
+import java.util.*;
+
 public class Asignaturas {
 
-	private int TAM = 10;
+	int TAM = 10;
 	private int tope=0;
+	private Asignatura arrAsignaturas[];
 	
-	private Asignatura arrAsignaturas[] = new Asignatura [TAM];
-	
+	public Asignaturas() {
+		arrAsignaturas= new Asignatura[TAM];
+	}
+
+
 	public int getTope() {
 		return tope;
 	}
@@ -17,8 +23,10 @@ public class Asignaturas {
 
 	//Insertar una asignatura al array
 	public void insertAsignatura(Asignatura a) {
-		arrAsignaturas[tope]=a;
-		tope++;
+		if(!memberAsignatura(a.getCodigo())) {
+			arrAsignaturas[tope]=a;
+			tope++;
+		}
 	}
 	
 	//Verificar si existe la asignatura en el array
@@ -52,7 +60,15 @@ public class Asignaturas {
 		
 	}
 	
-	//Obtengo listado para mostrar asignaturas registradas
-	//HACER
+	public List<VOAsignatura> listadoAsignaturas () {
+		List<VOAsignatura> vOAsignaturas = new ArrayList<>();
+		for(int i=0; i<getTope();i++) {
+			VOAsignatura voas = new VOAsignatura(arrAsignaturas[i].getCodigo(), arrAsignaturas[i].getNombre(), arrAsignaturas[i].getDescripcion());
+			vOAsignaturas.add(voas);
+		}
+		
+		return vOAsignaturas;
+	}
+	
 	
 }
