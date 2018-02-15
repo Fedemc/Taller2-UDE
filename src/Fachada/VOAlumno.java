@@ -27,7 +27,7 @@ public class VOAlumno {
 
 	@Override
 	public String toString() {
-		return "VOAlumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "VOAlumno: cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido;
 	}
 	
 	

@@ -34,8 +34,7 @@ public class VOAlumnoDetallado extends VOAlumno {
 
 	@Override
 	public String toString() {
-		return "VOAlumnoDetallado [domicilio=" + domicilio + ", telefono=" + telefono + ", dirCorreo=" + dirCorreo
-				+ ", toString()=" + super.toString() + "]";
+		return "VOAlumnoDetallado: domicilio=" + domicilio + ", telefono=" + telefono + ", dirCorreo=" + dirCorreo +", "+ super.toString();
 	}
 	
 	
