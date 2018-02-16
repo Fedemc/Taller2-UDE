@@ -1,8 +1,11 @@
-package Fachada;
+package sistema.logica.alumnos;
 
 import java.util.*;
-import Fachada.Alumno;
-import Fachada.VOAlumno;
+
+import sistema.logica.alumnos.Alumno;
+import sistema.logica.valueObjects.VOAlumno;
+import sistema.logica.valueObjects.VOAlumnoDetallado;
+import sistema.logica.valueObjects.VOBecadoDetallado;
 
 public class Alumnos {
 	

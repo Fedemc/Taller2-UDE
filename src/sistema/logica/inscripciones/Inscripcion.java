@@ -1,4 +1,6 @@
-package Fachada;
+package sistema.logica.inscripciones;
+
+import sistema.logica.asignaturas.Asignatura;
 
 public class Inscripcion {
 	

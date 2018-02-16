@@ -1,4 +1,4 @@
-package Fachada;
+package sistema.logica.inscripciones;
 
 import java.util.ArrayList;
 

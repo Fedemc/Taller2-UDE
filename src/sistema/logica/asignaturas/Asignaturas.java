@@ -1,6 +1,8 @@
-package Fachada;
+package sistema.logica.asignaturas;
 
 import java.util.*;
+
+import sistema.logica.valueObjects.VOAsignatura;
 
 public class Asignaturas {
 

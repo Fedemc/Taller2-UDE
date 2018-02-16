@@ -1,4 +1,4 @@
-package Fachada;
+package sistema.logica.valueObjects;
 
 public class VOInscripcionDetallada extends VOInscripcion {
 

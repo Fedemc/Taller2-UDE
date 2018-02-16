@@ -1,8 +1,15 @@
-package Fachada;
-
+package sistema;
 
 import java.util.*;
 //import java.util.TreeMap;
+
+import sistema.logica.alumnos.Alumno;
+import sistema.logica.alumnos.Alumnos;
+import sistema.logica.alumnos.Becado;
+import sistema.logica.asignaturas.Asignatura;
+import sistema.logica.asignaturas.Asignaturas;
+import sistema.logica.inscripciones.Inscripcion;
+import sistema.logica.inscripciones.Inscripciones;
 
 public class principal {
 

@@ -1,7 +1,10 @@
-package Fachada;
+package sistema.logica.alumnos;
 
 import java.io.LineNumberInputStream;
 import java.util.Iterator;
+
+import sistema.logica.inscripciones.Inscripcion;
+import sistema.logica.inscripciones.Inscripciones;
 
 public class Alumno {
 

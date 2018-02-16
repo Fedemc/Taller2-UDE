@@ -1,4 +1,6 @@
-package Fachada;
+package sistema.logica.alumnos;
+
+import sistema.logica.inscripciones.Inscripciones;
 
 public class Becado extends Alumno {
 	

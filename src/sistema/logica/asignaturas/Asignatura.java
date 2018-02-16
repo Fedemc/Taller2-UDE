@@ -1,4 +1,4 @@
-package Fachada;
+package sistema.logica.asignaturas;
 
 public class Asignatura {
 	
