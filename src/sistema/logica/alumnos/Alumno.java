@@ -115,7 +115,7 @@ public class Alumno {
 	//Agregar una inscripcion a la lista del alumno
 	
 	public void agregarInscripcion( Inscripcion i) {
-		inscripciones.insertInscripcion(i);
+		inscripciones.insert(i);
 	}
 	
 

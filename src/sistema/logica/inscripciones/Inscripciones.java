@@ -20,10 +20,41 @@ public class Inscripciones {
 
 
 	//Inserta una inscripcion en la lista
-	public void insertInscripcion(Inscripcion i) 
+	public void insert(Inscripcion i) 
 	{
 		listaInscripciones.add(i);
 	}
+	
+	public boolean member(int nroIns)
+	{
+		boolean existe=false;
+		int i=0;
+		while(!existe && i<listaInscripciones.size())
+		{
+			if(nroIns==listaInscripciones.get(i).getNroInscripcion())
+				existe=true;
+			else
+				i++;
+		}
+		
+		return existe;
+	}
+	
+	//Precondicion: Existe la inscripcion con ese nro de inscripcion en la lista
+	public Inscripcion find(int nroIns)
+	{
+		boolean encontre=false;
+		int i=0;
+		
+		while (!encontre && i<listaInscripciones.size())
+		{
+			if(nroIns!=listaInscripciones.get(i).getNroInscripcion())
+				i++;
+		}
+		return listaInscripciones.get(i);
+	}
+	
+	
 	
 	//Calculo el monto total del costo de las inscripciones que estan activas (nota == 0)
 	public float calcularCuotasAlumno()
