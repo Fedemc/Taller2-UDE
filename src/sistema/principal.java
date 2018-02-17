@@ -43,7 +43,7 @@ public class principal {
 		Calendar fecha = Calendar.getInstance();
 	    int anioLec = fecha.get(Calendar.YEAR);
 		
-		Inscripcion insc1 = new Inscripcion(a1.getInscripciones().getListaInscripciones().size()+1, anioLec, 100, asig1);
+		Inscripcion insc1 = new Inscripcion(anioLec, 100, asig1);
 		a1.agregarInscripcion(insc1);
 		
 		//sin probar!!!!

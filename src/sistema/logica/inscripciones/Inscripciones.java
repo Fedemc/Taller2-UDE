@@ -13,15 +13,16 @@ public class Inscripciones {
 		listaInscripciones= new ArrayList<Inscripcion>();
 	}
 	
+	//Getter
 	public ArrayList<Inscripcion> getListaInscripciones() {
 		return listaInscripciones;
 	}
 
-
-
 	//Inserta una inscripcion en la lista
 	public void insert(Inscripcion i) 
 	{
+		int nroIns = listaInscripciones.size() + 1;
+		i.setNroInscripcion(nroIns);
 		listaInscripciones.add(i);
 	}
 	
@@ -36,14 +37,14 @@ public class Inscripciones {
 			else
 				i++;
 		}
-		
 		return existe;
 	}
 	
 	//Precondicion: Existe la inscripcion con ese nro de inscripcion en la lista
 	public Inscripcion find(int nroIns)
 	{
-		boolean encontre=false;
+		return listaInscripciones.get(nroIns);
+		/*boolean encontre=false;
 		int i=0;
 		
 		while (!encontre && i<listaInscripciones.size())
@@ -51,10 +52,8 @@ public class Inscripciones {
 			if(nroIns!=listaInscripciones.get(i).getNroInscripcion())
 				i++;
 		}
-		return listaInscripciones.get(i);
+		return listaInscripciones.get(i);*/
 	}
-	
-	
 	
 	//Calculo el monto total del costo de las inscripciones que estan activas (nota == 0)
 	public float calcularCuotasAlumno()

@@ -12,15 +12,14 @@ public class Inscripcion {
 	
 	//Constructor
 	
-	public Inscripcion(int nroInscripcion, int anioLectivo, int montoBase, Asignatura asignatura) {
-		this.nroInscripcion = nroInscripcion;
+	public Inscripcion(int anioLectivo, int montoBase, Asignatura asignatura) {
+		this.nroInscripcion = 0;
 		this.anioLectivo = anioLectivo;
 		this.montoBase = montoBase;
 		this.calificacion = 0;
 		this.asignatura = asignatura;
 	}
 
-	
 	//get y set
 	
 	public int getCalificacion() {
@@ -33,6 +32,10 @@ public class Inscripcion {
 	
 	public int getNroInscripcion() {
 		return nroInscripcion;
+	}
+	
+	public void setNroInscripcion(int nroIns) {
+		this.nroInscripcion = nroIns;
 	}
 	
 	public int getAnioLectivo() {
