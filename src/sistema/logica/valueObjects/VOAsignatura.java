@@ -29,8 +29,4 @@ public class VOAsignatura {
 	public String toString() {
 		return "VOAsignatura: codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion;
 	}
-	
-	
-	
-	
 }

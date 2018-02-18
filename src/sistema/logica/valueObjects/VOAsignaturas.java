@@ -17,4 +17,9 @@ public class VOAsignaturas {
 		voasignaturas.add(a);
 	}
 	
+	public ArrayList<VOAsignatura> getVOAsignaturasArray()
+	{
+		return voasignaturas;
+	}
+	
 }

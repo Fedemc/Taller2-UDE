@@ -1,18 +1,20 @@
 package sistema.logica.asignaturas;
 
 import java.util.*;
-
 import sistema.logica.valueObjects.VOAsignatura;
 import sistema.logica.valueObjects.VOAsignaturas;
+import java.io.Serializable;
 
-public class Asignaturas {
+public class Asignaturas implements Serializable{
 
 	int TAM = 10;
 	private int tope=0;
 	private Asignatura arrAsignaturas[];
 	
-	public Asignaturas() {
+	public Asignaturas() 
+	{
 		arrAsignaturas= new Asignatura[TAM];
+		tope=0;
 	}
 
 
@@ -23,6 +25,7 @@ public class Asignaturas {
 	public void setTope(int tope) {
 		this.tope = tope;
 	}
+	
 
 	//Insertar una asignatura al array
 	public void insertAsignatura(Asignatura a) {
