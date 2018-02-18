@@ -40,4 +40,27 @@ public class CapaLogica
 		}
 	}
 	
+	/*Req. 4: Listado de asignaturas*/
+	
+	
+	/*Req. 5: Listado de alumnos cuyo apellido empiece con un substring dado.*/
+	public VOAlumnos listadoAlumnoApellido (String s) {
+		VOAlumnos voas = new VOAlumnos();
+		if (alumnos.getCantidadElementos() == 0)
+			System.out.println("Exception no hay alumnos registrados.");//Throw exception no hay alumnos registrados.
+		else
+			voas = alumnos.ListadoAlumnosApe(s);
+		return voas;
+	}
+	
+	/*Req. 6: Listado detallado de un alumno, dada una cedula.*/
+	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) {
+		VOAlumnoDetallado voad = new VOAlumnoDetallado();
+		if (alumnos.member(ced))
+			voad = alumnos.ListadoAlumnoCedulaCom(ced);
+		else
+			System.out.println("Exception el alumno no existe.");//Throw exception el alumno no existe.
+		return voad;
+	}
+	
 }

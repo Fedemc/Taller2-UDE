@@ -5,7 +5,13 @@ public class VOAlumno {
 	private Long cedula;
 	private String nombre;
 	private String apellido;
-		
+	
+	public VOAlumno() {
+		this.cedula = (long) 0;
+		this.nombre = "";
+		this.apellido = "";
+	}
+	
 	public VOAlumno(Long cedula, String nombre, String apellido) {
 		this.cedula = cedula;
 		this.nombre = nombre;

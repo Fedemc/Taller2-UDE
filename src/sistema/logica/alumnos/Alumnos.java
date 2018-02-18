@@ -5,6 +5,7 @@ import java.util.*;
 import sistema.logica.alumnos.Alumno;
 import sistema.logica.valueObjects.VOAlumno;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
+import sistema.logica.valueObjects.VOAlumnos;
 import sistema.logica.valueObjects.VOBecadoDetallado;
 
 public class Alumnos {
@@ -28,22 +29,27 @@ public class Alumnos {
 		return arbol.get(clave);
 	}
 	
+	//Devolver cantidad de elementos en el árbol.
+	public int getCantidadElementos() {
+		return arbol.size();
+	}
+	
 	//Crear Iterador
 	public Iterator crearIterador() {
 		Iterator it = arbol.keySet().iterator();
 		return it;
 	}
 	
-	public List<VOAlumno> ListadoAlumnosApe(String ape) {
+	public VOAlumnos ListadoAlumnosApe(String ape) {
 		Iterator it = arbol.keySet().iterator();	//Me genero un iterador con el set de cedulas del treemap
-		List<VOAlumno> vOAlumnos = new ArrayList<>();
+		VOAlumnos vOAlumnos = new VOAlumnos();
 		while (it.hasNext()) {
 			Long clave = (Long) it.next();	//El iterador solo tiene cedulas, casteo como long para traerme las cedulas
 			Alumno tempAlu = arbol.get(clave);	//me genero un alumno temporal para almacenar los datos del que estoy leyendo con el iterador
 			if (tempAlu.getApellido().startsWith(ape)) {	//comparo si el apellido del alumno empieza con el string que se ingresó por parametro
 				//Convertir a VOAlumno y almacenar
 				VOAlumno voa = new VOAlumno(tempAlu.getCedula(),tempAlu.getNombre(),tempAlu.getApellido());
-				vOAlumnos.add(voa);
+				vOAlumnos.insert(voa);
 			}
 		}
 		return vOAlumnos;
