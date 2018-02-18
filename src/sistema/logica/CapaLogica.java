@@ -79,13 +79,20 @@ public class CapaLogica
 		return vobd;
 	}
 	
-	/*Req. 7: */
-	public void inscripcionAsignatura(Long ced, String cod) {
+	/*Req. 7: Registrar la inscripcion de un alumno.*/
+	public void inscripcionAsignatura(Long ced, String cod, int aLectivo) {
 		if (asignaturas.memberAsignatura(cod)) {
 			if (alumnos.member(ced)) {
 				Alumno alu = alumnos.find(ced);
-				alu.agregarInscripcion(cod);
+				if (alu.esValidaInscripcion(cod)) {
+					Inscripcion i = new Inscripcion(1000,asignaturas.findAsignatura(cod));
+					alu.registrarInscripcion(i);
+				}
 			}
 		}
 	}
+	
+	
+	
+	
 }

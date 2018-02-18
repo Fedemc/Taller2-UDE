@@ -1,5 +1,7 @@
 package sistema.logica.inscripciones;
 
+import java.util.Calendar;
+
 import sistema.logica.asignaturas.Asignatura;
 
 public class Inscripcion {
@@ -12,9 +14,9 @@ public class Inscripcion {
 	
 	//Constructor
 	
-	public Inscripcion(int anioLectivo, int montoBase, Asignatura asignatura) {
+	public Inscripcion(/*int anioLectivo, */int montoBase, Asignatura asignatura) {
 		this.nroInscripcion = 0;
-		this.anioLectivo = anioLectivo;
+		this.anioLectivo = Calendar.getInstance().get(Calendar.YEAR);
 		this.montoBase = montoBase;
 		this.calificacion = 0;
 		this.asignatura = asignatura;

@@ -1,6 +1,7 @@
 package sistema.logica.inscripciones;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Inscripciones {
 
@@ -38,6 +39,12 @@ public class Inscripciones {
 				i++;
 		}
 		return existe;
+	}
+	
+	//Crear Iterador
+	public Iterator crearIterador() {
+		Iterator it = listaInscripciones.iterator();
+		return it;
 	}
 	
 	//Precondicion: Existe la inscripcion con ese nro de inscripcion en la lista

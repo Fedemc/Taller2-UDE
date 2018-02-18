@@ -2,7 +2,7 @@ package sistema.logica.alumnos;
 
 import java.io.LineNumberInputStream;
 import java.util.Iterator;
-
+import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.inscripciones.Inscripcion;
 import sistema.logica.inscripciones.Inscripciones;
 
@@ -113,11 +113,30 @@ public class Alumno {
 	}
 	
 	//Agregar una inscripcion a la lista del alumno
-	public void agregarInscripcion(String codAsig) {
+	public boolean esValidaInscripcion(String codAsig) {
 		boolean inscripcionValida = true;
-		
-		
-		//inscripciones.insert(i);
+		Iterator<Inscripcion> it = inscripciones.crearIterador();
+		while ((it.hasNext()) || (inscripcionValida)) {
+			Inscripcion insAux = it.next();
+			Asignatura asigAux = insAux.getAsignatura();
+			while ((inscripcionValida) && (asigAux.getCodigo() == codAsig)) {
+				if (insAux.getCalificacion() >= 6) {
+					System.out.println("Throw exception el alumno ya aprobó la materia.");
+					inscripcionValida = false;
+				}
+				else {
+					if (insAux.getCalificacion() == 0) {
+						System.out.println("Throw exception el alumno está cursando la materia.");
+						inscripcionValida = false;
+					}
+				}
+			}
+		}
+		return inscripcionValida;
+	}
+	
+	public void registrarInscripcion(Inscripcion i) {
+		inscripciones.insert(i);
 	}
 	
 
