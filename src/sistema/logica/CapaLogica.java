@@ -80,5 +80,12 @@ public class CapaLogica
 	}
 	
 	/*Req. 7: */
-	
+	public void inscripcionAsignatura(Long ced, String cod) {
+		if (asignaturas.memberAsignatura(cod)) {
+			if (alumnos.member(ced)) {
+				Alumno alu = alumnos.find(ced);
+				alu.agregarInscripcion(cod);
+			}
+		}
+	}
 }

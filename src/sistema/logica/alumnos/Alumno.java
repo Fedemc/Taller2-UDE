@@ -113,9 +113,11 @@ public class Alumno {
 	}
 	
 	//Agregar una inscripcion a la lista del alumno
-	
-	public void agregarInscripcion( Inscripcion i) {
-		inscripciones.insert(i);
+	public void agregarInscripcion(String codAsig) {
+		boolean inscripcionValida = true;
+		
+		
+		//inscripciones.insert(i);
 	}
 	
 
