@@ -3,6 +3,7 @@ package sistema.logica.asignaturas;
 import java.util.*;
 
 import sistema.logica.valueObjects.VOAsignatura;
+import sistema.logica.valueObjects.VOAsignaturas;
 
 public class Asignaturas {
 
@@ -62,13 +63,13 @@ public class Asignaturas {
 		
 	}
 	
-	public List<VOAsignatura> listadoAsignaturas () {
-		List<VOAsignatura> vOAsignaturas = new ArrayList<>();
+	//Listado de asignaturas.
+	public VOAsignaturas listadoAsignaturas () {
+		VOAsignaturas vOAsignaturas = new VOAsignaturas();
 		for(int i=0; i<getTope();i++) {
 			VOAsignatura voas = new VOAsignatura(arrAsignaturas[i].getCodigo(), arrAsignaturas[i].getNombre(), arrAsignaturas[i].getDescripcion());
-			vOAsignaturas.add(voas);
+			vOAsignaturas.insert(voas);
 		}
-		
 		return vOAsignaturas;
 	}
 	

@@ -41,7 +41,14 @@ public class CapaLogica
 	}
 	
 	/*Req. 4: Listado de asignaturas*/
-	
+	public VOAsignaturas listadoAsignaturas() {
+		VOAsignaturas voas = new VOAsignaturas();
+		if (asignaturas.getTope() == 0)
+			System.out.println("Exception no hay asignaturas registrados.");//Throw exception no hay asignaturas registrados.
+		else
+			voas = asignaturas.listadoAsignaturas();
+		return voas;
+	}
 	
 	/*Req. 5: Listado de alumnos cuyo apellido empiece con un substring dado.*/
 	public VOAlumnos listadoAlumnoApellido (String s) {
@@ -53,7 +60,7 @@ public class CapaLogica
 		return voas;
 	}
 	
-	/*Req. 6: Listado detallado de un alumno, dada una cedula.*/
+	/*Req. 6: Listado detallado de un alumno, dada una cedula. Si es becado, también listar detalles de la beca.*/
 	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) {
 		VOAlumnoDetallado voad = new VOAlumnoDetallado();
 		if (alumnos.member(ced))
@@ -62,5 +69,16 @@ public class CapaLogica
 			System.out.println("Exception el alumno no existe.");//Throw exception el alumno no existe.
 		return voad;
 	}
+	
+	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) {
+		VOBecadoDetallado vobd = new VOBecadoDetallado();
+		if (alumnos.member(ced))
+			vobd = alumnos.ListadoAlumnoCedulaBec(ced);
+		else
+			System.out.println("Exception el alumno no existe.");//Throw exception el alumno no existe.
+		return vobd;
+	}
+	
+	/*Req. 7: */
 	
 }
