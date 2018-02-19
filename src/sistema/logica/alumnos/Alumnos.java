@@ -50,13 +50,13 @@ public class Alumnos {
 				//Convertir a VOAlumno y almacenar
 				VOAlumno voa = new VOAlumno(tempAlu.getCedula(),tempAlu.getNombre(),tempAlu.getApellido());
 				//Evaluar que tipo de alumno es para desplegar si es becado o alumno comun
-				if(arbol.get(clave) instanceof Alumno)
+				if(arbol.get(clave) instanceof Becado)
 				{
-					voa.setTipoAlumno("Comun");
+					voa.setTipoAlumno("Becado");
 				}
 				else
 				{
-					voa.setTipoAlumno("Becado");
+					voa.setTipoAlumno("Comun");
 				}
 				vOAlumnos.insert(voa);
 			}
@@ -77,5 +77,4 @@ public class Alumnos {
 					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno(),tempBec.getPorcentaje(), tempBec.getDescripcionBeca());
 		return vobd;
 	}
-	
 }
