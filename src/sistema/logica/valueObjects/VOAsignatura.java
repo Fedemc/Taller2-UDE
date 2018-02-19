@@ -9,7 +9,7 @@ public class VOAsignatura {
 	public VOAsignatura(String codigo, String nombre, String descripcion) {
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.descripcion = descripcion;
+		this.descripcion = descripcion; 
 	}
 
 	//Getters

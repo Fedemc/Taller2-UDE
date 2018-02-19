@@ -8,8 +8,8 @@ public class VOAsignaturas {
 
 	//Constructor.
 	public VOAsignaturas()
-	{	
-		voasignaturas = new ArrayList<VOAsignatura>();
+	{	 
+		voasignaturas = new ArrayList<VOAsignatura>(); 
 	}
 	
 	public void insert(VOAsignatura a) 

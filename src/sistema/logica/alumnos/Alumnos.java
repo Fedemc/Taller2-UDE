@@ -14,7 +14,7 @@ public class Alumnos {
 	
 	//Constructor
 	public Alumnos() {
-		arbol = new TreeMap<Long,Alumno>();
+		arbol = new TreeMap<Long,Alumno>(); 
 	}
 		
 	public boolean member(Long clave) {
@@ -49,6 +49,15 @@ public class Alumnos {
 			if (tempAlu.getApellido().startsWith(ape)) {	//comparo si el apellido del alumno empieza con el string que se ingresó por parametro
 				//Convertir a VOAlumno y almacenar
 				VOAlumno voa = new VOAlumno(tempAlu.getCedula(),tempAlu.getNombre(),tempAlu.getApellido());
+				//Evaluar que tipo de alumno es para desplegar si es becado o alumno comun
+				if(arbol.get(clave) instanceof Alumno)
+				{
+					voa.setTipoAlumno("Comun");
+				}
+				else
+				{
+					voa.setTipoAlumno("Becado");
+				}
 				vOAlumnos.insert(voa);
 			}
 		}

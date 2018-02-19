@@ -14,7 +14,7 @@ public class Asignaturas implements Serializable{
 	public Asignaturas() 
 	{
 		arrAsignaturas= new Asignatura[TAM];
-		tope=0;
+		tope=0; 
 	}
 
 

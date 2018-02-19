@@ -1,6 +1,7 @@
 package sistema.logica.alumnos;
 
 import java.io.LineNumberInputStream;
+import java.util.Calendar;
 import java.util.Iterator;
 import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.inscripciones.Inscripcion;
@@ -15,7 +16,7 @@ public class Alumno {
 	private int telefono;
 	private String email;
 	private Inscripciones inscripciones;
-	private int cantAprobaciones;
+	private int cantAprobaciones; 
 	
 	
 	//Constructor
@@ -112,21 +113,28 @@ public class Alumno {
 		return promedioAprob;
 	}
 	
-	//Agregar una inscripcion a la lista del alumno
-	public boolean esValidaInscripcion(String codAsig) {
-		boolean inscripcionValida = true;
+	//Dado un codigo de Asignatura se verifica si es valida para inscribir
+	//Se recorren las inscripciones del alumno para verificar que no la tenga aprobada ni la esté cursando en el mismo año
+	public boolean esValidaInscripcion(String codAsig) 
+	{
+		boolean inscripcionValida = true; 
 		Iterator<Inscripcion> it = inscripciones.crearIterador();
-		while ((it.hasNext()) || (inscripcionValida)) {
+		while ((it.hasNext()) || (inscripcionValida)) 
+		{
 			Inscripcion insAux = it.next();
 			Asignatura asigAux = insAux.getAsignatura();
-			while ((inscripcionValida) && (asigAux.getCodigo() == codAsig)) {
-				if (insAux.getCalificacion() >= 6) {
+			if ((inscripcionValida) && (asigAux.getCodigo() == codAsig)) 
+			{
+				if (insAux.getCalificacion() >= 6)
+				{
 					System.out.println("Throw exception el alumno ya aprobó la materia.");
 					inscripcionValida = false;
 				}
-				else {
-					if (insAux.getCalificacion() == 0) {
-						System.out.println("Throw exception el alumno está cursando la materia.");
+				else 
+				{
+					if ((insAux.getCalificacion() == 0) && (insAux.getAnioLectivo() == Calendar.getInstance().get(Calendar.YEAR)))
+					{
+						System.out.println("Throw exception el alumno está cursando la materia en este año.");
 						inscripcionValida = false;
 					}
 				}

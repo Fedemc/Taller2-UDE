@@ -5,6 +5,7 @@ public class VOAlumno {
 	private Long cedula;
 	private String nombre;
 	private String apellido;
+	private String tipoAlumno; 
 	
 	public VOAlumno() {
 		this.cedula = (long) 0;
@@ -30,10 +31,15 @@ public class VOAlumno {
 	public String getApellido() {
 		return apellido;
 	}
+	
+	public void setTipoAlumno(String tipoAl)
+	{
+		this.tipoAlumno=tipoAl;
+	}
 
 	@Override
 	public String toString() {
-		return "VOAlumno: cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido;
+		return "VOAlumno: cedula= " + cedula + ", nombre= " + nombre + ", apellido= " + apellido + ", tipo alumno= " + tipoAlumno;
 	}
 	
 	

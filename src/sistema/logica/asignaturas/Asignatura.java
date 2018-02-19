@@ -13,9 +13,9 @@ public class Asignatura implements Serializable
 	public Asignatura(String codigo, String nombre, String descripcion) {
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.descripcion = descripcion;
+		this.descripcion = descripcion; 
 	}
-
+ 
 	//get
 	
 	public String getCodigo() {

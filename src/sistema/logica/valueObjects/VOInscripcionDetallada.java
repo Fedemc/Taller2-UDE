@@ -10,7 +10,7 @@ public class VOInscripcionDetallada extends VOInscripcion {
 	}
 
 	//Getters
-	public Float getMontoBase() {
+	public Float getMontoBase() { 
 		return montoBase;
 	}
 

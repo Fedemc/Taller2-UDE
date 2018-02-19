@@ -6,7 +6,7 @@ public class VOEgresadoPromedioCal extends VOAlumno {
 	private Float promedioAprob;
 	
 	public VOEgresadoPromedioCal(Long cedula, String nombre, String apellido, Float pt, Float pa) {
-		super(cedula,nombre,apellido);
+		super(cedula,nombre,apellido); 
 		this.promedioTotal = pt;
 		this.promedioAprob = pa;
 	}

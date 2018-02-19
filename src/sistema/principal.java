@@ -11,25 +11,18 @@ import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.asignaturas.Asignaturas;
 import sistema.logica.inscripciones.Inscripcion;
 import sistema.logica.inscripciones.Inscripciones;
+import sistema.logica.*;
 import sistema.persistencia.*;
 import sistema.logica.valueObjects.*;
 
-public class principal {
+public class principal { 
 
 	public static void main(String[] args) {
-				
+		
+		CapaLogica fachada= new CapaLogica();
+		
 		long ced = 2;
 		String ape = "zu";
-		
-		Alumno a1 =  new Alumno(1,"andres","zubbb","br",99,"sss@");
-		Alumno a2 =  new Alumno(5,"car","zulll","sr",88,"hooo@");
-		Becado b1 =  new Becado(2,"fed","chaa","pp",66,"ppp@",null, 20,"alumno estudioso");
-				
-		Alumnos a = new Alumnos();
-		
-		a.insert(a1);
-		a.insert(a2);
-		a.insert(b1);
 		
 		//Prueba registrar asignatura
 		Asignatura asig1 = new Asignatura("asignatura 1",  "Taller", "Taller de programacion en JAVA");
@@ -37,79 +30,52 @@ public class principal {
 		Asignatura asig3 = new Asignatura("asignatura 3",  "BD", "Base de Datos");
 		Asignatura asig4 = new Asignatura("asignatura 4",  "Redes", "Redes de Computadores");
 		
-		Asignaturas arrayAsignaturas = new Asignaturas();
+		fachada.registrarAsignatura(asig1);
+		fachada.registrarAsignatura(asig2);
+		fachada.registrarAsignatura(asig3);
+		fachada.registrarAsignatura(asig4);
 		
-		arrayAsignaturas.insertAsignatura(asig3);
-		arrayAsignaturas.insertAsignatura(asig1);
-		arrayAsignaturas.insertAsignatura(asig2);
-		arrayAsignaturas.insertAsignatura(asig4);
+		//Listado asignaturas
+		VOAsignaturas voAsigns=new VOAsignaturas();
+		voAsigns=fachada.listadoAsignaturas();
+		
+		System.out.println("\nListado asignaturas");
+		for(VOAsignatura asig: voAsigns.getVOAsignaturasArray())
+		{
+			System.out.println(asig.toString());
+		}
 		
 		Calendar fecha = Calendar.getInstance();
 	    int anioLec = fecha.get(Calendar.YEAR);
 		
-		Inscripcion insc1 = new Inscripcion(anioLec, 100, asig1);
+		Inscripcion insc1 = new Inscripcion(100, asig1);
 		//a1.agregarInscripcion(insc1);
 		
+		
+		//Prueba registrar alumno
+		Alumno a1 =  new Alumno(1,"andres","zubbb","br",99,"sss@");
+		Alumno a2 =  new Alumno(5,"car","zulll","sr",88,"hooo@");
+		Becado b1 =  new Becado(2,"fed","zur","pp",66,"ppp@",null, 20,"alumno estudioso");
+		Alumno a3 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
+		
+		fachada.registrarAlumno(a1);
+		fachada.registrarAlumno(a2);
+		fachada.registrarAlumno(a3);
+		fachada.registrarAlumno(b1);
+		
+		
+		//Listado alumnos
+		VOAlumnos voAlus=new VOAlumnos();
+		voAlus=fachada.listadoAlumnoApellido(ape);
+		
+		System.out.println("\nListado alumnos");
+		for(VOAlumno alu: voAlus.getVOAlumnosArray())
+		{
+			System.out.println(alu.toString());
+		}
+		
 		//Respaldo
-		Respaldo res= new Respaldo();
-		Asignaturas restoreAsigns=new Asignaturas();
 		
-		System.out.println("Tope antes de restore: " + restoreAsigns.getTope());
-		
-		VOAsignaturas voaRestore= new VOAsignaturas();
-		voaRestore=restoreAsigns.listadoAsignaturas();
-		
-		System.out.println("\nDatos antes del restore: ");
-		for(VOAsignatura elem: voaRestore.getVOAsignaturasArray())
-		{
-			System.out.println(elem.toString());			
-		}
-			
-		try
-		{
-			Properties p=new Properties();
-			String nomArch = "config/config.properties";
-			
-			//Abro el archivo properties
-			p.load(new FileInputStream(nomArch));
-			String datosRespaldoAsignaturas= p.getProperty("rutaRespaldoAsignaturas");
-			String datosRespaldoAlumnos= p.getProperty("rutaRespaldoAsignaturas");
-
-			//Respaldar datos
-			try
-			{
-				res.respaldarAsignaturas(datosRespaldoAsignaturas, arrayAsignaturas);
-			}
-			catch(PersistenciaException pExc)
-			{
-				pExc.DarMensaje();
-			}
-			
-				
-			//Restaurar datos
-			try
-			{
-				restoreAsigns=res.recuperarAsignaturas(datosRespaldoAsignaturas);
-			}
-			catch(PersistenciaException pExc)
-			{
-				pExc.DarMensaje();
-			}
-			
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-				
-		System.out.println("\nTope despues de restore: " + restoreAsigns.getTope());
-		
-		voaRestore=restoreAsigns.listadoAsignaturas();
-		System.out.println("\nDatos despues del restore: ");
-		for(VOAsignatura elem: voaRestore.getVOAsignaturasArray())
-		{
-			System.out.println(elem.toString());			
-		}
 		
 		
 		//sin probar!!!!

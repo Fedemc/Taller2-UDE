@@ -12,7 +12,7 @@ public class Becado extends Alumno {
 			Inscripciones inscripcion, int porcentaje, String descripcionBeca) {
 		super(cedula, nombre, apellido, domicilio, telefono, email);
 		this.porcentaje = porcentaje;
-		this.descripcionBeca = descripcionBeca;
+		this.descripcionBeca = descripcionBeca; 
 		
 	}
 

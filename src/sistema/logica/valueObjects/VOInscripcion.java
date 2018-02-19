@@ -9,7 +9,7 @@ public class VOInscripcion {
 	
 	public VOInscripcion(int numero, String nombreAsignatura, int anioLectivo, int calificacion) {
 		this.numero = numero;
-		this.nombreAsignatura = nombreAsignatura;
+		this.nombreAsignatura = nombreAsignatura; 
 		this.anioLectivo = anioLectivo;
 		this.calificacion = calificacion;
 	}

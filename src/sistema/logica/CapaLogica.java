@@ -3,11 +3,19 @@ import sistema.logica.alumnos.*;
 import sistema.logica.asignaturas.*;
 import sistema.logica.inscripciones.*;
 import sistema.logica.valueObjects.*;
+import sistema.persistencia.Respaldo;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+import sistema.excepciones.*;
 
 public class CapaLogica
 {
 	Alumnos alumnos = new Alumnos();
-	Asignaturas asignaturas = new Asignaturas();
+	Asignaturas asignaturas = new Asignaturas(); 
+	Respaldo res= new Respaldo();
 	
 	/*Req. 1: Registrar una asignatura en el sistema. */
 	public void registrarAsignatura (Asignatura as) {
@@ -80,7 +88,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 7: Registrar la inscripcion de un alumno.*/
-	public void inscripcionAsignatura(Long ced, String cod, int aLectivo) {
+	public void inscripcionAsignatura(Long ced, String cod) {
 		if (asignaturas.memberAsignatura(cod)) {
 			if (alumnos.member(ced)) {
 				Alumno alu = alumnos.find(ced);
@@ -92,7 +100,33 @@ public class CapaLogica
 		}
 	}
 	
-	
-	
-	
+	/*Req. 10: Respaldo de datos. */
+	public void respaldarDatos()
+	{
+		try
+		{
+			Properties p=new Properties();
+			String nomArch = "config/config.properties";
+			
+			//Abro el archivo properties
+			p.load(new FileInputStream(nomArch));
+			String datosRespaldoAsignaturas= p.getProperty("rutaRespaldoAsignaturas");
+			String datosRespaldoAlumnos= p.getProperty("rutaRespaldoAlumnos");
+
+			//Respaldar datos
+			try
+			{
+				res.respaldarAsignaturas(datosRespaldoAsignaturas, asignaturas);
+				res.respaldarAlumnos(datosRespaldoAlumnos, alumnos);
+			}
+			catch(PersistenciaException pExc)
+			{
+				pExc.DarMensaje();
+			}		
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}	
 }

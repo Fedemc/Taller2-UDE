@@ -8,7 +8,7 @@ public class Inscripciones {
 	private ArrayList<Inscripcion> listaInscripciones;
 	
 	
-	//Constructor simple Inscripciones
+	//Constructor simple Inscripciones 
 	public Inscripciones()
 	{
 		listaInscripciones= new ArrayList<Inscripcion>();

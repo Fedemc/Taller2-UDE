@@ -10,7 +10,7 @@ public class Inscripcion {
 	private int anioLectivo;
 	private int montoBase;
 	private int calificacion;
-	private Asignatura asignatura;
+	private Asignatura asignatura; 
 	
 	//Constructor
 	

@@ -7,7 +7,7 @@ public class VOBecadoDetallado extends VOAlumnoDetallado {
 	
 	public VOBecadoDetallado() {
 		super();
-		this.porcentaje = (float) 0.0;
+		this.porcentaje = (float) 0.0; 
 		this.descripcion = "";
 	}
 	

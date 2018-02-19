@@ -9,7 +9,7 @@ public class VOAlumnoDetallado extends VOAlumno {
 	
 	public VOAlumnoDetallado() {
 		super();
-		this.domicilio = "";
+		this.domicilio = ""; 
 		this.telefono = 0;
 		this.dirCorreo = "";
 		this.cuotaMensual = (float) 0.0;

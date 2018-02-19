@@ -11,7 +11,7 @@ public class VOAlumnos {
 	//Constructor.
 	public VOAlumnos()
 	{	
-		voalumnos = new ArrayList<VOAlumno>();
+		voalumnos = new ArrayList<VOAlumno>(); 
 	}
 	
 	public void insert(VOAlumno a) 
@@ -19,6 +19,9 @@ public class VOAlumnos {
 		voalumnos.add(a);
 	}
 	
-	
+	public ArrayList<VOAlumno> getVOAlumnosArray()
+	{
+		return voalumnos;
+	}
 	
 }
