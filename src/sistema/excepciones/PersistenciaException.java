@@ -9,7 +9,7 @@ public class PersistenciaException extends Exception
 		this.mensaje=mensaje;
 	}
 	
-	public String DarMensaje()
+	public String darMensaje()
 	{
 		return mensaje;
 	}

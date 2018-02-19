@@ -6,6 +6,7 @@ import java.util.Iterator;
 import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.inscripciones.Inscripcion;
 import sistema.logica.inscripciones.Inscripciones;
+import sistema.excepciones.InscripcionException;
 
 public class Alumno {
 
@@ -115,7 +116,7 @@ public class Alumno {
 	
 	//Dado un codigo de Asignatura se verifica si es valida para inscribir
 	//Se recorren las inscripciones del alumno para verificar que no la tenga aprobada ni la esté cursando en el mismo año
-	public boolean esValidaInscripcion(String codAsig) 
+	public boolean esValidaInscripcion(String codAsig) throws InscripcionException
 	{
 		boolean inscripcionValida = true; 
 		Iterator<Inscripcion> it = inscripciones.crearIterador();
@@ -127,15 +128,19 @@ public class Alumno {
 			{
 				if (insAux.getCalificacion() >= 6)
 				{
-					System.out.println("Throw exception el alumno ya aprobó la materia.");
 					inscripcionValida = false;
+					//System.out.println("Throw exception el alumno ya aprobó la materia.");
+					String msj="Error: El alumno ya aprobó la materia ingresada";
+					throw new InscripcionException(msj);
 				}
 				else 
 				{
 					if ((insAux.getCalificacion() == 0) && (insAux.getAnioLectivo() == Calendar.getInstance().get(Calendar.YEAR)))
 					{
-						System.out.println("Throw exception el alumno está cursando la materia en este año.");
 						inscripcionValida = false;
+						//System.out.println("Throw exception el alumno está cursando la materia en este año.");
+						String msj="Error: El alumno está cursando la materia en el año actual.";
+						throw new InscripcionException(msj);						
 					}
 				}
 			}

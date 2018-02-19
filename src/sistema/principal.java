@@ -3,7 +3,7 @@ package sistema;
 import java.util.*;
 import java.io.*;
 
-import sistema.excepciones.PersistenciaException;
+import sistema.excepciones.*;
 import sistema.logica.alumnos.Alumno;
 import sistema.logica.alumnos.Alumnos;
 import sistema.logica.alumnos.Becado;
@@ -30,10 +30,18 @@ public class principal {
 		Asignatura asig3 = new Asignatura("asignatura 3",  "BD", "Base de Datos");
 		Asignatura asig4 = new Asignatura("asignatura 4",  "Redes", "Redes de Computadores");
 		
-		fachada.registrarAsignatura(asig1);
-		fachada.registrarAsignatura(asig2);
-		fachada.registrarAsignatura(asig3);
-		fachada.registrarAsignatura(asig4);
+		try
+		{
+			fachada.registrarAsignatura(asig1);
+			fachada.registrarAsignatura(asig2);
+			fachada.registrarAsignatura(asig3);
+			fachada.registrarAsignatura(asig4);
+		}
+		catch (AsignaturaException asigEx)
+		{
+			asigEx.darMensaje();
+		}
+		
 		
 		//Listado asignaturas
 		VOAsignaturas voAsigns=new VOAsignaturas();
@@ -58,10 +66,20 @@ public class principal {
 		Becado b1 =  new Becado(2,"fed","zur","pp",66,"ppp@",null, 20,"alumno estudioso");
 		Alumno a3 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
 		
-		fachada.registrarAlumno(a1);
-		fachada.registrarAlumno(a2);
-		fachada.registrarAlumno(a3);
-		fachada.registrarAlumno(b1);
+		
+		try
+		{
+			fachada.registrarAlumno(a1);
+			fachada.registrarAlumno(a2);
+			fachada.registrarAlumno(a3);
+			fachada.registrarAlumno(b1);
+		}
+		catch (AlumnoException alEx)
+		{
+			alEx.darMensaje();
+		}
+		
+		
 		
 		
 		//Listado alumnos

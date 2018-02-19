@@ -18,33 +18,66 @@ public class CapaLogica
 	Respaldo res= new Respaldo();
 	
 	/*Req. 1: Registrar una asignatura en el sistema. */
-	public void registrarAsignatura (Asignatura as) {
+	public void registrarAsignatura (Asignatura as) throws AsignaturaException {
 		if (asignaturas.getTope() >= 10)
-			System.out.println("Exception ya hay 10 asignaturas registradas.");//Throw exception ya hay 10 asignaturas registradas.			 
+		{
+			String msj="Ya existen 10 asignaturas registradas en el sistema";
+			throw new AsignaturaException(msj);
+		}
 		else
+		{
 			if  (asignaturas.memberAsignatura(as.getCodigo()))
-				System.out.println("Exception asignatura ya registrada.");//Throw exception asignatura ya registrada.
+			{
+				String msj="Ya existe una asignatura con ese código ingresada en el sistema";
+				throw new AsignaturaException(msj);
+			}
 			else
 				asignaturas.insertAsignatura(as);
+		}
 	}
 	
 	/*Req. 2: Registro de un alumno en el sistema.*/
-	public void registrarAlumno(Alumno al) {
+	public void registrarAlumno(Alumno al) throws AlumnoException {
 		if (alumnos.member(al.getCedula()))
-			System.out.println("Exception alumno ya registrado.");//Throw exception alumno ya registrado.
+		{
+			//System.out.println("Exception alumno ya registrado.");
+			String msj= "Ya existe un alumno con la cédula en el sistema.";
+			throw new AlumnoException(msj);
+		}
 		else
 			alumnos.insert(al); //Falta ver becado
 	}
 	
 	/*Req. 3: Modificación de datos de un alumno (Domicilio, teléfono y dirección de correo electrónico.*/
-	public void modificarDatosAlumno(Long ced, String dom, int tel, String email) {
-		if (alumnos.member(ced)) {
+	public void modificarDatosAlumno(Long ced, String dom, int tel, String email) throws AlumnoException {
+		if (alumnos.member(ced)) 
+		{
 			if (!(dom.isEmpty()))
 				alumnos.find(ced).setDomicilio(dom);
+			else
+			{
+				String msj= "No se puede ingresar un domicilio vacío.";
+				throw new AlumnoException(msj);
+			}
 			if (tel != 0)
 				alumnos.find(ced).setTelefono(tel);
+			else
+			{
+				String msj= "No se puede ingresar un telefono vacío";
+				throw new AlumnoException(msj);
+			}
 			if (!(email.isEmpty()))
-				alumnos.find(ced).setDomicilio(email);
+				alumnos.find(ced).setEmail(email);
+			else
+			{
+				String msj= "No se puede ingresar una direccion de correo vacía";
+				throw new AlumnoException(msj);
+			}
+		}
+		else
+		{
+			String msj= "No existe un alumno con esa cedula en el sistema.";
+			throw new AlumnoException(msj);
 		}
 	}
 	
@@ -69,38 +102,76 @@ public class CapaLogica
 	}
 	
 	/*Req. 6: Listado detallado de un alumno, dada una cedula. Si es becado, también listar detalles de la beca.*/
-	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) {
+	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException{
 		VOAlumnoDetallado voad = new VOAlumnoDetallado();
 		if (alumnos.member(ced))
 			voad = alumnos.ListadoAlumnoCedulaCom(ced);
 		else
-			System.out.println("Exception el alumno no existe.");//Throw exception el alumno no existe.
+		{
+			String msj= "No existe un alumno con esa cedula en el sistema.";
+			throw new AlumnoException(msj);
+		}
 		return voad;
 	}
 	
-	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) {
+	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException{
 		VOBecadoDetallado vobd = new VOBecadoDetallado();
 		if (alumnos.member(ced))
 			vobd = alumnos.ListadoAlumnoCedulaBec(ced);
 		else
-			System.out.println("Exception el alumno no existe.");//Throw exception el alumno no existe.
+		{
+			String msj= "No existe un alumno con esa cedula en el sistema.";
+			throw new AlumnoException(msj);
+		}
 		return vobd;
 	}
 	
 	/*Req. 7: Registrar la inscripcion de un alumno.*/
-	public void inscripcionAsignatura(Long ced, String cod) {
-		if (asignaturas.memberAsignatura(cod)) {
-			if (alumnos.member(ced)) {
+	public void inscripcionAsignatura(Long ced, String cod) throws AsignaturaException, AlumnoException, InscripcionException{
+		if (asignaturas.memberAsignatura(cod)) 
+		{
+			if (alumnos.member(ced)) 
+			{
 				Alumno alu = alumnos.find(ced);
-				if (alu.esValidaInscripcion(cod)) {
+				boolean retorno=false;
+				try
+				{
+					retorno=alu.esValidaInscripcion(cod);
+				}
+				catch(InscripcionException inscEx)
+				{
+					throw new InscripcionException(inscEx.darMensaje());
+				}
+				if (retorno) 
+				{
 					Inscripcion i = new Inscripcion(1000,asignaturas.findAsignatura(cod));
 					alu.registrarInscripcion(i);
 				}
+				else
+				{
+					String msj="La inscripcion no es valida. Ya se registró una inscripción para esa materia en el año actual";
+					throw new InscripcionException(msj);
+				}
 			}
+			else
+			{
+				String msj= "No existe un alumno con esa cedula en el sistema.";
+				throw new AlumnoException(msj);
+			}
+		}
+		else
+		{
+			String msj="No se encontro la asignatura en el sistema.";
+			throw new AsignaturaException(msj);
 		}
 	}
 	
+	
+	
+	
+	
 	/*Req. 10: Respaldo de datos. */
+	//FALTA CAMBIAR ESTOS TRY Y CATCH POR THROWS!!!
 	public void respaldarDatos()
 	{
 		try
@@ -121,7 +192,7 @@ public class CapaLogica
 			}
 			catch(PersistenciaException pExc)
 			{
-				pExc.DarMensaje();
+				pExc.darMensaje();
 			}		
 		}
 		catch (IOException e)

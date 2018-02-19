@@ -1,16 +1,17 @@
 package sistema.excepciones;
 
-public class AlumnoException extends Exception
+public class InscripcionException extends Exception
 {
 	private String mensaje;
-		
-	public AlumnoException(String mensaje)
+	
+	public InscripcionException(String msj)
 	{
-		this.mensaje=mensaje;
+		this.mensaje=msj;
 	}
 	
 	public String darMensaje()
 	{
 		return mensaje;
 	}
+
 }
