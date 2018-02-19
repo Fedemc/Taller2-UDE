@@ -45,7 +45,15 @@ public class principal {
 		
 		//Listado asignaturas
 		VOAsignaturas voAsigns=new VOAsignaturas();
-		voAsigns=fachada.listadoAsignaturas();
+		try
+		{
+			voAsigns=fachada.listadoAsignaturas();
+		}
+		catch(AsignaturaException asigEx)
+		{
+			asigEx.darMensaje();
+		}		
+		
 		
 		System.out.println("\nListado asignaturas");
 		for(VOAsignatura asig: voAsigns.getVOAsignaturasArray())
@@ -66,6 +74,8 @@ public class principal {
 		Becado b1 =  new Becado(2,"fed","zur","pp",66,"ppp@",null, 20,"alumno estudioso");
 		Alumno a3 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
 		
+		Alumno a4 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
+		
 		
 		try
 		{
@@ -79,12 +89,29 @@ public class principal {
 			alEx.darMensaje();
 		}
 		
+		try
+		{
+			fachada.registrarAlumno(a4);
+		}
+		catch (AlumnoException alEx)
+		{
+			alEx.darMensaje();
+		}
+		
 		
 		
 		
 		//Listado alumnos
 		VOAlumnos voAlus=new VOAlumnos();
-		voAlus=fachada.listadoAlumnoApellido(ape);
+		try
+		{
+			voAlus=fachada.listadoAlumnoApellido(ape);
+		}
+		catch(AlumnoException aluEx)
+		{
+			aluEx.darMensaje();
+		}
+		
 		
 		System.out.println("\nListado alumnos");
 		for(VOAlumno alu: voAlus.getVOAlumnosArray())
