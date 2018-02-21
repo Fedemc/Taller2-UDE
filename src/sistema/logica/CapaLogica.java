@@ -16,11 +16,15 @@ public class CapaLogica
 	Alumnos alumnos = new Alumnos();
 	Asignaturas asignaturas = new Asignaturas(); 
 	Respaldo res= new Respaldo();
+	Monitor monitor=new Monitor();
 	
 	/*Req. 1: Registrar una asignatura en el sistema. */
-	public void registrarAsignatura (Asignatura as) throws AsignaturaException {
+	public void registrarAsignatura (Asignatura as) throws AsignaturaException 
+	{
+		monitor.comienzoEscritura();
 		if (asignaturas.getTope() >= 10)
 		{
+			monitor.terminoEscritura();
 			String msj="Error: Ya existen 10 asignaturas registradas en el sistema";
 			throw new AsignaturaException(msj);
 		}
@@ -28,104 +32,158 @@ public class CapaLogica
 		{
 			if  (asignaturas.memberAsignatura(as.getCodigo()))
 			{
+				monitor.terminoEscritura();
 				String msj="Error: Ya existe una asignatura con ese código ingresada en el sistema";
 				throw new AsignaturaException(msj);
 			}
 			else
+			{
 				asignaturas.insertAsignatura(as);
+				monitor.terminoEscritura();
+			}
 		}
 	}
 	
 	/*Req. 2: Registro de un alumno en el sistema.*/
-	public void registrarAlumno(Alumno al) throws AlumnoException {
+	public void registrarAlumno(Alumno al) throws AlumnoException 
+	{
+		monitor.comienzoEscritura();
 		if (alumnos.member(al.getCedula()))
 		{
 			//System.out.println("Exception alumno ya registrado.");
+			monitor.terminoEscritura();
 			String msj= "Error: Ya existe un alumno con la cédula en el sistema.";
 			throw new AlumnoException(msj);
 		}
 		else
+		{
+			monitor.terminoEscritura();
 			alumnos.insert(al); //Falta ver becado
+		}
+			
 	}
 	
 	/*Req. 3: Modificación de datos de un alumno (Domicilio, teléfono y dirección de correo electrónico.*/
-	public void modificarDatosAlumno(Long ced, String dom, int tel, String email) throws AlumnoException {
+	public void modificarDatosAlumno(Long ced, String dom, int tel, String email) throws AlumnoException 
+	{
+		monitor.comienzoEscritura();
 		if (alumnos.member(ced)) 
 		{
 			if (!(dom.isEmpty()))
+			{
+				monitor.terminoEscritura();
 				alumnos.find(ced).setDomicilio(dom);
+			}
 			else
 			{
+				monitor.terminoEscritura();
 				String msj= "Error: No se puede ingresar un domicilio vacío.";
 				throw new AlumnoException(msj);
 			}
 			if (tel != 0)
+			{
 				alumnos.find(ced).setTelefono(tel);
+				monitor.terminoEscritura();
+			}
+				
 			else
 			{
+				monitor.terminoEscritura();
 				String msj= "Error: No se puede ingresar un telefono vacío";
 				throw new AlumnoException(msj);
 			}
 			if (!(email.isEmpty()))
+			{
 				alumnos.find(ced).setEmail(email);
+				monitor.terminoEscritura();
+			}
+				
 			else
 			{
+				monitor.terminoEscritura();
 				String msj= "Error: No se puede ingresar una direccion de correo vacía";
 				throw new AlumnoException(msj);
 			}
 		}
 		else
 		{
+			monitor.terminoEscritura();
 			String msj= "Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
 	}
 	
 	/*Req. 4: Listado de asignaturas*/
-	public VOAsignaturas listadoAsignaturas() throws AsignaturaException {
+	public VOAsignaturas listadoAsignaturas() throws AsignaturaException 
+	{
 		VOAsignaturas voas = new VOAsignaturas();
+		monitor.comienzoLectura();
 		if (asignaturas.getTope() == 0)
 		{
+			monitor.terminoLectura();
 			String msj="Error: No hay asignaturas registrados.";
 			throw new AsignaturaException(msj);
 		}
 		else
+		{
 			voas = asignaturas.listadoAsignaturas();
+			monitor.terminoLectura();
+		}
+			
 		return voas;
 	}
 	
 	/*Req. 5: Listado de alumnos cuyo apellido empiece con un substring dado.*/
-	public VOAlumnos listadoAlumnoApellido (String s) throws AlumnoException {
+	public VOAlumnos listadoAlumnoApellido (String s) throws AlumnoException 
+	{
 		VOAlumnos voas = new VOAlumnos();
+		monitor.comienzoLectura();
 		if (alumnos.getCantidadElementos() == 0)
 		{
+			monitor.terminoLectura();
 			String msj="Error: No hay alumnos registrados.";
 			throw new AlumnoException(msj);
 		}
 		else
+		{
+			monitor.terminoLectura();
 			voas = alumnos.ListadoAlumnosApe(s);
+		}
+			
 		return voas;
 	}
 	
 	/*Req. 6: Listado detallado de un alumno, dada una cedula. Si es becado, también listar detalles de la beca.*/
-	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException{
+	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException
+	{
 		VOAlumnoDetallado voad = new VOAlumnoDetallado();
+		monitor.comienzoLectura();
 		if (alumnos.member(ced))
+		{
 			voad = alumnos.ListadoAlumnoCedulaCom(ced);
+			monitor.terminoLectura();
+		}
 		else
 		{
+			monitor.terminoLectura();
 			String msj= "Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
 		return voad;
 	}
 	
-	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException{
+	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException
+	{
 		VOBecadoDetallado vobd = new VOBecadoDetallado();
+		monitor.comienzoLectura();
 		if (alumnos.member(ced))
+		{
 			vobd = alumnos.ListadoAlumnoCedulaBec(ced);
+			monitor.terminoLectura();
+		}
 		else
 		{
+			monitor.terminoLectura();
 			String msj= "Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
@@ -133,7 +191,9 @@ public class CapaLogica
 	}
 	
 	/*Req. 7: Registrar la inscripcion de un alumno.*/
-	public void inscripcionAsignatura(Long ced, String cod) throws AsignaturaException, AlumnoException, InscripcionException{
+	public void inscripcionAsignatura(Long ced, String cod) throws AsignaturaException, AlumnoException, InscripcionException
+	{
+		monitor.comienzoEscritura();
 		if (asignaturas.memberAsignatura(cod)) 
 		{
 			if (alumnos.member(ced)) 
@@ -146,27 +206,32 @@ public class CapaLogica
 				}
 				catch(InscripcionException inscEx)
 				{
+					monitor.terminoEscritura();
 					throw new InscripcionException(inscEx.darMensaje());
 				}
 				if (retorno) 
 				{
 					Inscripcion i = new Inscripcion(1000,asignaturas.findAsignatura(cod));
 					alu.registrarInscripcion(i);
+					monitor.terminoEscritura();
 				}
 				else
 				{
+					monitor.terminoEscritura();
 					String msj="Error: La inscripcion no es valida. Ya se registró una inscripción para esa materia en el año actual";
 					throw new InscripcionException(msj);
 				}
 			}
 			else
 			{
+				monitor.terminoEscritura();
 				String msj= "Error: No existe un alumno con esa cedula en el sistema.";
 				throw new AlumnoException(msj);
 			}
 		}
 		else
 		{
+			monitor.terminoEscritura();
 			String msj="Error: No se encontro la asignatura en el sistema.";
 			throw new AsignaturaException(msj);
 		}
@@ -175,6 +240,7 @@ public class CapaLogica
 	/*Req. 8: Registro de resultado de una asignatura. */
 	public void registrarResultadoAsignatura(long ced, int codIns, int nota) throws AlumnoException, InscripcionException
 	{
+		monitor.comienzoEscritura();
 		if(nota>0 && nota<13)
 		{
 			if(alumnos.member(ced))
@@ -190,27 +256,32 @@ public class CapaLogica
 						{
 							alumnos.find(ced).setCantAprobaciones(aluTemp.getCantAprobaciones()+1);
 						}
+						monitor.terminoEscritura();
 					}
 					else
 					{
+						monitor.terminoEscritura();
 						String msj="Error: El alumno es egresado, no se puede asignar la calificacion";
 						throw new AlumnoException(msj);
 					}					
 				}
 				else
 				{
+					monitor.terminoEscritura();
 					String msj="Error: No existe una inscripcion para el alumno con ese nro de inscripcion.";
 					throw new InscripcionException(msj);
 				}
 			}
 			else
 			{
+				monitor.terminoEscritura();
 				String msj="Error: No existe un alumno con esa cedula en el sistema.";
 				throw new AlumnoException(msj);
 			}
 		}
 		else
 		{
+			monitor.terminoEscritura();
 			String msj="Error: La nota debe ser un valor entre 1 y 12";
 			throw new InscripcionException(msj);
 		}			
@@ -221,6 +292,7 @@ public class CapaLogica
 	{
 		float montoTotal=0;
 		
+		monitor.comienzoLectura();
 		if(alumnos.member(ced))
 		{
 			Alumno aluTemp=alumnos.find(ced); //Obtengo el alumno por su cedula
@@ -238,9 +310,11 @@ public class CapaLogica
 				float porcentaje=((Becado)aluTemp).getPorcentaje() / 100;
 				montoTotal=montoTotal - (montoTotal * porcentaje);
 			}
+			monitor.terminoEscritura();
 		}
 		else
 		{
+			monitor.terminoEscritura();
 			String msj="Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}

@@ -95,7 +95,7 @@ public class principal {
 		}
 		catch (AlumnoException alEx)
 		{
-			alEx.darMensaje();
+			System.out.println(alEx.darMensaje());
 		}
 		
 		
