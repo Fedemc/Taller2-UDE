@@ -50,7 +50,7 @@ public class Inscripciones {
 	//Precondicion: Existe la inscripcion con ese nro de inscripcion en la lista
 	public Inscripcion find(int nroIns)
 	{
-		return listaInscripciones.get(nroIns);
+		return listaInscripciones.get(nroIns-1);
 	}
 	
 	//Calculo el monto total del costo de las inscripciones que estan activas (nota == 0)

@@ -7,9 +7,13 @@ import sistema.persistencia.Respaldo;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Random;
 
 import sistema.excepciones.*;
+
 
 public class CapaLogica
 {
@@ -209,9 +213,11 @@ public class CapaLogica
 					monitor.terminoEscritura();
 					throw new InscripcionException(inscEx.darMensaje());
 				}
+				
 				if (retorno) 
 				{
-					Inscripcion i = new Inscripcion(1000,asignaturas.findAsignatura(cod));
+					int nroInscripcion= alu.getInscripciones().getListaInscripciones().size() +1;
+					Inscripcion i = new Inscripcion(nroInscripcion, 1000 ,asignaturas.findAsignatura(cod));
 					alu.registrarInscripcion(i);
 					monitor.terminoEscritura();
 				}
@@ -240,6 +246,31 @@ public class CapaLogica
 	/*Req. 8: Registro de resultado de una asignatura. */
 	public void registrarResultadoAsignatura(long ced, int codIns, int nota) throws AlumnoException, InscripcionException
 	{
+		
+		if(alumnos.member(ced)) {
+			monitor.comienzoEscritura();
+			if(alumnos.find(ced).getInscripciones().member(codIns)) {
+				if(alumnos.find(ced).getInscripciones().find(codIns).getCalificacion()>0) {
+					String msj="Error: El alumno ya tuvo calificacion para esta inscripcion.";
+					throw new InscripcionException(msj);
+				}else {
+					alumnos.find(ced).getInscripciones().find(codIns).setCalificacion(nota);
+					if(nota>=6) {
+						alumnos.find(ced).setCantAprobaciones(alumnos.find(ced).getCantAprobaciones()+1);
+					}
+					monitor.terminoEscritura();
+				}
+			}else {
+				String msj="Error: El alumno no tiene una inscripcion con el codigo dado.";
+				throw new InscripcionException(msj);
+			}	
+		}else {
+			String msj="Error: No existe un alumno con esa cedula en el sistema.";
+			throw new AlumnoException(msj);
+		}
+		
+	}
+		/*
 		monitor.comienzoEscritura();
 		if(nota>0 && nota<13)
 		{
@@ -285,7 +316,7 @@ public class CapaLogica
 			String msj="Error: La nota debe ser un valor entre 1 y 12";
 			throw new InscripcionException(msj);
 		}			
-	}
+	}*/
 	
 	/*Req. 9: Monto recaudado por inscripcioens. */
 	public float montoTotalPorInscripciones(long ced, int anio) throws AlumnoException

@@ -87,7 +87,7 @@ public class Alumno {
 	@Override	
 	public String toString() {		//Ver si realmente es necesario este metodo
 		return "Alumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
-				+ ", telefono=" + telefono + ", email=" + email + ", inscripcion=" + inscripciones + ", cantAprobaciones="
+				+ ", telefono=" + telefono + ", email=" + email + ", cantAprobaciones="
 				+ cantAprobaciones + "]";	//al devolver ese inscripciones va a explotar
 	}
 	
@@ -120,7 +120,7 @@ public class Alumno {
 	{
 		boolean inscripcionValida = true; 
 		Iterator<Inscripcion> it = inscripciones.crearIterador();
-		while ((it.hasNext()) || (inscripcionValida)) 
+		while ((it.hasNext()) && (inscripcionValida)) 
 		{
 			Inscripcion insAux = it.next();
 			Asignatura asigAux = insAux.getAsignatura();

@@ -15,9 +15,10 @@ import sistema.logica.*;
 import sistema.persistencia.*;
 import sistema.logica.valueObjects.*;
 
+
 public class principal { 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws AsignaturaException, AlumnoException, InscripcionException {
 		
 		CapaLogica fachada= new CapaLogica();
 		
@@ -42,7 +43,7 @@ public class principal {
 			asigEx.darMensaje();
 		}
 		
-		
+		/*
 		//Listado asignaturas
 		VOAsignaturas voAsigns=new VOAsignaturas();
 		try
@@ -60,12 +61,8 @@ public class principal {
 		{
 			System.out.println(asig.toString());
 		}
+		*/
 		
-		Calendar fecha = Calendar.getInstance();
-	    int anioLec = fecha.get(Calendar.YEAR);
-		
-		Inscripcion insc1 = new Inscripcion(100, asig1);
-		//a1.agregarInscripcion(insc1);
 		
 		
 		//Prueba registrar alumno
@@ -74,7 +71,7 @@ public class principal {
 		Becado b1 =  new Becado(2,"fed","zur","pp",66,"ppp@",null, 20,"alumno estudioso");
 		Alumno a3 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
 		
-		Alumno a4 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
+		//Alumno a4 =  new Alumno(66,"sak","chaa","qwe",123,"acll@");
 		
 		
 		try
@@ -89,18 +86,42 @@ public class principal {
 			alEx.darMensaje();
 		}
 		
-		try
-		{
-			fachada.registrarAlumno(a4);
-		}
-		catch (AlumnoException alEx)
-		{
-			System.out.println(alEx.darMensaje());
-		}
 		
 		
+		//Prueba inscripcion
+		
+		Calendar fecha = Calendar.getInstance();
+	    int anioLec = fecha.get(Calendar.YEAR);
+		int nroIns1 = 1;
+		int nroIns2 = 2;
+		
+		//agrego inscripcion
+		 fachada.inscripcionAsignatura(a1.getCedula(), asig1.getCodigo());
+		 fachada.inscripcionAsignatura(a1.getCedula(), asig2.getCodigo());
+		 
+		 
+		 
+		 //ingreso nota para cada inscripcion (se ingresa ci, cod de inscripcion y nota)
+		 fachada.registrarResultadoAsignatura(a1.getCedula(), 1, 8);
+		 fachada.registrarResultadoAsignatura(a1.getCedula(), 2, 3);//asignatura no aprobada
+		 
+		 //inscribo al alumno nuevamente en la asignatura no aprobada
+		 fachada.inscripcionAsignatura(a1.getCedula(), asig2.getCodigo());
+		 //ingreso nota de aprobacion para la asignatura reprobada anteriormente
+		 fachada.registrarResultadoAsignatura(a1.getCedula(), 3, 6);
+		 
+		 ArrayList<Inscripcion> lisIns = new ArrayList<>();
+		 lisIns = a1.getInscripciones().getListaInscripciones();
+		 Iterator<Inscripcion> it = lisIns.iterator();
+		 while(it.hasNext()) {
+			 System.out.println(it.next().toString());
+		 }
+		 
+		 System.out.println(a1.toString());
+		 
 		
 		
+		/*
 		//Listado alumnos
 		VOAlumnos voAlus=new VOAlumnos();
 		try
@@ -119,16 +140,10 @@ public class principal {
 			System.out.println(alu.toString());
 		}
 		
+		*/
 		//Respaldo
 		
 		
-		
-		//sin probar!!!!
-		//List<VOInscripcion> vOInscripcion = new ArrayList<>();
-		//vOInscripcion = (List<VOInscripcion>) a1.getInscripciones();	
-		//while(it.hasNext()) {
-			//System.out.println(it.next());
-		//}
 		
 		/*
 		List<VOAsignatura> vOAsignaturas = new ArrayList<>();

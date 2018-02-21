@@ -14,8 +14,8 @@ public class Inscripcion {
 	
 	//Constructor
 	
-	public Inscripcion(/*int anioLectivo, */int montoBase, Asignatura asignatura) {
-		this.nroInscripcion = 0;
+	public Inscripcion(int nroInsc, int montoBase, Asignatura asignatura) {
+		this.nroInscripcion = nroInsc;
 		this.anioLectivo = Calendar.getInstance().get(Calendar.YEAR);
 		this.montoBase = montoBase;
 		this.calificacion = 0;
@@ -50,6 +50,12 @@ public class Inscripcion {
 
 	public Asignatura getAsignatura() {
 		return asignatura;
+	}
+
+	@Override
+	public String toString() {
+		return "Inscripcion [nroInscripcion=" + nroInscripcion + ", anioLectivo=" + anioLectivo + ", montoBase="
+				+ montoBase + ", calificacion=" + calificacion + ", asignatura=" + asignatura + "]";
 	}
 	
 	
