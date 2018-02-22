@@ -77,4 +77,5 @@ public class Alumnos {
 					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno(),tempBec.getPorcentaje(), tempBec.getDescripcionBeca());
 		return vobd;
 	}
+	
 }

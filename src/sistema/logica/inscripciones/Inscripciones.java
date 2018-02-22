@@ -2,6 +2,9 @@ package sistema.logica.inscripciones;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import sistema.logica.valueObjects.VOInscripcion;
+import sistema.logica.valueObjects.VOInscripcionDetallada;
+import sistema.logica.valueObjects.VOInscripciones;
 
 public class Inscripciones {
 
@@ -53,6 +56,10 @@ public class Inscripciones {
 		return listaInscripciones.get(nroIns-1);
 	}
 	
+	public boolean esVacia() {
+		return listaInscripciones.isEmpty();
+	}
+	
 	//Calculo el monto total del costo de las inscripciones que estan activas (nota == 0)
 	public float calcularCuotasAlumno()
 	{
@@ -92,5 +99,26 @@ public class Inscripciones {
 		return promedioAprob;
 	}
 	
+	public VOInscripciones escolaridadParcial() {
+		VOInscripciones vois = new VOInscripciones();
+		for(int i=0;i<listaInscripciones.size();i++) {
+			Inscripcion insAux = listaInscripciones.get(i);
+			if (insAux.getCalificacion() != 0) {
+				VOInscripcion voi = new VOInscripcion(insAux.getNroInscripcion(),insAux.getAsignatura().getNombre(),insAux.getAnioLectivo(),insAux.getCalificacion());
+				vois.insert(voi);
+			}
+		}
+		return vois;
+	}
+	
+	public VOInscripciones escolaridadCompleta() {
+		VOInscripciones vois = new VOInscripciones();
+		for(int i=0;i<listaInscripciones.size();i++) {
+			Inscripcion insAux = listaInscripciones.get(i);
+			VOInscripcionDetallada voidet = new VOInscripcionDetallada(insAux.getNroInscripcion(),insAux.getAsignatura().getNombre(),insAux.getAnioLectivo(),insAux.getCalificacion(),insAux.getMontoBase());
+			vois.insert(voidet);
+			}
+		return vois;
+	}
 	
 }

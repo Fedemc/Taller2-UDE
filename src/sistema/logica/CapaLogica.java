@@ -381,5 +381,33 @@ public class CapaLogica
 		{
 			e.printStackTrace();
 		}
-	}	
+	}
+	
+	/*Req. 11: Consulta de escolaridad de un alumno*/
+	public VOInscripciones consultaEscolaridadParcial(Long ced) {
+		VOInscripciones vois = new VOInscripciones();
+		if (alumnos.member(ced)) {
+			Alumno aluTemp = alumnos.find(ced);
+			vois = aluTemp.consultaEscolaridadParcial();
+			if (vois.esVacia()) {
+				System.out.println("THROW EXCEPTION No hay inscripciones para este alumno.");
+			}
+		}
+		return vois;
+	}
+	
+	public VOInscripciones consultaEscolaridadCompleta(Long ced) {
+		VOInscripciones vois = new VOInscripciones();
+		if (alumnos.member(ced)) {
+			Alumno aluTemp = alumnos.find(ced);
+			vois = aluTemp.consultaEscolaridadCompleta();
+			if (vois.esVacia()) {
+				System.out.println("THROW EXCEPTION No hay inscripciones para este alumno.");
+			}
+		}
+		return vois;
+	}
+	
+	
+	
 }

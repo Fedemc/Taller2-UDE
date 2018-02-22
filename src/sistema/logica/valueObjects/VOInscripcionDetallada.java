@@ -2,15 +2,15 @@ package sistema.logica.valueObjects;
 
 public class VOInscripcionDetallada extends VOInscripcion {
 
-	private Float montoBase;
+	private int montoBase;
 	
-	public VOInscripcionDetallada(int numero, String nombreAsignatura, int anioLectivo, int calificacion, Float montoBase) {
+	public VOInscripcionDetallada(int numero, String nombreAsignatura, int anioLectivo, int calificacion, int montoBase) {
 		super(numero,nombreAsignatura,anioLectivo,calificacion);
 		this.montoBase = montoBase;
 	}
 
 	//Getters
-	public Float getMontoBase() { 
+	public int getMontoBase() { 
 		return montoBase;
 	}
 

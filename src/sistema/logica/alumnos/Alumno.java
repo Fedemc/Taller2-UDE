@@ -7,6 +7,7 @@ import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.inscripciones.Inscripcion;
 import sistema.logica.inscripciones.Inscripciones;
 import sistema.excepciones.InscripcionException;
+import sistema.logica.valueObjects.VOInscripciones;
 
 public class Alumno {
 
@@ -152,5 +153,22 @@ public class Alumno {
 		inscripciones.insert(i);
 	}
 	
+	/*Consulta parcial de escolaridad*/
+	public VOInscripciones consultaEscolaridadParcial() {
+		VOInscripciones vois = new VOInscripciones();
+		if (!(inscripciones.esVacia())) {
+			vois = inscripciones.escolaridadParcial();
+		}
+		return vois;
+	}
+	
+	/*Consulta completa de escolaridad*/
+	public VOInscripciones consultaEscolaridadCompleta() {
+		VOInscripciones vois = new VOInscripciones();
+		if (!(inscripciones.esVacia())) {
+			vois = inscripciones.escolaridadCompleta();
+		}
+		return vois;
+	}
 
 }
