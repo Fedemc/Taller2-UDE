@@ -17,10 +17,28 @@ import sistema.excepciones.*;
 
 public class CapaLogica
 {
-	Alumnos alumnos = null;
-	Asignaturas asignaturas = null; 
+	Alumnos alumnos = new Alumnos();
+	Asignaturas asignaturas = new Asignaturas(); 
 	Monitor monitor=new Monitor();
 	
+	
+	
+	public Alumnos getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(Alumnos alumnos) {
+		this.alumnos = alumnos;
+	}
+
+	public Asignaturas getAsignaturas() {
+		return asignaturas;
+	}
+
+	public void setAsignaturas(Asignaturas asignaturas) {
+		this.asignaturas = asignaturas;
+	}
+
 	/*Req. 1: Registrar una asignatura en el sistema. */
 	public void registrarAsignatura (Asignatura as) throws AsignaturaException 
 	{
@@ -245,9 +263,8 @@ public class CapaLogica
 	/*Req. 8: Registro de resultado de una asignatura. */
 	public void registrarResultadoAsignatura(long ced, int codIns, int nota) throws AlumnoException, InscripcionException
 	{
-		
+		monitor.comienzoEscritura();
 		if(alumnos.member(ced)) {
-			monitor.comienzoEscritura();
 			if(alumnos.find(ced).getInscripciones().member(codIns)) {
 				if(alumnos.find(ced).getInscripciones().find(codIns).getCalificacion()>0) {
 					String msj="Error: El alumno ya tuvo calificacion para esta inscripcion.";
@@ -257,7 +274,6 @@ public class CapaLogica
 					if(nota>=6) {
 						alumnos.find(ced).setCantAprobaciones(alumnos.find(ced).getCantAprobaciones()+1);
 					}
-					monitor.terminoEscritura();
 				}
 			}else {
 				String msj="Error: El alumno no tiene una inscripcion con el codigo dado.";
@@ -267,7 +283,7 @@ public class CapaLogica
 			String msj="Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
-		
+		monitor.terminoEscritura();
 	}
 	
 	/*Req. 9: Monto recaudado por inscripcioens. */
@@ -353,15 +369,16 @@ public class CapaLogica
 			String datosRespaldoAsignaturas= p.getProperty("rutaRespaldoAsignaturas");
 			String datosRespaldoAlumnos= p.getProperty("rutaRespaldoAlumnos");
 
-			//Respaldar datos
+			//Restaurar datos
 			try
 			{
 				asignaturas=res.recuperarAsignaturas(datosRespaldoAsignaturas);
-				alumnos=res.recuperarAlumnos(datosRespaldoAlumnos);
+				this.setAlumnos(res.recuperarAlumnos(datosRespaldoAlumnos));
+				System.out.println("Datos recuperados.");
 			}
 			catch(PersistenciaException pExc)
 			{
-				pExc.darMensaje();
+				System.out.println(pExc.darMensaje());
 			}		
 		}
 		catch (IOException e)

@@ -21,9 +21,52 @@ public class principal {
 	public static void main(String[] args) throws AsignaturaException, AlumnoException, InscripcionException {
 		
 		CapaLogica fachada= new CapaLogica();
+		Alumnos alums=null;
+		Asignaturas asigs=null;
+		
+		try
+		{
+			System.out.println("Intento restaurar datos");
+			fachada.restaurarDatos();
+		}
+		catch(PersistenciaException pExc)
+		{
+			System.out.println(pExc.darMensaje());
+			System.out.println("No hay archivos, creo de cero");
+			//Si no pudo abrir el respaldo, crear las colecciones vacias
+			alums=new Alumnos();
+			fachada.setAlumnos(alums);
+			
+			asigs=new Asignaturas();
+			fachada.setAsignaturas(asigs);	
+		}
+		catch(IOException iExc)
+		{
+			iExc.printStackTrace();
+		}
+		
 		
 		long ced = 2;
 		String ape = "zu";
+		
+		//Listado asignaturas
+		VOAsignaturas voAsigns=new VOAsignaturas();
+		try
+		{
+			voAsigns=fachada.listadoAsignaturas();
+			
+			Iterator it = voAsigns.getVOAsignaturasArray().iterator();
+			
+			while(it.hasNext()) {
+				System.out.println(it.next());
+				
+			}
+			
+		}
+		catch(AsignaturaException asigEx)
+		{
+			asigEx.darMensaje();
+		}
 		
 		//Prueba registrar asignatura
 		Asignatura asig1 = new Asignatura("asignatura 1",  "Taller", "Taller de programacion en JAVA");
@@ -40,29 +83,28 @@ public class principal {
 		}
 		catch (AsignaturaException asigEx)
 		{
-			asigEx.darMensaje();
+			System.out.println(asigEx.darMensaje());
 		}
 		
-		/*
-		//Listado asignaturas
-		VOAsignaturas voAsigns=new VOAsignaturas();
+		
+		//Listado alumnos
+		VOAlumnos voAlus=new VOAlumnos();
 		try
 		{
-			voAsigns=fachada.listadoAsignaturas();
+			System.out.println("ENTRO");
+			voAlus=fachada.listadoAlumnoApellido(ape);
+			Iterator it = voAlus.getVOAlumnosArray().iterator();
+			
+			while(it.hasNext()) {
+				System.out.println(it.next());
+				
+			}
 		}
-		catch(AsignaturaException asigEx)
+		catch(AlumnoException aluEx)
 		{
-			asigEx.darMensaje();
-		}		
-		
-		
-		System.out.println("\nListado asignaturas");
-		for(VOAsignatura asig: voAsigns.getVOAsignaturasArray())
-		{
-			System.out.println(asig.toString());
+			System.out.println(aluEx.darMensaje());
+			System.out.println("SALIO");
 		}
-		*/
-		
 		
 		
 		//Prueba registrar alumno
@@ -83,9 +125,11 @@ public class principal {
 		}
 		catch (AlumnoException alEx)
 		{
-			alEx.darMensaje();
+			System.out.println(alEx.darMensaje());
 		}
 		
+		
+			
 		
 		
 		//Prueba inscripcion
@@ -95,11 +139,20 @@ public class principal {
 		int nroIns1 = 1;
 		int nroIns2 = 2;
 		
+		try {
 		//agrego inscripcion
 		 fachada.inscripcionAsignatura(a1.getCedula(), asig1.getCodigo());
 		 fachada.inscripcionAsignatura(a1.getCedula(), asig2.getCodigo());
 		 
-		 
+		}catch (AlumnoException a) {
+			System.out.println(a.darMensaje());
+		}
+		catch (InscripcionException s) {
+			System.out.println(s.darMensaje());
+		}
+		catch (AsignaturaException e) {
+			System.out.println(e.darMensaje());
+		}
 		 
 		 //ingreso nota para cada inscripcion (se ingresa ci, cod de inscripcion y nota)
 		 fachada.registrarResultadoAsignatura(a1.getCedula(), 1, 8);
@@ -120,7 +173,21 @@ public class principal {
 		 System.out.println(a1.toString());
 		 
 		
-		
+		try
+		{
+			fachada.respaldarDatos();
+		}
+		catch(PersistenciaException pExc)
+		{
+			System.out.println(pExc.darMensaje());
+		}
+		catch(IOException iExc)
+		{
+			iExc.printStackTrace();
+		}
+		 
+		 
+		 
 		/*
 		//Listado alumnos
 		VOAlumnos voAlus=new VOAlumnos();

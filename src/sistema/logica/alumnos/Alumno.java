@@ -8,8 +8,9 @@ import sistema.logica.inscripciones.Inscripcion;
 import sistema.logica.inscripciones.Inscripciones;
 import sistema.excepciones.InscripcionException;
 import sistema.logica.valueObjects.VOInscripciones;
+import java.io.Serializable;
 
-public class Alumno {
+public class Alumno implements Serializable {
 
 	private long cedula;
 	private String nombre;

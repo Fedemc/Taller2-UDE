@@ -5,8 +5,9 @@ import java.util.Iterator;
 import sistema.logica.valueObjects.VOInscripcion;
 import sistema.logica.valueObjects.VOInscripcionDetallada;
 import sistema.logica.valueObjects.VOInscripciones;
+import java.io.Serializable;
 
-public class Inscripciones {
+public class Inscripciones implements Serializable{
 
 	private ArrayList<Inscripcion> listaInscripciones;
 	

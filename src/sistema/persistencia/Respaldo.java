@@ -1,8 +1,9 @@
 package sistema.persistencia;
 
 import java.io.*;
-import sistema.logica.asignaturas.Asignaturas;
-import sistema.logica.alumnos.Alumnos;
+import sistema.logica.asignaturas.*;
+import sistema.logica.alumnos.*;
+import sistema.logica.inscripciones.*;
 import sistema.excepciones.PersistenciaException;
 
 public class Respaldo 
@@ -20,6 +21,7 @@ public class Respaldo
 			o.writeObject(asigns);
 			o.close();
 			f.close();
+			System.out.println("Asignaturas respaldadas");
 		}
 		catch (IOException e)
 		{
@@ -40,6 +42,7 @@ public class Respaldo
 			Asignaturas asigns= (Asignaturas) o.readObject();
 			o.close();
 			f.close();
+			System.out.println("Asignaturas recuperadas");
 			
 			//Devolver coleccion
 			return asigns;
@@ -64,6 +67,7 @@ public class Respaldo
 			o.writeObject(alus);
 			o.close();
 			f.close();
+			System.out.println("Alumnos respaldado");
 		}
 		catch (IOException e)
 		{
@@ -84,14 +88,15 @@ public class Respaldo
 			Alumnos alus= (Alumnos) o.readObject();
 			o.close();
 			f.close();
+			System.out.println("Alumnos recuperados");
 			
 			//Devolver coleccion
 			return alus;
 		}
-		catch (IOException | ClassNotFoundException e)	//Consultar a Sirely si esta bien el ClassNotFoundException
+		catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
-			throw new PersistenciaException("Error al restaurar asignaturas");
+			throw new PersistenciaException("Error al restaurar alumnos");
 		}
 	}
 

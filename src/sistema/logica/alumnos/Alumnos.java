@@ -4,8 +4,9 @@ import java.util.*;
 
 import sistema.logica.alumnos.Alumno;
 import sistema.logica.valueObjects.*;
+import java.io.Serializable;
 
-public class Alumnos {
+public class Alumnos implements Serializable{
 	
 	private TreeMap<Long,Alumno> arbol;
 	

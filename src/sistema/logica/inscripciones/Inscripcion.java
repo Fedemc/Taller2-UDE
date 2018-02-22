@@ -3,8 +3,9 @@ package sistema.logica.inscripciones;
 import java.util.Calendar;
 
 import sistema.logica.asignaturas.Asignatura;
+import java.io.Serializable;
 
-public class Inscripcion {
+public class Inscripcion implements Serializable {
 	
 	private int nroInscripcion;
 	private int anioLectivo;

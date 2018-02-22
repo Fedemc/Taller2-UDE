@@ -1,8 +1,9 @@
 package sistema.logica.alumnos;
 
 import sistema.logica.inscripciones.Inscripciones;
+import java.io.Serializable;
 
-public class Becado extends Alumno {
+public class Becado extends Alumno implements Serializable{
 	
 	private int porcentaje;
 	private String descripcionBeca;
