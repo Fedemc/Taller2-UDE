@@ -391,11 +391,13 @@ public class CapaLogica
 			Alumno aluTemp = alumnos.find(ced);
 			vois = aluTemp.consultaEscolaridadParcial();
 			if (vois.esVacia()) {
-				System.out.println("THROW EXCEPTION No hay inscripciones para este alumno.");
+				String msj = "No hay inscripciones para este alumno.";
+				throw new InscripcionException(msj);
 			}
 		}
 		else {
-			System.out.println("THROW EXCEPTION El alumno no está registrado.");
+			String msj = "Error: No existe un alumno con esa cedula en el sistema.";
+			throw new AlumnoException(msj);
 		}
 		monitor.terminoLectura();
 		return vois;
@@ -408,11 +410,13 @@ public class CapaLogica
 			Alumno aluTemp = alumnos.find(ced);
 			vois = aluTemp.consultaEscolaridadCompleta();
 			if (vois.esVacia()) {
-				System.out.println("THROW EXCEPTION No hay inscripciones para este alumno.");
+				String msj = "No hay inscripciones para este alumno.";
+				throw new InscripcionException(msj);
 			}
 		}
 		else {
-			System.out.println("THROW EXCEPTION El alumno no está registrado.");
+			String msj = "Error: No existe un alumno con esa cedula en el sistema.";
+			throw new AlumnoException(msj);
 		}
 		monitor.terminoLectura();
 		return vois;
