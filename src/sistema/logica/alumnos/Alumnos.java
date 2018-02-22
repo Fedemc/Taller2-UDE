@@ -3,10 +3,7 @@ package sistema.logica.alumnos;
 import java.util.*;
 
 import sistema.logica.alumnos.Alumno;
-import sistema.logica.valueObjects.VOAlumno;
-import sistema.logica.valueObjects.VOAlumnoDetallado;
-import sistema.logica.valueObjects.VOAlumnos;
-import sistema.logica.valueObjects.VOBecadoDetallado;
+import sistema.logica.valueObjects.*;
 
 public class Alumnos {
 	
@@ -76,6 +73,19 @@ public class Alumnos {
 		VOBecadoDetallado vobd = new VOBecadoDetallado(tempBec.getCedula(),tempBec.getNombre(),tempBec.getApellido(),tempBec.getDomicilio(),
 					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno(),tempBec.getPorcentaje(), tempBec.getDescripcionBeca());
 		return vobd;
+	}
+	
+	public VOAlumnos listadoEgresadosParcial() {
+		VOAlumnos voas = new VOAlumnos();
+		Iterator it = arbol.keySet().iterator();
+		while (it.hasNext()) {
+			Long clave = (Long) it.next();
+			Alumno tempAlu = arbol.get(clave);
+			if (tempAlu.getCantAprobaciones() == 10) {
+				VOAlumno voa = new VOAlumno(clave,tempAlu.getNombre(),tempAlu.getApellido());
+			}
+		}
+		return voas;
 	}
 	
 }

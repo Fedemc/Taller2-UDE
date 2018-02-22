@@ -383,8 +383,8 @@ public class CapaLogica
 		}
 	}
 	
-	/*Req. 11: Consulta de escolaridad de un alumno*/
-	public VOInscripciones consultaEscolaridadParcial(Long ced) {
+	/*Req. 11: Consulta parcial o completa de escolaridad de un alumno*/
+	public VOInscripciones consultaEscolaridadParcial(Long ced) throws InscripcionException, AlumnoException {
 		VOInscripciones vois = new VOInscripciones();
 		monitor.comienzoLectura();
 		if (alumnos.member(ced)) {
@@ -403,7 +403,7 @@ public class CapaLogica
 		return vois;
 	}
 	
-	public VOInscripciones consultaEscolaridadCompleta(Long ced) {
+	public VOInscripciones consultaEscolaridadCompleta(Long ced) throws InscripcionException, AlumnoException {
 		VOInscripciones vois = new VOInscripciones();
 		monitor.comienzoLectura();
 		if (alumnos.member(ced)) {
@@ -422,6 +422,9 @@ public class CapaLogica
 		return vois;
 	}
 	
-	
+	/*Req. 12: Listado parcial o completo de alumnos egresados*/
+	public VOEgresados listadoEgresadosParcial() {
+		VOEgresados voegs = new 
+	}
 	
 }
