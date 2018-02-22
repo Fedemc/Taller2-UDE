@@ -17,9 +17,8 @@ import sistema.excepciones.*;
 
 public class CapaLogica
 {
-	Alumnos alumnos = new Alumnos();
-	Asignaturas asignaturas = new Asignaturas(); 
-	Respaldo res= new Respaldo();
+	Alumnos alumnos = null;
+	Asignaturas asignaturas = null; 
 	Monitor monitor=new Monitor();
 	
 	/*Req. 1: Registrar una asignatura en el sistema. */
@@ -270,53 +269,6 @@ public class CapaLogica
 		}
 		
 	}
-		/*
-		monitor.comienzoEscritura();
-		if(nota>0 && nota<13)
-		{
-			if(alumnos.member(ced))
-			{
-				Alumno aluTemp=alumnos.find(ced);
-				if(aluTemp.getInscripciones().member(codIns))
-				{
-					//Verifico que no sea egresado, si lo es NO le modifico las notas
-					if(aluTemp.getCantAprobaciones()!=10)
-					{
-						alumnos.find(ced).getInscripciones().find(codIns).setCalificacion(nota);
-						if(nota >= 6)	//Si la nota es de aprobacion, sumo 1 a las aprobaciones del alumno
-						{
-							alumnos.find(ced).setCantAprobaciones(aluTemp.getCantAprobaciones()+1);
-						}
-						monitor.terminoEscritura();
-					}
-					else
-					{
-						monitor.terminoEscritura();
-						String msj="Error: El alumno es egresado, no se puede asignar la calificacion";
-						throw new AlumnoException(msj);
-					}					
-				}
-				else
-				{
-					monitor.terminoEscritura();
-					String msj="Error: No existe una inscripcion para el alumno con ese nro de inscripcion.";
-					throw new InscripcionException(msj);
-				}
-			}
-			else
-			{
-				monitor.terminoEscritura();
-				String msj="Error: No existe un alumno con esa cedula en el sistema.";
-				throw new AlumnoException(msj);
-			}
-		}
-		else
-		{
-			monitor.terminoEscritura();
-			String msj="Error: La nota debe ser un valor entre 1 y 12";
-			throw new InscripcionException(msj);
-		}			
-	}*/
 	
 	/*Req. 9: Monto recaudado por inscripcioens. */
 	public float montoTotalPorInscripciones(long ced, int anio) throws AlumnoException
@@ -354,8 +306,10 @@ public class CapaLogica
 	
 	/*Req. 10: Respaldo de datos. */
 	//FALTA CAMBIAR ESTOS TRY Y CATCH POR THROWS!!!
-	public void respaldarDatos()
+	public void respaldarDatos() throws PersistenciaException, IOException
 	{
+		Respaldo res= new Respaldo();
+		
 		try
 		{
 			Properties p=new Properties();
@@ -382,6 +336,41 @@ public class CapaLogica
 			e.printStackTrace();
 		}
 	}
+	
+	
+	//Restaurar datos
+	public void restaurarDatos() throws PersistenciaException, IOException
+	{
+		Respaldo res= new Respaldo();
+		
+		try
+		{
+			Properties p=new Properties();
+			String nomArch = "config/config.properties";
+			
+			//Abro el archivo properties
+			p.load(new FileInputStream(nomArch));
+			String datosRespaldoAsignaturas= p.getProperty("rutaRespaldoAsignaturas");
+			String datosRespaldoAlumnos= p.getProperty("rutaRespaldoAlumnos");
+
+			//Respaldar datos
+			try
+			{
+				asignaturas=res.recuperarAsignaturas(datosRespaldoAsignaturas);
+				alumnos=res.recuperarAlumnos(datosRespaldoAlumnos);
+			}
+			catch(PersistenciaException pExc)
+			{
+				pExc.darMensaje();
+			}		
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	/*Req. 11: Consulta parcial o completa de escolaridad de un alumno*/
 	public VOInscripciones consultaEscolaridadParcial(Long ced) throws InscripcionException, AlumnoException {

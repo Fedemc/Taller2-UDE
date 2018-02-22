@@ -44,7 +44,7 @@ public class Respaldo
 			//Devolver coleccion
 			return asigns;
 		}
-		catch (IOException | ClassNotFoundException e)	//Consultar a Sirely si esta bien el ClassNotFoundException
+		catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
 			throw new PersistenciaException("Error al restaurar asignaturas");
@@ -72,7 +72,7 @@ public class Respaldo
 		}
 	}
 	
-	public Alumnos restaurarAlumnos(String nomArch) throws PersistenciaException
+	public Alumnos recuperarAlumnos(String nomArch) throws PersistenciaException
 	{
 		try 
 		{
