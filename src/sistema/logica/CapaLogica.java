@@ -394,6 +394,9 @@ public class CapaLogica
 				System.out.println("THROW EXCEPTION No hay inscripciones para este alumno.");
 			}
 		}
+		else {
+			System.out.println("THROW EXCEPTION El alumno no está registrado.");
+		}
 		monitor.terminoLectura();
 		return vois;
 	}
@@ -407,6 +410,9 @@ public class CapaLogica
 			if (vois.esVacia()) {
 				System.out.println("THROW EXCEPTION No hay inscripciones para este alumno.");
 			}
+		}
+		else {
+			System.out.println("THROW EXCEPTION El alumno no está registrado.");
 		}
 		monitor.terminoLectura();
 		return vois;
