@@ -104,14 +104,14 @@ public class Alumno {
 	public float devolverPromedioTotalAlumno()
 	{
 		float promedioTotal = 0;
-		promedioTotal = this.inscripciones.calcularPromedioTotal();
+		promedioTotal = promedioTotal + this.inscripciones.calcularPromedioTotal();
 		return promedioTotal;
 	}
 
 	public float devolverPromedioAprobAlumno()
 	{
 		float promedioAprob = 0;
-		promedioAprob = this.inscripciones.calcularPromedioAprob();
+		promedioAprob = promedioAprob + this.inscripciones.calcularPromedioAprob();
 		return promedioAprob;
 	}
 	

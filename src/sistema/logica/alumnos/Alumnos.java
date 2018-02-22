@@ -83,9 +83,26 @@ public class Alumnos {
 			Alumno tempAlu = arbol.get(clave);
 			if (tempAlu.getCantAprobaciones() == 10) {
 				VOAlumno voa = new VOAlumno(clave,tempAlu.getNombre(),tempAlu.getApellido());
+				voas.insert(voa);
 			}
 		}
 		return voas;
+	}
+	
+	public VOEgresados listadoEgresadosCompleto() {
+		VOEgresados voegs = new VOEgresados();
+		Iterator it = arbol.keySet().iterator();
+		while (it.hasNext()) {
+			Long clave = (Long) it.next();
+			Alumno tempAlu = arbol.get(clave);
+			if (tempAlu.getCantAprobaciones() == 10) {
+				float pt = tempAlu.devolverPromedioTotalAlumno();
+				float pa = tempAlu.devolverPromedioAprobAlumno();
+				VOEgresadoPromedioCal voeg = new VOEgresadoPromedioCal(clave,tempAlu.getNombre(),tempAlu.getApellido(),pt,pa);
+				voegs.insert(voeg);
+			}
+		}
+		return voegs;
 	}
 	
 }

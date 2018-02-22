@@ -423,8 +423,28 @@ public class CapaLogica
 	}
 	
 	/*Req. 12: Listado parcial o completo de alumnos egresados*/
-	public VOEgresados listadoEgresadosParcial() {
-		VOEgresados voegs = new 
+	public VOAlumnos listadoEgresadosParcial() throws AlumnoException {
+		VOAlumnos voas = new VOAlumnos();
+		monitor.comienzoLectura();
+		voas = alumnos.listadoEgresadosParcial();
+		monitor.terminoLectura();
+		if (voas.esVacia()) {
+			String msj = "Error: No hay alumnos egresados en el sistema.";
+			throw new AlumnoException(msj);
+		}
+		return voas;
+	}
+	
+	public VOEgresados listadoEgresadosCompleto() throws AlumnoException {
+		VOEgresados voegs = new VOEgresados();
+		monitor.comienzoLectura();
+		voegs = alumnos.listadoEgresadosCompleto();
+		monitor.terminoLectura();
+		if (voegs.esVacia()) {
+			String msj = "Error: No hay alumnos egresados en el sistema.";
+			throw new AlumnoException(msj);
+		}
+		return voegs;
 	}
 	
 }

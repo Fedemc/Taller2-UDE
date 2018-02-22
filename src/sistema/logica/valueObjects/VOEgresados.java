@@ -21,5 +21,9 @@ public class VOEgresados {
 	{
 		return voEgresados;
 	}
+	
+	public boolean esVacia() {
+		return voEgresados.isEmpty();
+	}
 
 }

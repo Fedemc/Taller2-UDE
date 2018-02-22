@@ -24,4 +24,8 @@ public class VOAlumnos {
 		return voalumnos;
 	}
 	
+	public boolean esVacia() {
+		return voalumnos.isEmpty();
+	}
+	
 }
