@@ -1,8 +1,9 @@
 package sistema.logica.valueObjects;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class VOEgresados {
+public class VOEgresados implements Serializable {
 	
 	private ArrayList<VOEgresadoPromedioCal> voEgresados;
 

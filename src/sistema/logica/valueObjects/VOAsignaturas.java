@@ -1,8 +1,9 @@
 package sistema.logica.valueObjects;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class VOAsignaturas {
+public class VOAsignaturas implements Serializable {
 
 	private ArrayList<VOAsignatura> voasignaturas;
 

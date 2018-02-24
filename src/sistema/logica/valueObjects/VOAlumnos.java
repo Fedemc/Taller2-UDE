@@ -1,10 +1,10 @@
 package sistema.logica.valueObjects;
 
 import java.util.*;
-
 import sistema.logica.inscripciones.Inscripcion;
+import java.io.Serializable;
 
-public class VOAlumnos {
+public class VOAlumnos implements Serializable {
 	
 	private ArrayList<VOAlumno> voalumnos;
 

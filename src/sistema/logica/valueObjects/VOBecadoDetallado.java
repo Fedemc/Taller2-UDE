@@ -1,6 +1,8 @@
 package sistema.logica.valueObjects;
 
-public class VOBecadoDetallado extends VOAlumnoDetallado {
+import java.io.Serializable;
+
+public class VOBecadoDetallado extends VOAlumnoDetallado implements Serializable {
 
 	private Float porcentaje;
 	private String descripcion;

@@ -1,6 +1,8 @@
 package sistema.logica.valueObjects;
 
-public class VOEgresadoPromedioCal extends VOAlumno {
+import java.io.Serializable;
+
+public class VOEgresadoPromedioCal extends VOAlumno implements Serializable{
 
 	private Float promedioTotal;
 	private Float promedioAprob;

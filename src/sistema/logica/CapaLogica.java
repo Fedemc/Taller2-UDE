@@ -11,36 +11,32 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Random;
-
 import sistema.excepciones.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 
-public class CapaLogica
+public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 {
-	Alumnos alumnos = new Alumnos();
-	Asignaturas asignaturas = new Asignaturas(); 
+	
+	Alumnos alumnos = null;
+	Asignaturas asignaturas = null; 
 	Monitor monitor=new Monitor();
+	private static final long serialVersionUID = 1L;
 	
+	public CapaLogica() throws RemoteException
+	{
+		
+	}	
 	
-	
-	public Alumnos getAlumnos() {
-		return alumnos;
-	}
-
-	public void setAlumnos(Alumnos alumnos) {
-		this.alumnos = alumnos;
-	}
-
-	public Asignaturas getAsignaturas() {
-		return asignaturas;
-	}
-
-	public void setAsignaturas(Asignaturas asignaturas) {
-		this.asignaturas = asignaturas;
+	public void crearColeccionesFachada() throws RemoteException
+	{
+		alumnos= new Alumnos();
+		asignaturas= new Asignaturas();
 	}
 
 	/*Req. 1: Registrar una asignatura en el sistema. */
-	public void registrarAsignatura (Asignatura as) throws AsignaturaException 
+	public void registrarAsignatura (Asignatura as) throws AsignaturaException, RemoteException 
 	{
 		monitor.comienzoEscritura();
 		if (asignaturas.getTope() >= 10)
@@ -66,7 +62,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 2: Registro de un alumno en el sistema.*/
-	public void registrarAlumno(Alumno al) throws AlumnoException 
+	public void registrarAlumno(Alumno al) throws AlumnoException, RemoteException 
 	{
 		monitor.comienzoEscritura();
 		if (alumnos.member(al.getCedula()))
@@ -85,7 +81,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 3: Modificación de datos de un alumno (Domicilio, teléfono y dirección de correo electrónico.*/
-	public void modificarDatosAlumno(Long ced, String dom, int tel, String email) throws AlumnoException 
+	public void modificarDatosAlumno(Long ced, String dom, int tel, String email) throws AlumnoException, RemoteException 
 	{
 		monitor.comienzoEscritura();
 		if (alumnos.member(ced)) 
@@ -135,7 +131,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 4: Listado de asignaturas*/
-	public VOAsignaturas listadoAsignaturas() throws AsignaturaException 
+	public VOAsignaturas listadoAsignaturas() throws AsignaturaException, RemoteException 
 	{
 		VOAsignaturas voas = new VOAsignaturas();
 		monitor.comienzoLectura();
@@ -155,7 +151,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 5: Listado de alumnos cuyo apellido empiece con un substring dado.*/
-	public VOAlumnos listadoAlumnoApellido (String s) throws AlumnoException 
+	public VOAlumnos listadoAlumnoApellido (String s) throws AlumnoException, RemoteException 
 	{
 		VOAlumnos voas = new VOAlumnos();
 		monitor.comienzoLectura();
@@ -175,7 +171,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 6: Listado detallado de un alumno, dada una cedula. Si es becado, también listar detalles de la beca.*/
-	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException
+	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException, RemoteException
 	{
 		VOAlumnoDetallado voad = new VOAlumnoDetallado();
 		monitor.comienzoLectura();
@@ -193,7 +189,7 @@ public class CapaLogica
 		return voad;
 	}
 	
-	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException
+	public VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException, RemoteException
 	{
 		VOBecadoDetallado vobd = new VOBecadoDetallado();
 		monitor.comienzoLectura();
@@ -212,7 +208,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 7: Registrar la inscripcion de un alumno.*/
-	public void inscripcionAsignatura(Long ced, String cod) throws AsignaturaException, AlumnoException, InscripcionException
+	public void inscripcionAsignatura(Long ced, String cod) throws AsignaturaException, AlumnoException, InscripcionException, RemoteException
 	{
 		monitor.comienzoEscritura();
 		if (asignaturas.memberAsignatura(cod)) 
@@ -261,21 +257,27 @@ public class CapaLogica
 	}
 	
 	/*Req. 8: Registro de resultado de una asignatura. */
-	public void registrarResultadoAsignatura(long ced, int codIns, int nota) throws AlumnoException, InscripcionException
+	public void registrarResultadoAsignatura(long ced, int codIns, int nota) throws AlumnoException, InscripcionException, RemoteException
 	{
 		monitor.comienzoEscritura();
 		if(alumnos.member(ced)) {
 			if(alumnos.find(ced).getInscripciones().member(codIns)) {
-				if(alumnos.find(ced).getInscripciones().find(codIns).getCalificacion()>0) {
+				if(alumnos.find(ced).getInscripciones().find(codIns).getCalificacion()>0) 
+				{
 					String msj="Error: El alumno ya tuvo calificacion para esta inscripcion.";
 					throw new InscripcionException(msj);
-				}else {
+				}
+				else 
+				{
 					alumnos.find(ced).getInscripciones().find(codIns).setCalificacion(nota);
-					if(nota>=6) {
+					if(nota>=6) 
+					{
 						alumnos.find(ced).setCantAprobaciones(alumnos.find(ced).getCantAprobaciones()+1);
 					}
 				}
-			}else {
+			}
+			else 
+			{
 				String msj="Error: El alumno no tiene una inscripcion con el codigo dado.";
 				throw new InscripcionException(msj);
 			}	
@@ -287,7 +289,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 9: Monto recaudado por inscripcioens. */
-	public float montoTotalPorInscripciones(long ced, int anio) throws AlumnoException
+	public float montoTotalPorInscripciones(long ced, int anio) throws AlumnoException, RemoteException
 	{
 		float montoTotal=0;
 		
@@ -321,8 +323,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 10: Respaldo de datos. */
-	//FALTA CAMBIAR ESTOS TRY Y CATCH POR THROWS!!!
-	public void respaldarDatos() throws PersistenciaException, IOException
+	public void respaldarDatos() throws PersistenciaException, IOException, RemoteException
 	{
 		Respaldo res= new Respaldo();
 		
@@ -355,7 +356,7 @@ public class CapaLogica
 	
 	
 	//Restaurar datos
-	public void restaurarDatos() throws PersistenciaException, IOException
+	public void restaurarDatos() throws PersistenciaException, IOException, RemoteException
 	{
 		Respaldo res= new Respaldo();
 		
@@ -373,7 +374,7 @@ public class CapaLogica
 			try
 			{
 				asignaturas=res.recuperarAsignaturas(datosRespaldoAsignaturas);
-				this.setAlumnos(res.recuperarAlumnos(datosRespaldoAlumnos));
+				alumnos=(res.recuperarAlumnos(datosRespaldoAlumnos));
 				System.out.println("Datos recuperados.");
 			}
 			catch(PersistenciaException pExc)
@@ -390,7 +391,7 @@ public class CapaLogica
 	
 	
 	/*Req. 11: Consulta parcial o completa de escolaridad de un alumno*/
-	public VOInscripciones consultaEscolaridadParcial(Long ced) throws InscripcionException, AlumnoException {
+	public VOInscripciones consultaEscolaridadParcial(Long ced) throws InscripcionException, AlumnoException, RemoteException {
 		VOInscripciones vois = new VOInscripciones();
 		monitor.comienzoLectura();
 		if (alumnos.member(ced)) {
@@ -409,7 +410,7 @@ public class CapaLogica
 		return vois;
 	}
 	
-	public VOInscripciones consultaEscolaridadCompleta(Long ced) throws InscripcionException, AlumnoException {
+	public VOInscripciones consultaEscolaridadCompleta(Long ced) throws InscripcionException, AlumnoException, RemoteException {
 		VOInscripciones vois = new VOInscripciones();
 		monitor.comienzoLectura();
 		if (alumnos.member(ced)) {
@@ -429,7 +430,7 @@ public class CapaLogica
 	}
 	
 	/*Req. 12: Listado parcial o completo de alumnos egresados*/
-	public VOAlumnos listadoEgresadosParcial() throws AlumnoException {
+	public VOAlumnos listadoEgresadosParcial() throws AlumnoException, RemoteException {
 		VOAlumnos voas = new VOAlumnos();
 		monitor.comienzoLectura();
 		voas = alumnos.listadoEgresadosParcial();
@@ -441,7 +442,7 @@ public class CapaLogica
 		return voas;
 	}
 	
-	public VOEgresados listadoEgresadosCompleto() throws AlumnoException {
+	public VOEgresados listadoEgresadosCompleto() throws AlumnoException, RemoteException {
 		VOEgresados voegs = new VOEgresados();
 		monitor.comienzoLectura();
 		voegs = alumnos.listadoEgresadosCompleto();

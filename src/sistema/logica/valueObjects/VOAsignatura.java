@@ -1,6 +1,8 @@
 package sistema.logica.valueObjects;
 
-public class VOAsignatura {
+import java.io.Serializable;
+
+public class VOAsignatura implements Serializable {
 
 	private String codigo;
 	private String nombre;

@@ -2,6 +2,7 @@ package sistema;
 
 import java.util.*;
 import java.io.*;
+import java.rmi.RemoteException;
 
 import sistema.excepciones.*;
 import sistema.logica.alumnos.Alumno;
@@ -19,10 +20,17 @@ import sistema.logica.valueObjects.*;
 public class principal { 
 
 	public static void main(String[] args) throws AsignaturaException, AlumnoException, InscripcionException {
+		/*
+		CapaLogica fachada=null;
+		try
+		{
+			fachada= new CapaLogica();
+		}
+		catch(RemoteException rEx)
+		{
+			rEx.printStackTrace();
+		}
 		
-		CapaLogica fachada= new CapaLogica();
-		Alumnos alums=null;
-		Asignaturas asigs=null;
 		
 		try
 		{
@@ -34,11 +42,7 @@ public class principal {
 			System.out.println(pExc.darMensaje());
 			System.out.println("No hay archivos, creo de cero");
 			//Si no pudo abrir el respaldo, crear las colecciones vacias
-			alums=new Alumnos();
-			fachada.setAlumnos(alums);
-			
-			asigs=new Asignaturas();
-			fachada.setAsignaturas(asigs);	
+			fachada.crearColeccionesFachada();	
 		}
 		catch(IOException iExc)
 		{
@@ -155,8 +159,20 @@ public class principal {
 		}
 		 
 		 //ingreso nota para cada inscripcion (se ingresa ci, cod de inscripcion y nota)
-		 fachada.registrarResultadoAsignatura(a1.getCedula(), 1, 8);
-		 fachada.registrarResultadoAsignatura(a1.getCedula(), 2, 3);//asignatura no aprobada
+		try
+		{
+			fachada.registrarResultadoAsignatura(a1.getCedula(), 1, 8);
+			fachada.registrarResultadoAsignatura(a1.getCedula(), 2, 3);//asignatura no aprobada
+		}
+		catch(AlumnoException alEx)
+		{
+			System.out.println(alEx.darMensaje());
+		}
+		catch(InscripcionException inEx)
+		{
+			System.out.println(inEx.darMensaje());
+		}
+		 
 		 
 		 //inscribo al alumno nuevamente en la asignatura no aprobada
 		 fachada.inscripcionAsignatura(a1.getCedula(), asig2.getCodigo());
@@ -263,7 +279,8 @@ public class principal {
 			long ced = (long) iter.next();
 			VOAlumno voa = new VOAlumno(a.get(ced).getCedula(), a.get(ced).getNombre(), a.get(ced).getApellido());
 			System.out.println(voa.toString());
-		}*/
+		}
+		*/
 		
 	}
 

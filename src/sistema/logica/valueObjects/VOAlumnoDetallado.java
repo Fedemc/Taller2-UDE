@@ -1,6 +1,8 @@
 package sistema.logica.valueObjects;
 
-public class VOAlumnoDetallado extends VOAlumno {
+import java.io.Serializable;
+
+public class VOAlumnoDetallado extends VOAlumno implements Serializable{
 
 	private String domicilio;
 	private int telefono;

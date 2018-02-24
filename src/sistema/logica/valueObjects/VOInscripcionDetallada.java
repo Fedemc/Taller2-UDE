@@ -1,6 +1,8 @@
 package sistema.logica.valueObjects;
 
-public class VOInscripcionDetallada extends VOInscripcion {
+import java.io.Serializable;
+
+public class VOInscripcionDetallada extends VOInscripcion implements Serializable{
 
 	private int montoBase;
 	

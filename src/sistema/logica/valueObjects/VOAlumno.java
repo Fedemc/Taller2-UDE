@@ -1,6 +1,8 @@
 package sistema.logica.valueObjects;
 
-public class VOAlumno {
+import java.io.Serializable;
+
+public class VOAlumno implements Serializable {
 
 	private Long cedula;
 	private String nombre;
