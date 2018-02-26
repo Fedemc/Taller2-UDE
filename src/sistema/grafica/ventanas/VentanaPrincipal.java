@@ -98,5 +98,10 @@ public class VentanaPrincipal {
 		logotipo.setIcon(new ImageIcon(logoSmall));
 		frame.getContentPane().add(logotipo);
 	}
+	
+	public void setVisible(boolean valor)
+	{
+		frame.setVisible(valor);
+	}
 
 }

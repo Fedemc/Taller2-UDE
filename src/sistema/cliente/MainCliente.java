@@ -13,6 +13,8 @@ import sistema.logica.ICapaLogica;
 import sistema.logica.valueObjects.*;
 import sistema.excepciones.*;
 
+import  sistema.grafica.ventanas.*;
+
 public class MainCliente
 {
 	public static void main(String[] args)
@@ -29,6 +31,12 @@ public class MainCliente
 			
 			//Voy a buscar el objeto remoto
 			ICapaLogica interfazFachada= (ICapaLogica) Naming.lookup(ruta);
+			
+			
+			//Llamar ventana
+			VentanaPrincipal vPrinc = new VentanaPrincipal();
+			vPrinc.setVisible(true);
+			
 			
 			//Listo asignaturas desde cliente
 			try
