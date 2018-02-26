@@ -1,4 +1,4 @@
-package Registro;
+package sistema.grafica.ventanas;
 
 import java.awt.EventQueue;
 
