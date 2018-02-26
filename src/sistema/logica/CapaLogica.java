@@ -379,7 +379,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 			}
 			catch(PersistenciaException pExc)
 			{
-				System.out.println(pExc.darMensaje());
+				throw new PersistenciaException(pExc.darMensaje());
 			}		
 		}
 		catch (IOException e)
