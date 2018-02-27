@@ -1,7 +1,10 @@
 package sistema.grafica.ventanas;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
+import sistema.grafica.ventanas.*;
+
 
 public class VentanaPrincipal {
 
@@ -47,6 +50,12 @@ public class VentanaPrincipal {
 		JMenuItem mntmEjecutarRespaldo = new JMenuItem("Ejecutar respaldo");
 		mnArchivo.add(mntmEjecutarRespaldo);
 		
+		mntmEjecutarRespaldo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaRespaldo ventRespaldo = new VentanaRespaldo();
+				ventRespaldo.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mnArchivo.add(mntmSalir);
@@ -97,6 +106,9 @@ public class VentanaPrincipal {
 		Image logoSmall = new ImageIcon(this.getClass().getResource("/LogoSmall.png")).getImage();
 		logotipo.setIcon(new ImageIcon(logoSmall));
 		frame.getContentPane().add(logotipo);
+		
+		
+		
 	}
 	
 	public void setVisible(boolean valor)

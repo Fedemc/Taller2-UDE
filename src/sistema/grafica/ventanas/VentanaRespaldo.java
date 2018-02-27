@@ -65,6 +65,11 @@ public class VentanaRespaldo {
 						
 		Image iconG = new ImageIcon(this.getClass().getResource("/IconG.png")).getImage();
 		
-		}
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frame.setVisible(valor);
+	}
 
 }
