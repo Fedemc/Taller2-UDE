@@ -30,7 +30,7 @@ public interface ICapaLogica extends Remote
 	VOAlumnos listadoAlumnoApellido(String s) throws AlumnoException, RemoteException;
 
 	/*Req. 6: Listado detallado de un alumno, dada una cedula. Si es becado, también listar detalles de la beca.*/
-	VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException, RemoteException;
+	VOAlumnoDetallado listadoAlumnoCedulaComun(int ced) throws AlumnoException, RemoteException;
 
 	VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException, RemoteException;
 

@@ -88,6 +88,12 @@ public class VentanaPrincipal {
 		mnListados.add(mntmListadoDeAlumnos);
 		
 		JMenuItem mntmListadoDetalladoDe = new JMenuItem("Listado detallado de alumno");
+		mntmListadoDetalladoDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListadoAlumnoDetallado ventAlumn = new ListadoAlumnoDetallado();
+				ventAlumn.setVisible(true);
+			}
+		});
 		mnListados.add(mntmListadoDetalladoDe);
 		
 		JMenuItem mntmListadoDeEgresados = new JMenuItem("Listado de egresados");
