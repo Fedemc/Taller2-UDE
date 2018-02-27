@@ -110,6 +110,13 @@ public class VentanaInscripcionAluAAsig {
 		
 		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
 		frmInscripcinDeAlumno.getContentPane().add(btnCancelarYVolver, "12, 20");
+		
+		frmInscripcinDeAlumno.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frmInscripcinDeAlumno.setVisible(valor);
 	}
 
 }

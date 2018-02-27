@@ -115,6 +115,13 @@ public class RegistroAsignatura {
 		
 		btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
 		frmRegistroDeAsignatura.getContentPane().add(btnCancelarYVolver, "12, 20");
+		
+		frmRegistroDeAsignatura.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frmRegistroDeAsignatura.setVisible(valor);
 	}
 
 }

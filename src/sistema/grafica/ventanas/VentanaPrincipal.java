@@ -39,11 +39,22 @@ public class VentanaPrincipal {
 	private void initialize() {
 		frame = new JFrame("Flow Layout");
 		frame.setBounds(100, 100, 512, 384);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				JFrame frame = (JFrame)e.getSource();
+				int result = JOptionPane.showConfirmDialog(frame,"¿Está seguro que desea salir de la aplicación?","Cerrar Aplicación",JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}  
+			}
+		});
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
+		/*MENU ARCHIVO*/
 		JMenu mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
 		
@@ -60,24 +71,72 @@ public class VentanaPrincipal {
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mnArchivo.add(mntmSalir);
 		
+		mntmSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == mntmSalir) {
+					int result = JOptionPane.showConfirmDialog(frame,"¿Está seguro que desea salir de la aplicación?","Cerrar Aplicación",JOptionPane.YES_NO_OPTION);
+					if (result == JOptionPane.YES_OPTION) {
+						frame.dispose();
+					}
+				}
+			}
+		});			
+		
+		/*MENU REGISTRO*/
 		JMenu mnRegistro = new JMenu("Registro");
 		menuBar.add(mnRegistro);
 		
 		JMenuItem mntmRegistrarAsignatura = new JMenuItem("Registrar asignatura");
 		mnRegistro.add(mntmRegistrarAsignatura);
 		
+		mntmRegistrarAsignatura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistroAsignatura vent = new RegistroAsignatura();
+				vent.setVisible(true);
+			}
+		});
+		
 		JMenuItem mntmRegistrarAlumno = new JMenuItem("Registrar alumno");
 		mnRegistro.add(mntmRegistrarAlumno);
+		
+		mntmRegistrarAlumno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaRegistro vent = new VentanaRegistro();
+				vent.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmInscribirAlumnoEn = new JMenuItem("Inscribir alumno en asignatura");
 		mnRegistro.add(mntmInscribirAlumnoEn);
 		
+		mntmInscribirAlumnoEn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInscripcionAluAAsig vent = new VentanaInscripcionAluAAsig();
+				vent.setVisible(true);
+			}
+		});
+		
 		JMenuItem mntmModificarDatosDe = new JMenuItem("Modificar datos de alumno");
 		mnRegistro.add(mntmModificarDatosDe);
+		
+		mntmModificarDatosDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaModificarAlumno vent = new VentanaModificarAlumno();
+				vent.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmRegistrarCalificacin = new JMenuItem("Registrar calificaci\u00F3n");
 		mnRegistro.add(mntmRegistrarCalificacin);
 		
+		mntmRegistrarCalificacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaRegistroCalificacion vent = new VentanaRegistroCalificacion();
+				vent.setVisible(true);
+			}
+		});
+		
+		/*MENU LISTADOS*/
 		JMenu mnListados = new JMenu("Listados");
 		menuBar.add(mnListados);
 		
@@ -113,8 +172,7 @@ public class VentanaPrincipal {
 		logotipo.setIcon(new ImageIcon(logoSmall));
 		frame.getContentPane().add(logotipo);
 		
-		
-		
+			
 	}
 	
 	public void setVisible(boolean valor)

@@ -65,6 +65,7 @@ public class VentanaRespaldo {
 						
 		Image iconG = new ImageIcon(this.getClass().getResource("/IconG.png")).getImage();
 		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	public void setVisible(boolean valor)
