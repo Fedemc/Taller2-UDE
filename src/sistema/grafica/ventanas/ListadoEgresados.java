@@ -13,6 +13,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class ListadoEgresados {
 
@@ -48,61 +51,39 @@ public class ListadoEgresados {
 	private void initialize() {
 		frmListadoDeEgresados = new JFrame();
 		frmListadoDeEgresados.setTitle("Listado de egresados");
-		frmListadoDeEgresados.setBounds(100, 100, 949, 556);
+		frmListadoDeEgresados.setBounds(100, 100, 815, 432);
 		frmListadoDeEgresados.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmListadoDeEgresados.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		frmListadoDeEgresados.getContentPane().setLayout(null);
 		
 		JLabel lblListadoDeEgresados = new JLabel("Listado de egresados");
-		frmListadoDeEgresados.getContentPane().add(lblListadoDeEgresados, "4, 4, left, default");
-		
-		JButton btnListarEgresados = new JButton("Listar egresados");
-		frmListadoDeEgresados.getContentPane().add(btnListarEgresados, "6, 4");
-		
-		JRadioButton rdbtnModoParcial = new JRadioButton("Modo parcial");
-		frmListadoDeEgresados.getContentPane().add(rdbtnModoParcial, "4, 6");
-		
-		JRadioButton rdbtnModoCompleto = new JRadioButton("Modo completo");
-		frmListadoDeEgresados.getContentPane().add(rdbtnModoCompleto, "4, 7");
-		
-		ButtonGroup btnGroupModoListado = new ButtonGroup();
-		btnGroupModoListado.add(rdbtnModoCompleto);
-		btnGroupModoListado.add(rdbtnModoParcial);
-		ButtonModel model = rdbtnModoCompleto.getModel();
-		btnGroupModoListado.setSelected(model, true);
+		lblListadoDeEgresados.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblListadoDeEgresados.setBounds(31, 35, 155, 14);
+		frmListadoDeEgresados.getContentPane().add(lblListadoDeEgresados);
 		
 		table = new JTable();
-		frmListadoDeEgresados.getContentPane().add(table, "4, 9, 6, 6, fill, fill");
+		table.setBounds(30, 104, 565, 278);
+		frmListadoDeEgresados.getContentPane().add(table);
 		
-		JButton btnNewButton = new JButton("Cancelar y volver a la ventana principal");
-		frmListadoDeEgresados.getContentPane().add(btnNewButton, "6, 17, default, top");
+		JButton btnNewButton = new JButton("Listado PARCIAL");
+		btnNewButton.setBounds(196, 31, 144, 23);
+		frmListadoDeEgresados.getContentPane().add(btnNewButton);
+		
+		JButton btnListadoCompleto = new JButton("Listado COMPLETO");
+		btnListadoCompleto.setBounds(196, 65, 144, 23);
+		frmListadoDeEgresados.getContentPane().add(btnListadoCompleto);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmListadoDeEgresados.dispose();
+			}
+		});
+		btnSalir.setBounds(605, 359, 144, 23);
+		frmListadoDeEgresados.getContentPane().add(btnSalir);
+	}
+	public void setVisible(boolean valor)
+	{
+		frmListadoDeEgresados.setVisible(valor);
 	}
 
 }

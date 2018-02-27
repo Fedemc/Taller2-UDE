@@ -39,6 +39,7 @@ import java.rmi.RemoteException;
 import sistema.excepciones.AlumnoException;
 import sistema.grafica.ventanas.*;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
+
 public class ListadoAlumnoDetallado {
 
 	private JFrame frame;

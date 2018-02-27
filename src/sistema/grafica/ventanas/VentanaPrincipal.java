@@ -156,6 +156,12 @@ public class VentanaPrincipal {
 		mnListados.add(mntmListadoDetalladoDe);
 		
 		JMenuItem mntmListadoDeEgresados = new JMenuItem("Listado de egresados");
+		mntmListadoDeEgresados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListadoEgresados listEg = new ListadoEgresados();
+				listEg.setVisible(true);
+			}
+		});
 		mnListados.add(mntmListadoDeEgresados);
 		
 		JMenu mnConsultas = new JMenu("Consultas");
@@ -165,6 +171,12 @@ public class VentanaPrincipal {
 		mnConsultas.add(mntmMontoRecaudadoPor);
 		
 		JMenuItem mntmConsultaDeEscolaridad = new JMenuItem("Consulta de escolaridad");
+		mntmConsultaDeEscolaridad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaEscolaridad ventEsc = new VentanaEscolaridad();
+				ventEsc.setVisible(true);
+			}
+		});
 		mnConsultas.add(mntmConsultaDeEscolaridad);
 		
 		JLabel logotipo = new JLabel("");
