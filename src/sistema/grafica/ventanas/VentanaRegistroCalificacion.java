@@ -112,6 +112,13 @@ public class VentanaRegistroCalificacion {
 		
 		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
 		frmRegistroDeCalificacin.getContentPane().add(btnCancelarYVolver, "12, 20");
+		
+		frmRegistroDeCalificacin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frmRegistroDeCalificacin.setVisible(valor);
 	}
 
 }

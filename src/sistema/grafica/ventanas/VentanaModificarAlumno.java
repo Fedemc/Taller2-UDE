@@ -124,6 +124,13 @@ public class VentanaModificarAlumno {
 		
 		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
 		frmModificacinDatosDe.getContentPane().add(btnCancelarYVolver, "12, 24");
+		
+		frmModificacinDatosDe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frmModificacinDatosDe.setVisible(valor);
 	}
 
 }

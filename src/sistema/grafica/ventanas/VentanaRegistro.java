@@ -184,10 +184,15 @@ public class VentanaRegistro {
 		JButton btnRegistrarAlumno = new JButton("Registrar Alumno");
 		frame.getContentPane().add(btnRegistrarAlumno, "10, 34");
 		
-		
-		
 		JButton btnVolverALa = new JButton("Cancelar y volver a la ventana principal");
 		frame.getContentPane().add(btnVolverALa, "10, 38");
+		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frame.setVisible(valor);
 	}
 
 }
