@@ -51,70 +51,42 @@ public class RegistroAsignatura {
 		frmRegistroDeAsignatura.setTitle("Registro de Asignatura");
 		frmRegistroDeAsignatura.setBounds(100, 100, 610, 337);
 		frmRegistroDeAsignatura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmRegistroDeAsignatura.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("200dlu"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		frmRegistroDeAsignatura.getContentPane().setLayout(null);
 		
 		JLabel lblCodigo = new JLabel("Codigo");
-		frmRegistroDeAsignatura.getContentPane().add(lblCodigo, "8, 4");
+		lblCodigo.setBounds(81, 34, 54, 14);
+		frmRegistroDeAsignatura.getContentPane().add(lblCodigo);
 		
 		textFieldCodigoAsig = new JTextField();
-		frmRegistroDeAsignatura.getContentPane().add(textFieldCodigoAsig, "12, 4, fill, default");
+		textFieldCodigoAsig.setBounds(166, 31, 300, 20);
+		frmRegistroDeAsignatura.getContentPane().add(textFieldCodigoAsig);
 		textFieldCodigoAsig.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		frmRegistroDeAsignatura.getContentPane().add(lblNombre, "8, 8");
+		lblNombre.setBounds(81, 85, 54, 14);
+		frmRegistroDeAsignatura.getContentPane().add(lblNombre);
 		
 		textFieldNombreAsig = new JTextField();
-		frmRegistroDeAsignatura.getContentPane().add(textFieldNombreAsig, "12, 8, fill, center");
+		textFieldNombreAsig.setBounds(166, 82, 300, 20);
+		frmRegistroDeAsignatura.getContentPane().add(textFieldNombreAsig);
 		textFieldNombreAsig.setColumns(10);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
-		frmRegistroDeAsignatura.getContentPane().add(lblDescripcin, "8, 12");
+		lblDescripcin.setBounds(81, 136, 54, 14);
+		frmRegistroDeAsignatura.getContentPane().add(lblDescripcin);
 		
 		textFieldDescripcionAsig = new JTextField();
-		frmRegistroDeAsignatura.getContentPane().add(textFieldDescripcionAsig, "12, 12, fill, default");
+		textFieldDescripcionAsig.setBounds(166, 133, 300, 20);
+		frmRegistroDeAsignatura.getContentPane().add(textFieldDescripcionAsig);
 		textFieldDescripcionAsig.setColumns(10);
 		
 		btnRegistrarAsignatura = new JButton("Registrar asignatura");
-		frmRegistroDeAsignatura.getContentPane().add(btnRegistrarAsignatura, "12, 16");
+		btnRegistrarAsignatura.setBounds(166, 184, 300, 23);
+		frmRegistroDeAsignatura.getContentPane().add(btnRegistrarAsignatura);
 		
 		btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
-		frmRegistroDeAsignatura.getContentPane().add(btnCancelarYVolver, "12, 20");
+		btnCancelarYVolver.setBounds(166, 238, 300, 23);
+		frmRegistroDeAsignatura.getContentPane().add(btnCancelarYVolver);
 		
 		frmRegistroDeAsignatura.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

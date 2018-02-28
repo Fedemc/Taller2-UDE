@@ -453,5 +453,11 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		}
 		return voegs;
 	}
+
+	@Override
+	public VOAlumnoDetallado listadoAlumnoCedulaComun(int ced) throws AlumnoException, RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

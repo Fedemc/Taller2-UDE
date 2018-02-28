@@ -13,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class VentanaEscolaridad {
 
@@ -49,56 +53,51 @@ public class VentanaEscolaridad {
 	private void initialize() {
 		frmConsultaDeEscolaridad = new JFrame();
 		frmConsultaDeEscolaridad.setTitle("Consulta de escolaridad");
-		frmConsultaDeEscolaridad.setBounds(100, 100, 910, 543);
+		frmConsultaDeEscolaridad.setBounds(100, 100, 678, 511);
 		frmConsultaDeEscolaridad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmConsultaDeEscolaridad.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+		frmConsultaDeEscolaridad.getContentPane().setLayout(null);
 		
 		JLabel lblIngreseCedula = new JLabel("Ingrese cedula");
-		frmConsultaDeEscolaridad.getContentPane().add(lblIngreseCedula, "4, 4");
+		lblIngreseCedula.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblIngreseCedula.setBounds(31, 56, 132, 14);
+		frmConsultaDeEscolaridad.getContentPane().add(lblIngreseCedula);
 		
 		textField = new JTextField();
-		frmConsultaDeEscolaridad.getContentPane().add(textField, "8, 4, fill, default");
+		textField.setBounds(144, 53, 97, 20);
+		frmConsultaDeEscolaridad.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JRadioButton rdbtnListadoParcial = new JRadioButton("Listado en modo parcial");
-		frmConsultaDeEscolaridad.getContentPane().add(rdbtnListadoParcial, "4, 6");
-		
-		JRadioButton rdbtnListadoCompleto = new JRadioButton("Listado en modo completo");
-		frmConsultaDeEscolaridad.getContentPane().add(rdbtnListadoCompleto, "4, 8");
-		
 		ButtonGroup btnGrupoModoListado = new ButtonGroup();
-		btnGrupoModoListado.add(rdbtnListadoParcial);
-		btnGrupoModoListado.add(rdbtnListadoCompleto);
 		
 		table = new JTable();
-		frmConsultaDeEscolaridad.getContentPane().add(table, "4, 10, 9, 1, fill, fill");
-		ButtonModel model = rdbtnListadoParcial.getModel();
-		btnGrupoModoListado.setSelected(model, true);
+		table.setBounds(31, 121, 387, 324);
+		frmConsultaDeEscolaridad.getContentPane().add(table);
+		
+		JButton btnNewButton = new JButton("Listado PARCIAL");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(251, 52, 167, 23);
+		frmConsultaDeEscolaridad.getContentPane().add(btnNewButton);
+		
+		JButton btnListadoCompleto = new JButton("Listado COMPLETO");
+		btnListadoCompleto.setBounds(251, 87, 167, 23);
+		frmConsultaDeEscolaridad.getContentPane().add(btnListadoCompleto);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmConsultaDeEscolaridad.dispose();
+			}
+		});
+		btnCancelar.setBounds(466, 422, 132, 23);
+		frmConsultaDeEscolaridad.getContentPane().add(btnCancelar);
+		
 	}
 
+	public void setVisible(boolean valor)
+	{
+		frmConsultaDeEscolaridad.setVisible(valor);
+	}
 }
