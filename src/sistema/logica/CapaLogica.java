@@ -171,6 +171,31 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 	}
 	
 	/*Req. 6: Listado detallado de un alumno, dada una cedula. Si es becado, también listar detalles de la beca.*/
+	
+	public boolean consultaEsBecado(Long ced) throws AlumnoException, RemoteException
+	{
+		boolean resu=false;
+		
+		if(alumnos.member(ced))
+		{
+			if(alumnos.find(ced) instanceof Becado)
+			{
+				resu=true;
+			}
+			else
+			{
+				resu=false;
+			}
+		}
+		else
+		{
+			String msj="Error: No existe un alumno con esa cedula en el sistema";
+			throw new AlumnoException(msj);
+		}			
+		
+		return resu;
+	}
+	
 	public VOAlumnoDetallado listadoAlumnoCedulaComun(Long ced) throws AlumnoException, RemoteException
 	{
 		VOAlumnoDetallado voad = new VOAlumnoDetallado();
@@ -454,10 +479,4 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		return voegs;
 	}
 
-	@Override
-	public VOAlumnoDetallado listadoAlumnoCedulaComun(int ced) throws AlumnoException, RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class ListadoEgresados {
+public class VentanaListadoEgresados {
 
 	private JFrame frmListadoDeEgresados;
 	private JTable table;
@@ -29,7 +29,7 @@ public class ListadoEgresados {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListadoEgresados window = new ListadoEgresados();
+					VentanaListadoEgresados window = new VentanaListadoEgresados();
 					window.frmListadoDeEgresados.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class ListadoEgresados {
 	/**
 	 * Create the application.
 	 */
-	public ListadoEgresados() {
+	public VentanaListadoEgresados() {
 		initialize();
 	}
 

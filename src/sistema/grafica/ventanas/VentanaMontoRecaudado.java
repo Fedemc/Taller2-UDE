@@ -108,7 +108,7 @@ public class VentanaMontoRecaudado {
 		btnConsultarMonto = new JButton("Consultar monto");
 		btnConsultarMonto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarCampos();
+				validarCamposYCalcularMonto();
 			}
 		});
 		
@@ -132,6 +132,7 @@ public class VentanaMontoRecaudado {
 	{
 		float res=contVentMontoRec.ObtenerMontoRecaudado(ci, anio);
 		
+		//depende del monto muestro el monto o sino muestro 0.
 		if(res!=0)
 		{
 			txtArea.setText(String.valueOf(res));
@@ -147,12 +148,13 @@ public class VentanaMontoRecaudado {
 		JOptionPane.showMessageDialog(frame, res, "ERROR!", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	private void validarCampos()
+	private void validarCamposYCalcularMonto()
 	{
 		if(!textCI.getText().isEmpty())
 		{
 			if(!textAnio.getText().isEmpty())
 			{
+				//Si los campos no son vacíos
 				buscarTextoMontoRecaudado(Long.parseLong(textCI.getText()), Integer.parseInt(textAnio.getText()));
 			}
 			else

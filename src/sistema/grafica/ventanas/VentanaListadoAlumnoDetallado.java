@@ -8,6 +8,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -38,14 +39,15 @@ import java.awt.event.MouseMotionAdapter;
 import java.rmi.RemoteException;
 
 import sistema.excepciones.AlumnoException;
-import sistema.grafica.controladores.ControladorVentAlumnoDet;
+import sistema.grafica.controladores.ContVentAlumnoDet;
 import sistema.grafica.ventanas.*;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
 
-public class ListadoAlumnoDetallado {
+public class VentanaListadoAlumnoDetallado {
 
 	private JFrame frame;
-	private JTextField ci;
+	private JTextField txtCI;
+	
 	
 
 	/**
@@ -55,7 +57,7 @@ public class ListadoAlumnoDetallado {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListadoAlumnoDetallado window = new ListadoAlumnoDetallado();
+					VentanaListadoAlumnoDetallado window = new VentanaListadoAlumnoDetallado();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +69,7 @@ public class ListadoAlumnoDetallado {
 	/**
 	 * Create the application.
 	 */
-	public ListadoAlumnoDetallado() {
+	public VentanaListadoAlumnoDetallado() {
 		initialize();
 	}
 
@@ -75,6 +77,8 @@ public class ListadoAlumnoDetallado {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
+		ContVentAlumnoDet miCont = new ContVentAlumnoDet(this);
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
 		frame.setBounds(100, 100, 760, 413);
@@ -87,11 +91,11 @@ public class ListadoAlumnoDetallado {
 		lblNewLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel);
 		
-		ci = new JTextField();
-		ci.setBounds(144, 56, 112, 20);
+		txtCI = new JTextField();
+		txtCI.setBounds(144, 56, 112, 20);
 
-		frame.getContentPane().add(ci);
-		ci.setColumns(10);
+		frame.getContentPane().add(txtCI);
+		txtCI.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Listado detallado del Alumno");
 		lblNewLabel_1.setBounds(202, 11, 293, 20);
@@ -100,65 +104,53 @@ public class ListadoAlumnoDetallado {
 		
 		
 		
-		JButton btnNewButton = new JButton("Mostrar Datos");
-		btnNewButton.setBounds(280, 55, 157, 23);
+		JButton btnMostrarDatos = new JButton("Mostrar Datos");
+		btnMostrarDatos.setBounds(280, 55, 157, 23);
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btnMostrarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				long  ced = Integer.parseInt(ci.getText());
-				ControladorVentAlumnoDet miCont = new ControladorVentAlumnoDet(null);
-				
-				
-				JTable table = new JTable();
-				JScrollPane jsp = new JScrollPane(table);
-				frame.getContentPane().add(jsp, "4, 4, fill, fill");
-				
-				DefaultTableModel modelo = new DefaultTableModel();
-				modelo.addColumn("Cedula");
-				modelo.addColumn("Nombre");
-				modelo.addColumn("Apellido");
-				modelo.addColumn("Domiclio");
-				modelo.addColumn("Telefono");
-				modelo.addColumn("Email");
-				modelo.addColumn("Cuota Mensual");
-				modelo.addColumn("Tipo Alumno");
-				Object fila [] =new Object[8];
-				
-				try {
-					VOAlumnoDetallado alu=miCont.datosAlumno(ced);
-					
-					fila[0]=alu.getCedula();
-			        fila[1]=alu.getNombre();
-			        fila[2]=alu.getApellido();
-			        fila[3]=alu.getDomicilio();
-			        fila[4]=alu.getTelefono();
-			        fila[5]=alu.getDirCorreo();
-			        fila[6]=alu.getCuotaMensual();
-			        fila[7]="Comun";
-
-			        modelo.addRow(fila);
-			        table.setModel(modelo);
-			        
-				} catch (RemoteException | AlumnoException e1) {
-					e1.printStackTrace();
-				}
-				
+				//aca llamo al metodo q valida el campo
+				validarCamposYGenerarListado();
 			}
 		});
-		frame.getContentPane().add(btnNewButton);
+		frame.getContentPane().add(btnMostrarDatos);
 		
-		JButton btnNewButton_1 = new JButton("Cancelar");
-		btnNewButton_1.setBounds(454, 55, 157, 23);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(454, 55, 157, 23);
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
 			}
 		});
-		frame.getContentPane().add(btnNewButton_1);
-		
+		frame.getContentPane().add(btnCancelar);		
 	}
+	
 	public void setVisible(boolean valor)
 	{
 		frame.setVisible(valor);
 	}
+	
+	private void validarCamposYGenerarListado()
+	{
+		if(!txtCI.getText().isEmpty())
+		{
+			listar();
+			
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(frame, "Ingrese una cedula de alumno", "ERROR!", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void listar()
+	{
+		
+	}
+	
+	public void mostrarError(String res)
+	{
+		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.ERROR_MESSAGE);
+	}
+	
 }

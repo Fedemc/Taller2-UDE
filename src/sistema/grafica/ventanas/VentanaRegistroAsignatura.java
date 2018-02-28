@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class RegistroAsignatura {
+public class VentanaRegistroAsignatura {
 
 	private JFrame frmRegistroDeAsignatura;
 	private JTextField textFieldCodigoAsig;
@@ -27,7 +27,7 @@ public class RegistroAsignatura {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegistroAsignatura window = new RegistroAsignatura();
+					VentanaRegistroAsignatura window = new VentanaRegistroAsignatura();
 					window.frmRegistroDeAsignatura.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class RegistroAsignatura {
 	/**
 	 * Create the application.
 	 */
-	public RegistroAsignatura() {
+	public VentanaRegistroAsignatura() {
 		initialize();
 	}
 
