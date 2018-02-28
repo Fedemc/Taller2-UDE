@@ -208,7 +208,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 	}
 	
 	/*Req. 7: Registrar la inscripcion de un alumno.*/
-	public void inscripcionAsignatura(Long ced, String cod) throws AsignaturaException, AlumnoException, InscripcionException, RemoteException
+	public void inscripcionAsignatura(Long ced, String cod, int monto) throws AsignaturaException, AlumnoException, InscripcionException, RemoteException
 	{
 		monitor.comienzoEscritura();
 		if (asignaturas.memberAsignatura(cod)) 
@@ -230,7 +230,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 				if (retorno) 
 				{
 					int nroInscripcion= alu.getInscripciones().getListaInscripciones().size() +1;
-					Inscripcion i = new Inscripcion(nroInscripcion, 1000 ,asignaturas.findAsignatura(cod));
+					Inscripcion i = new Inscripcion(nroInscripcion, monto ,asignaturas.findAsignatura(cod));
 					alu.registrarInscripcion(i);
 					monitor.terminoEscritura();
 				}

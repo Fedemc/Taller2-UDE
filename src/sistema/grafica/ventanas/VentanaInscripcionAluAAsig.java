@@ -1,15 +1,22 @@
 package sistema.grafica.ventanas;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import sistema.grafica.controladores.ContVentanaListadoAluApe;
+
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import sistema.grafica.controladores.ContVentanaInscripcionAluAAsig;
 
 public class VentanaInscripcionAluAAsig {
 
@@ -17,6 +24,7 @@ public class VentanaInscripcionAluAAsig {
 	private JTextField textFieldCedulaAlumno;
 	private JTextField textFieldCodigoAsignatura;
 	private JTextField textFieldMontoBase;
+	private ContVentanaInscripcionAluAAsig contInscripcion;
 
 	/**
 	 * Launch the application.
@@ -84,6 +92,8 @@ public class VentanaInscripcionAluAAsig {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
+		contInscripcion=new ContVentanaInscripcionAluAAsig(this);
+		
 		JLabel lblCedulaDelAlumno = new JLabel("Cedula del alumno");
 		frmInscripcinDeAlumno.getContentPane().add(lblCedulaDelAlumno, "8, 4");
 		
@@ -108,8 +118,31 @@ public class VentanaInscripcionAluAAsig {
 		JButton btnInscribirAlumno = new JButton("Inscribir alumno");
 		frmInscripcinDeAlumno.getContentPane().add(btnInscribirAlumno, "12, 16");
 		
+		btnInscribirAlumno.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				String cedula = textFieldCedulaAlumno.getText();
+				String codAsig = textFieldCodigoAsignatura.getText();
+				String monto = textFieldMontoBase.getText();
+				
+				if ((cedula.isEmpty()) || (codAsig.isEmpty()) || (monto.isEmpty())) {
+					JOptionPane.showMessageDialog(frmInscripcinDeAlumno, "No se pueden dejar campos vacíos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					int montoBase = intAString(monto);
+					long cedAlu = longAString(cedula);
+					contInscripcion.inscribirAlumnoAsig(cedAlu, codAsig, montoBase);
+				}
+			}
+		});
+		
 		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
 		frmInscripcinDeAlumno.getContentPane().add(btnCancelarYVolver, "12, 20");
+		
+		btnCancelarYVolver.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				frmInscripcinDeAlumno.dispose();
+			}
+		});
 		
 		frmInscripcinDeAlumno.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
@@ -118,5 +151,38 @@ public class VentanaInscripcionAluAAsig {
 	{
 		frmInscripcinDeAlumno.setVisible(valor);
 	}
-
+	
+	public int intAString(String s) {
+		int montoBase = 0;
+		try {
+			Integer.parseInt(s);
+		    montoBase = Integer.parseInt(s);
+		}
+		catch (NumberFormatException e) {
+		     JOptionPane.showMessageDialog(frmInscripcinDeAlumno, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		return montoBase;
+	}
+	
+	public long longAString(String s) {
+		long cedula = 0;
+		try {
+			Long.parseLong(s);
+			cedula = Long.parseLong(s);
+		}
+		catch (NumberFormatException e) {
+		     JOptionPane.showMessageDialog(frmInscripcinDeAlumno, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		return cedula;
+	}
+	
+	public void mostrarError(String res)
+	{
+		JOptionPane.showMessageDialog(frmInscripcinDeAlumno, res, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mostrarResultado(String res)
+	{
+		JOptionPane.showMessageDialog(frmInscripcinDeAlumno, res, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+	}
 }

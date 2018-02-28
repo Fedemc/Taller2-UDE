@@ -35,7 +35,7 @@ public interface ICapaLogica extends Remote
 	VOBecadoDetallado listadoAlumnoCedulaBecado(Long ced) throws AlumnoException, RemoteException;
 
 	/*Req. 7: Registrar la inscripcion de un alumno.*/
-	void inscripcionAsignatura(Long ced, String cod)
+	void inscripcionAsignatura(Long ced, String cod, int monto)
 			throws AsignaturaException, AlumnoException, InscripcionException, RemoteException;
 
 	/*Req. 8: Registro de resultado de una asignatura. */
