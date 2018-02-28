@@ -8,6 +8,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -37,6 +38,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.rmi.RemoteException;
 
 import sistema.excepciones.AlumnoException;
+import sistema.grafica.controladores.ControladorVentAlumnoDet;
 import sistema.grafica.ventanas.*;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
 
@@ -44,7 +46,7 @@ public class ListadoAlumnoDetallado {
 
 	private JFrame frame;
 	private JTextField ci;
-	private JTable tabla;
+	
 
 	/**
 	 * Launch the application.
@@ -80,41 +82,51 @@ public class ListadoAlumnoDetallado {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Ingrese Cedula");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblNewLabel.setBounds(22, 59, 112, 14);
+		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 16));
 		lblNewLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		frame.getContentPane().add(lblNewLabel);
 		
 		ci = new JTextField();
-		ci.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseMoved(MouseEvent arg0) {
-				
-			}
-			
-		});
 		ci.setBounds(144, 56, 112, 20);
+
 		frame.getContentPane().add(ci);
 		ci.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Listado detallado del Alumno");
-		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
 		lblNewLabel_1.setBounds(202, 11, 293, 20);
+		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		
 		
 		JButton btnNewButton = new JButton("Mostrar Datos");
+		btnNewButton.setBounds(280, 55, 157, 23);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				long  ced = Integer.parseInt(ci.getText());
 				ControladorVentAlumnoDet miCont = new ControladorVentAlumnoDet(null);
-				VOAlumnoDetallado alu;
+				
+				
+				JTable table = new JTable();
+				JScrollPane jsp = new JScrollPane(table);
+				frame.getContentPane().add(jsp, "4, 4, fill, fill");
+				
+				DefaultTableModel modelo = new DefaultTableModel();
+				modelo.addColumn("Cedula");
+				modelo.addColumn("Nombre");
+				modelo.addColumn("Apellido");
+				modelo.addColumn("Domiclio");
+				modelo.addColumn("Telefono");
+				modelo.addColumn("Email");
+				modelo.addColumn("Cuota Mensual");
+				modelo.addColumn("Tipo Alumno");
+				Object fila [] =new Object[8];
+				
 				try {
-					alu = miCont.datosAlumno(ced);
-					DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-
-					Object [] fila=new Object[tabla.getColumnCount()];
+					VOAlumnoDetallado alu=miCont.datosAlumno(ced);
+					
 					fila[0]=alu.getCedula();
 			        fila[1]=alu.getNombre();
 			        fila[2]=alu.getApellido();
@@ -125,7 +137,7 @@ public class ListadoAlumnoDetallado {
 			        fila[7]="Comun";
 
 			        modelo.addRow(fila);
-			        tabla.setModel(modelo);
+			        table.setModel(modelo);
 			        
 				} catch (RemoteException | AlumnoException e1) {
 					e1.printStackTrace();
@@ -133,38 +145,16 @@ public class ListadoAlumnoDetallado {
 				
 			}
 		});
-		btnNewButton.setBounds(280, 55, 157, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.setBounds(454, 55, 157, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
 			}
 		});
-		
-		btnNewButton_1.setBounds(454, 55, 157, 23);
 		frame.getContentPane().add(btnNewButton_1);
-		
-		tabla = new JTable();
-		tabla.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Cedula", "Nombre", "Apellido", "Domicilio", "Telefono", "Email", "Monto Cuota", "Tipo", "Descuento", "Descripcion"
-			}
-		));
-		tabla.setBackground(new Color(0, 153, 204));
-		tabla.setToolTipText("");
-		tabla.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		tabla.setForeground(SystemColor.inactiveCaption);
-		tabla.setColumnSelectionAllowed(true);
-		tabla.setCellSelectionEnabled(true);
-		tabla.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(255, 0, 0), null, null, null));
-		
-		tabla.setBounds(22, 301, 683, -200);
-		frame.getContentPane().add(tabla);
 		
 	}
 	public void setVisible(boolean valor)
