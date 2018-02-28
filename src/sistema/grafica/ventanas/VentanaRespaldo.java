@@ -71,8 +71,19 @@ public class VentanaRespaldo {
 			}
 		);
 		
-		JButton button = new JButton("Volver");
-		frame.getContentPane().add(button, "2, 6, fill, fill");
+		JButton btnVolver = new JButton("Volver");
+		frame.getContentPane().add(btnVolver, "2, 6, fill, fill");
+		
+		btnVolver.addActionListener
+		(
+			new ActionListener()
+			{
+				public void actionPerformed (ActionEvent e)
+				{
+					frame.dispose();
+				}
+			}
+		);
 						
 		Image iconG = new ImageIcon(this.getClass().getResource("/IconG.png")).getImage();
 		
@@ -90,5 +101,4 @@ public class VentanaRespaldo {
 	{
 		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.INFORMATION_MESSAGE);
 	}
-
 }
