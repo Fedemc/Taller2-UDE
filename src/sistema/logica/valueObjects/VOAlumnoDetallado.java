@@ -44,7 +44,7 @@ public class VOAlumnoDetallado extends VOAlumno implements Serializable{
 
 	@Override
 	public String toString() {
-		return "VOAlumnoDetallado: domicilio=" + domicilio + ", telefono=" + telefono + ", dirCorreo=" + dirCorreo +", "+ super.toString();
+		return super.toString() + "\nDomicilio: " + domicilio + "\n Telefono: " + telefono + "\nCorreo electronico:" + dirCorreo;
 	}
 	
 	

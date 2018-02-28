@@ -30,7 +30,7 @@ public class VOBecadoDetallado extends VOAlumnoDetallado implements Serializable
 
 	@Override
 	public String toString() {
-		return "VOBecadoDetallado: porcentaje=" + porcentaje + ", descripcion=" + descripcion +", " + super.toString();
+		return super.toString() + "\nPorcentaje: " + porcentaje + "\nDescripcion: " + descripcion;
 	}
 		
 }

@@ -153,12 +153,14 @@ public class VentanaListadoAlumnoDetallado {
 	
 	public void mostrarVOAlumDet(VOAlumnoDetallado voa)
 	{
-		txtArea.setText("Cedula: " + voa.getCedula() + "\nNombre: " + voa.getNombre() + "\nApellido: " + voa.getApellido() + "\nDomicilio: " + voa.getDomicilio() + "\nCorreo electronico: " + voa.getDirCorreo() + "\nCuotaMensual: " + voa.getCuotaMensual() + "\nTipo de alumno: Comun");
+		//txtArea.setText("Cedula: " + voa.getCedula() + "\nNombre: " + voa.getNombre() + "\nApellido: " + voa.getApellido() + "\nDomicilio: " + voa.getDomicilio() + "\nCorreo electronico: " + voa.getDirCorreo() + "\nCuotaMensual: " + voa.getCuotaMensual() + "\nTipo de alumno: Comun");
+		txtArea.setText("Tipo Alumno: Comun\n" + voa.toString());
 	}
 	
 	public void mostrarVOBecDet(VOBecadoDetallado vob)
 	{
-		txtArea.setText("Cedula: " + vob.getCedula() + "\nNombre: " + vob.getNombre() + "\nApellido: " + vob.getApellido() + "\nDomicilio: " + vob.getDomicilio() + "\nCorreo electronico: " + vob.getDirCorreo() + "\nCuotaMensual: " + vob.getCuotaMensual() + "\nTipo de alumno: Becado" + "\nDescuento: " + vob.getPorcentaje() + "\nDescripcion de beca:" + vob.getDescripcion());
+		//txtArea.setText("Cedula: " + vob.getCedula() + "\nNombre: " + vob.getNombre() + "\nApellido: " + vob.getApellido() + "\nDomicilio: " + vob.getDomicilio() + "\nCorreo electronico: " + vob.getDirCorreo() + "\nCuotaMensual: " + vob.getCuotaMensual() + "\nTipo de alumno: Becado" + "\nDescuento: " + vob.getPorcentaje() + "\nDescripcion de beca:" + vob.getDescripcion());
+		txtArea.setText("Tipo Alumno: Becado\n" + vob.toString());
 	}
 	
 	public void mostrarError(String res)

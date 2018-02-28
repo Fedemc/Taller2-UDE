@@ -66,6 +66,7 @@ public class Alumnos implements Serializable{
 		Alumno tempAlu = (Alumno) arbol.get(clave);
 		VOAlumnoDetallado voad = new VOAlumnoDetallado(tempAlu.getCedula(),tempAlu.getNombre(),tempAlu.getApellido(),tempAlu.getDomicilio(),
 					tempAlu.getTelefono(),tempAlu.getEmail(),tempAlu.calcularCuotaAlumno());
+		voad.setTipoAlumno("Alumno");
 		return voad;
 	}
 	
@@ -73,6 +74,7 @@ public class Alumnos implements Serializable{
 		Becado tempBec = (Becado) arbol.get(clave);
 		VOBecadoDetallado vobd = new VOBecadoDetallado(tempBec.getCedula(),tempBec.getNombre(),tempBec.getApellido(),tempBec.getDomicilio(),
 					tempBec.getTelefono(),tempBec.getEmail(),tempBec.calcularCuotaAlumno(),tempBec.getPorcentaje(), tempBec.getDescripcionBeca());
+		vobd.setTipoAlumno("Becado");
 		return vobd;
 	}
 	
