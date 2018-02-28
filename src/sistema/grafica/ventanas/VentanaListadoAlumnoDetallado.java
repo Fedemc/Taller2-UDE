@@ -42,11 +42,15 @@ import sistema.excepciones.AlumnoException;
 import sistema.grafica.controladores.ContVentAlumnoDet;
 import sistema.grafica.ventanas.*;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
+import sistema.logica.valueObjects.VOBecadoDetallado;
+import javax.swing.JTextArea;
 
 public class VentanaListadoAlumnoDetallado {
 
 	private JFrame frame;
 	private JTextField txtCI;
+	private ContVentAlumnoDet miCont;
+	private JTextArea txtArea;
 	
 	
 
@@ -78,7 +82,7 @@ public class VentanaListadoAlumnoDetallado {
 	 */
 	private void initialize() {
 
-		ContVentAlumnoDet miCont = new ContVentAlumnoDet(this);
+		miCont = new ContVentAlumnoDet(this);
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
 		frame.setBounds(100, 100, 760, 413);
@@ -123,6 +127,10 @@ public class VentanaListadoAlumnoDetallado {
 			}
 		});
 		frame.getContentPane().add(btnCancelar);		
+		
+		txtArea = new JTextArea();
+		txtArea.setBounds(250, 124, 245, 215);
+		frame.getContentPane().add(txtArea);
 	}
 	
 	public void setVisible(boolean valor)
@@ -132,10 +140,10 @@ public class VentanaListadoAlumnoDetallado {
 	
 	private void validarCamposYGenerarListado()
 	{
-		if(!txtCI.getText().isEmpty())
+		if(!txtCI.getText().isEmpty())	//Si no esta vacio el campo CI
 		{
-			listar();
-			
+			//Llamo al metodo del controlador de la ventana
+			miCont.generarListado(Long.parseLong(txtCI.getText()));
 		}
 		else
 		{
@@ -143,14 +151,18 @@ public class VentanaListadoAlumnoDetallado {
 		}
 	}
 	
-	private void listar()
+	public void mostrarVOAlumDet(VOAlumnoDetallado voa)
 	{
-		
+		txtArea.setText("Cedula: " + voa.getCedula() + "\nNombre: " + voa.getNombre() + "\nApellido: " + voa.getApellido() + "\nDomicilio: " + voa.getDomicilio() + "\nCorreo electronico: " + voa.getDirCorreo() + "\nCuotaMensual: " + voa.getCuotaMensual() + "\nTipo de alumno: Comun");
+	}
+	
+	public void mostrarVOBecDet(VOBecadoDetallado vob)
+	{
+		txtArea.setText("Cedula: " + vob.getCedula() + "\nNombre: " + vob.getNombre() + "\nApellido: " + vob.getApellido() + "\nDomicilio: " + vob.getDomicilio() + "\nCorreo electronico: " + vob.getDirCorreo() + "\nCuotaMensual: " + vob.getCuotaMensual() + "\nTipo de alumno: Becado" + "\nDescuento: " + vob.getPorcentaje() + "\nDescripcion de beca:" + vob.getDescripcion());
 	}
 	
 	public void mostrarError(String res)
 	{
 		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.ERROR_MESSAGE);
 	}
-	
 }

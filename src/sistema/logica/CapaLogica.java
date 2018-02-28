@@ -256,7 +256,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 				{
 					int nroInscripcion= alu.getInscripciones().getListaInscripciones().size() +1;
 					Inscripcion i = new Inscripcion(nroInscripcion, monto ,asignaturas.findAsignatura(cod));
-					alu.registrarInscripcion(i);
+					alumnos.find(ced).registrarInscripcion(i);
 					monitor.terminoEscritura();
 				}
 				else

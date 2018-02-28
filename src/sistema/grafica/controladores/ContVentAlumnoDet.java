@@ -49,7 +49,7 @@ public class ContVentAlumnoDet {
 	
 	}
 	
-	public void listar(long ced)
+	public void generarListado(long ced)
 	{
 		//Verifico si es alumno o becado y llamo al metodo correspondiente
 		try
@@ -76,7 +76,7 @@ public class ContVentAlumnoDet {
 		
 	}
 	
-	public void generarVOAAlumnoDet(long ced) 
+	private void generarVOAAlumnoDet(long ced) 
 	{
 		VOAlumnoDetallado alu=new VOAlumnoDetallado();
 		
@@ -84,7 +84,7 @@ public class ContVentAlumnoDet {
 		{
 			alu=interfazFachada.listadoAlumnoCedulaComun(ced);
 			//lo mando a la ventana
-			//ventAlumDet.mostrarVOAlumDet(alu);
+			ventAlumDet.mostrarVOAlumDet(alu);
 		}
 		catch(AlumnoException aluEx)
 		{
@@ -96,7 +96,7 @@ public class ContVentAlumnoDet {
 		}
 	}
 	
-	public void generarVOABecadoDet(long ced) 
+	private void generarVOABecadoDet(long ced) 
 	{
 		VOBecadoDetallado bec=new VOBecadoDetallado();
 		
@@ -104,7 +104,7 @@ public class ContVentAlumnoDet {
 		{
 			bec=interfazFachada.listadoAlumnoCedulaBecado(ced);
 			//lo mando a la ventana
-			//ventAlumDet.mostrarVOBecDet(alu);
+			ventAlumDet.mostrarVOBecDet(bec);
 		}
 		catch(AlumnoException aluEx)
 		{
