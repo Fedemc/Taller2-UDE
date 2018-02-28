@@ -94,12 +94,10 @@ public class VentanaMontoRecaudado {
 		frame.getContentPane().add(textCI, "6, 6, fill, default");
 		textCI.setColumns(10);
 		
-<<<<<<< HEAD
 		JTextArea textArea = new JTextArea();
 		frame.getContentPane().add(textArea, "6, 6, fill, fill");
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-=======
 		lblAoLectivo = new JLabel("A\u00F1o lectivo:");
 		frame.getContentPane().add(lblAoLectivo, "6, 8");
 		
@@ -123,14 +121,11 @@ public class VentanaMontoRecaudado {
 		
 		txtArea = new JTextArea();
 		frame.getContentPane().add(txtArea, "6, 16, fill, fill");
->>>>>>> 36d4f64f2a7e870624bf4bf6f07d7bfb4b5a47ce
 	}
 	
 	public void setVisible(boolean valor)
 	{
 		frame.setVisible(valor);
-<<<<<<< HEAD
-=======
 	}
 	
 	public void buscarTextoMontoRecaudado(long ci, int anio)
@@ -169,7 +164,6 @@ public class VentanaMontoRecaudado {
 		{
 			JOptionPane.showMessageDialog(frame, "Ingrese una cedula de alumno", "ERROR!", JOptionPane.ERROR_MESSAGE);
 		}
->>>>>>> 36d4f64f2a7e870624bf4bf6f07d7bfb4b5a47ce
 	}
 
 }

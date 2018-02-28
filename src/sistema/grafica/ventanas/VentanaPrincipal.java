@@ -181,11 +181,7 @@ public class VentanaPrincipal {
 		
 		mntmMontoRecaudadoPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-				VentanaListadoAsig vent = new VentanaListadoAsig();
-=======
 				VentanaMontoRecaudado vent = new VentanaMontoRecaudado();
->>>>>>> 36d4f64f2a7e870624bf4bf6f07d7bfb4b5a47ce
 				vent.setVisible(true);
 			}
 		});
