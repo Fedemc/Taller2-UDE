@@ -34,6 +34,10 @@ public class VOAlumno implements Serializable {
 		return apellido;
 	}
 	
+	public String getTipo() {
+		return tipoAlumno;
+	}
+	
 	public void setTipoAlumno(String tipoAl)
 	{
 		this.tipoAlumno=tipoAl;

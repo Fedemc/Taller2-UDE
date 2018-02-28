@@ -152,6 +152,12 @@ public class VentanaPrincipal {
 		});
 		
 		JMenuItem mntmListadoDeAlumnos = new JMenuItem("Listado de alumnos por apellido");
+		mntmListadoDeAlumnos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaListadoAluApe vent = new VentanaListadoAluApe();
+				vent.setVisible(true);
+			}
+		});
 		mnListados.add(mntmListadoDeAlumnos);
 		
 		JMenuItem mntmListadoDetalladoDe = new JMenuItem("Listado detallado de alumno");

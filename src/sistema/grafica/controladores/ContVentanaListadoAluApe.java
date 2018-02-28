@@ -1,28 +1,29 @@
 package sistema.grafica.controladores;
 
+import sistema.grafica.ventanas.VentanaListadoAluApe;
+import sistema.grafica.ventanas.VentanaListadoAsig;
+import sistema.logica.ICapaLogica;
+import sistema.logica.valueObjects.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.util.ArrayList;
-import java.util.Properties;
-import javax.swing.table.*;
-import javax.swing.*;
-
-import sistema.grafica.ventanas.VentanaListadoAsig;
-import sistema.logica.ICapaLogica;
-import sistema.logica.valueObjects.*;
 import java.rmi.RemoteException;
-import sistema.excepciones.AsignaturaException;
+import java.util.Properties;
+import sistema.excepciones.*;
+import java.util.ArrayList;
 
-public class ContVentanaListadoAsig {
+
+
+public class ContVentanaListadoAluApe {
 	
 	private ICapaLogica fachada;
-	private VentanaListadoAsig ventListadoAsig;
+	private VentanaListadoAluApe ventListadoAluApe;
 	
-	public ContVentanaListadoAsig(VentanaListadoAsig vListAsig) {
-		ventListadoAsig = vListAsig;
+	public ContVentanaListadoAluApe(VentanaListadoAluApe ventListAluApe) {
+		ventListadoAluApe = ventListAluApe;
 		
 		try
 		{
@@ -51,19 +52,19 @@ public class ContVentanaListadoAsig {
 		}
 	}
 	
-	public ArrayList<VOAsignatura> cargarDatos() {
-		VOAsignaturas voas = new VOAsignaturas();
-		ArrayList<VOAsignatura> listado = new ArrayList<VOAsignatura>();
+	public ArrayList<VOAlumno> cargarDatos(String ape){
+		VOAlumnos voas = new VOAlumnos();
+		ArrayList<VOAlumno> listado = new ArrayList<VOAlumno>();
 		try {
 			//Obtengo el listado de asignaturas.
-			voas = fachada.listadoAsignaturas();
-			listado = voas.getVOAsignaturasArray();
+			voas = fachada.listadoAlumnoApellido(ape);
+			listado = voas.getVOAlumnosArray();
 		}
-		catch(AsignaturaException asigEx) {
-			ventListadoAsig.mostrarError(asigEx.toString());
+		catch(AlumnoException aluEx) {
+			ventListadoAluApe.mostrarError(aluEx.toString());
 		}
 		catch(RemoteException remEx) {
-			ventListadoAsig.mostrarError(remEx.toString());
+			ventListadoAluApe.mostrarError(remEx.toString());
 		}
 		return listado;
 	}

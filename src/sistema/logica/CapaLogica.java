@@ -163,8 +163,8 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		}
 		else
 		{
-			monitor.terminoLectura();
 			voas = alumnos.ListadoAlumnosApe(s);
+			monitor.terminoLectura();
 		}
 			
 		return voas;
