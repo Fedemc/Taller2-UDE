@@ -158,6 +158,13 @@ public class VentanaPrincipal {
 		JMenuItem mntmMontoRecaudadoPor = new JMenuItem("Monto recaudado por inscripciones");
 		mnConsultas.add(mntmMontoRecaudadoPor);
 		
+		mntmMontoRecaudadoPor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaMontoRecaudado vent = new VentanaMontoRecaudado();
+				vent.setVisible(true);
+			}
+		});
+		
 		JMenuItem mntmConsultaDeEscolaridad = new JMenuItem("Consulta de escolaridad");
 		mnConsultas.add(mntmConsultaDeEscolaridad);
 		
