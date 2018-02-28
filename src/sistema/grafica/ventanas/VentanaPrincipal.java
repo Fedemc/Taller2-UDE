@@ -8,7 +8,7 @@ import sistema.grafica.ventanas.*;
 
 public class VentanaPrincipal {
 
-	private JFrame frame;
+	private JFrame frmChefGourmetUruguay;
 
 	/**
 	 * Launch the application.
@@ -18,7 +18,7 @@ public class VentanaPrincipal {
 			public void run() {
 				try {
 					VentanaPrincipal window = new VentanaPrincipal();
-					window.frame.setVisible(true);
+					window.frmChefGourmetUruguay.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,11 +37,12 @@ public class VentanaPrincipal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Flow Layout");
-		frame.setBounds(100, 100, 512, 384);
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frmChefGourmetUruguay = new JFrame("Flow Layout");
+		frmChefGourmetUruguay.setTitle("Chef Gourmet Uruguay");
+		frmChefGourmetUruguay.setBounds(100, 100, 512, 384);
+		frmChefGourmetUruguay.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
-		frame.addWindowListener(new WindowAdapter() {
+		frmChefGourmetUruguay.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				JFrame frame = (JFrame)e.getSource();
 				int result = JOptionPane.showConfirmDialog(frame,"¿Está seguro que desea salir de la aplicación?","Cerrar Aplicación",JOptionPane.YES_NO_OPTION);
@@ -52,7 +53,7 @@ public class VentanaPrincipal {
 		});
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		frmChefGourmetUruguay.setJMenuBar(menuBar);
 		
 		/*MENU ARCHIVO*/
 		JMenu mnArchivo = new JMenu("Archivo");
@@ -74,9 +75,9 @@ public class VentanaPrincipal {
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == mntmSalir) {
-					int result = JOptionPane.showConfirmDialog(frame,"¿Está seguro que desea salir de la aplicación?","Cerrar Aplicación",JOptionPane.YES_NO_OPTION);
+					int result = JOptionPane.showConfirmDialog(frmChefGourmetUruguay,"¿Está seguro que desea salir de la aplicación?","Cerrar Aplicación",JOptionPane.YES_NO_OPTION);
 					if (result == JOptionPane.YES_OPTION) {
-						frame.dispose();
+						frmChefGourmetUruguay.dispose();
 					}
 				}
 			}
@@ -143,14 +144,21 @@ public class VentanaPrincipal {
 		JMenuItem mntmListadoDeAsignaturas = new JMenuItem("Listado de asignaturas");
 		mnListados.add(mntmListadoDeAsignaturas);
 		
+		mntmListadoDeAsignaturas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaListadoAsig vent = new VentanaListadoAsig();
+				vent.setVisible(true);
+			}
+		});
+		
 		JMenuItem mntmListadoDeAlumnos = new JMenuItem("Listado de alumnos por apellido");
 		mnListados.add(mntmListadoDeAlumnos);
 		
 		JMenuItem mntmListadoDetalladoDe = new JMenuItem("Listado detallado de alumno");
 		mntmListadoDetalladoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListadoAlumnoDetallado ventAlumn = new ListadoAlumnoDetallado();
-				ventAlumn.setVisible(true);
+				ListadoAlumnoDetallado vent = new ListadoAlumnoDetallado();
+				vent.setVisible(true);
 			}
 		});
 		mnListados.add(mntmListadoDetalladoDe);
@@ -164,11 +172,19 @@ public class VentanaPrincipal {
 		});
 		mnListados.add(mntmListadoDeEgresados);
 		
+		/*MENU CONSULTAS*/
 		JMenu mnConsultas = new JMenu("Consultas");
 		menuBar.add(mnConsultas);
 		
 		JMenuItem mntmMontoRecaudadoPor = new JMenuItem("Monto recaudado por inscripciones");
 		mnConsultas.add(mntmMontoRecaudadoPor);
+		
+		mntmMontoRecaudadoPor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaListadoAsig vent = new VentanaListadoAsig();
+				vent.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmConsultaDeEscolaridad = new JMenuItem("Consulta de escolaridad");
 		mntmConsultaDeEscolaridad.addActionListener(new ActionListener() {
@@ -182,14 +198,14 @@ public class VentanaPrincipal {
 		JLabel logotipo = new JLabel("");
 		Image logoSmall = new ImageIcon(this.getClass().getResource("/LogoSmall.png")).getImage();
 		logotipo.setIcon(new ImageIcon(logoSmall));
-		frame.getContentPane().add(logotipo);
+		frmChefGourmetUruguay.getContentPane().add(logotipo);
 		
 			
 	}
 	
 	public void setVisible(boolean valor)
 	{
-		frame.setVisible(valor);
+		frmChefGourmetUruguay.setVisible(valor);
 	}
 
 }

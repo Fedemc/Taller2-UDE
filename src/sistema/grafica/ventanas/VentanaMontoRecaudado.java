@@ -70,6 +70,13 @@ public class VentanaMontoRecaudado {
 		
 		JTextArea textArea = new JTextArea();
 		frame.getContentPane().add(textArea, "6, 6, fill, fill");
+		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean valor)
+	{
+		frame.setVisible(valor);
 	}
 
 }

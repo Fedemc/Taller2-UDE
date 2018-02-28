@@ -23,4 +23,8 @@ public class VOAsignaturas implements Serializable {
 		return voasignaturas;
 	}
 	
+	public int getSize() {
+		return voasignaturas.size();
+	}
+	
 }
