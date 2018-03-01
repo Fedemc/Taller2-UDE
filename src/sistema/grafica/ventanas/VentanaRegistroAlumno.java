@@ -15,15 +15,16 @@ import sistema.grafica.controladores.ContVentanaRegistroAlumno;
 public class VentanaRegistroAlumno {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField txtCI;
+	private JTextField txtNom;
+	private JTextField txtApe;
+	private JTextField txtDom;
+	private JTextField txtTel;
+	private JTextField txtMail;
+	private JTextField txtDescuento;
+	private JTextField txtDescripcion;
+	private JRadioButton rdbtnNoBecado;
+	private JRadioButton rdbtnBecado;
 	
 	private ContVentanaRegistroAlumno contVent;
 
@@ -116,44 +117,44 @@ public class VentanaRegistroAlumno {
 		JLabel lblCedula = new JLabel("Cedula");
 		frame.getContentPane().add(lblCedula, "6, 6");
 		
-		textField_1 = new JTextField();
-		frame.getContentPane().add(textField_1, "10, 6, fill, center");
-		textField_1.setColumns(10);
+		txtCI = new JTextField();
+		frame.getContentPane().add(txtCI, "10, 6, fill, center");
+		txtCI.setColumns(10);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		frame.getContentPane().add(lblNombre, "6, 8");
+		JLabel lblNom = new JLabel("Nombre");
+		frame.getContentPane().add(lblNom, "6, 8");
 		
-		textField_2 = new JTextField();
-		frame.getContentPane().add(textField_2, "10, 8, fill, default");
-		textField_2.setColumns(10);
+		txtNom = new JTextField();
+		frame.getContentPane().add(txtNom, "10, 8, fill, default");
+		txtNom.setColumns(10);
 		
-		JLabel lblApellido = new JLabel("Apellido");
-		frame.getContentPane().add(lblApellido, "6, 10");
+		JLabel lblApe = new JLabel("Apellido");
+		frame.getContentPane().add(lblApe, "6, 10");
 		
-		textField_3 = new JTextField();
-		frame.getContentPane().add(textField_3, "10, 10, fill, default");
-		textField_3.setColumns(10);
+		txtApe = new JTextField();
+		frame.getContentPane().add(txtApe, "10, 10, fill, default");
+		txtApe.setColumns(10);
 		
 		JLabel lblDomicilio = new JLabel("Domicilio");
 		frame.getContentPane().add(lblDomicilio, "6, 12");
 		
-		textField_4 = new JTextField();
-		frame.getContentPane().add(textField_4, "10, 12, fill, default");
-		textField_4.setColumns(10);
+		txtDom = new JTextField();
+		frame.getContentPane().add(txtDom, "10, 12, fill, default");
+		txtDom.setColumns(10);
 		
 		JLabel lblTelefono = new JLabel("Telefono");
 		frame.getContentPane().add(lblTelefono, "6, 14");
 		
-		textField_5 = new JTextField();
-		frame.getContentPane().add(textField_5, "10, 14, fill, default");
-		textField_5.setColumns(10);
+		txtTel = new JTextField();
+		frame.getContentPane().add(txtTel, "10, 14, fill, default");
+		txtTel.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email");
 		frame.getContentPane().add(lblEmail, "6, 16");
 		
-		textField_6 = new JTextField();
-		frame.getContentPane().add(textField_6, "10, 16, fill, default");
-		textField_6.setColumns(10);
+		txtMail = new JTextField();
+		frame.getContentPane().add(txtMail, "10, 16, fill, default");
+		txtMail.setColumns(10);
 		
 		JLabel lblSiEsBecado = new JLabel("Si es becado, indiquelo debajo");
 		frame.getContentPane().add(lblSiEsBecado, "10, 20");
@@ -161,21 +162,21 @@ public class VentanaRegistroAlumno {
 		JLabel lblPorcentajeDeDescuento = new JLabel("Descuento");
 		frame.getContentPane().add(lblPorcentajeDeDescuento, "6, 28");
 		
-		textField_7 = new JTextField();
-		frame.getContentPane().add(textField_7, "10, 28, fill, default");
-		textField_7.setColumns(10);
+		txtDescuento = new JTextField();
+		frame.getContentPane().add(txtDescuento, "10, 28, fill, default");
+		txtDescuento.setColumns(10);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
 		frame.getContentPane().add(lblDescripcin, "6, 30");
 		
-		textField_8 = new JTextField();
-		frame.getContentPane().add(textField_8, "10, 30, fill, default");
-		textField_8.setColumns(10);
+		txtDescripcion = new JTextField();
+		frame.getContentPane().add(txtDescripcion, "10, 30, fill, default");
+		txtDescripcion.setColumns(10);
 		
-		JRadioButton rdbtnNoBecado = new JRadioButton("No becado");
+		rdbtnNoBecado = new JRadioButton("No becado");
 		frame.getContentPane().add(rdbtnNoBecado, "6, 24");
 		
-		JRadioButton rdbtnBecado = new JRadioButton("Becado");
+		rdbtnBecado = new JRadioButton("Becado");
 		frame.getContentPane().add(rdbtnBecado, "10, 24");
 		
 		ButtonGroup btnGrupoBecado = new ButtonGroup();
@@ -188,7 +189,7 @@ public class VentanaRegistroAlumno {
 		btnRegistrarAlumno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//llamar al validar y registrar
-				validarDatosYRegistrarAlumno();
+				validarDatosYRegistrarAlumno(rdbtnBecado.isSelected());
 			}
 		});
 		frame.getContentPane().add(btnRegistrarAlumno, "10, 34");
@@ -213,9 +214,43 @@ public class VentanaRegistroAlumno {
 		frame.setVisible(valor);
 	}
 	
-	private void validarDatosYRegistrarAlumno()
+	private void validarDatosYRegistrarAlumno(boolean esBecado)
 	{
 		//Verificar campos vacios, si todo OK llamar al ContVent.regAlu();, ver si es becado!
+		//Verificar el valor del rdbtn
+		boolean validaciones=!txtCI.getText().isEmpty() && !txtNom.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtDom.getText().isEmpty() && !txtTel.getText().isEmpty() && !txtMail.getText().isEmpty();
+		
+		//Validaciones para becado, agrego al chequeo
+		if(esBecado)
+		{
+			validaciones= validaciones && !txtDescuento.getText().isEmpty() && !txtDescripcion.getText().isEmpty();
+		}
+		
+		
+		if(validaciones)
+		{
+			//llamo al metodo del controlador pasandole los datos
+			//Dos metodos, depende si es becado o no
+			if(esBecado)
+			{
+				//cont crear becado
+				contVent.crearBecado(Long.parseLong(txtCI.getText()), txtNom.getText(), txtApe.getText(), txtDom.getText(), Integer.parseInt(txtTel.getText()), txtMail.getText(), Integer.parseInt(txtDescuento.getText()), txtDescripcion.getText());
+			}
+			else
+			{
+				//cont crear alumno
+				contVent.crearAlumno(Long.parseLong(txtCI.getText()), txtNom.getText(), txtApe.getText(), txtDom.getText(), Integer.parseInt(txtTel.getText()), txtMail.getText());
+			}
+		}
+		else
+		{
+			mostrarError("Debe completar todos los campos.");
+		}
+	}
+	
+	public void mostrarError(String res)
+	{
+		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.ERROR_MESSAGE);
 	}
 
 }

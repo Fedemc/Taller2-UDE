@@ -19,6 +19,7 @@ public interface ICapaLogica extends Remote
 
 	/*Req. 2: Registro de un alumno en el sistema.*/
 	void registrarAlumno(Alumno al) throws AlumnoException, RemoteException;
+	void registrarBecado(Becado bec) throws AlumnoException, RemoteException;
 
 	/*Req. 3: Modificación de datos de un alumno (Domicilio, teléfono y dirección de correo electrónico.*/
 	void modificarDatosAlumno(Long ced, String dom, int tel, String email) throws AlumnoException, RemoteException;

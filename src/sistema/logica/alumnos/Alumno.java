@@ -1,6 +1,5 @@
 package sistema.logica.alumnos;
 
-import java.io.LineNumberInputStream;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class Alumno implements Serializable {
 	
 	//Constructor
 	public Alumno(long cedula, String nombre, String apellido, String domicilio, int telefono, String email) {
-		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -86,14 +84,13 @@ public class Alumno implements Serializable {
 	{
 		return this.inscripciones;
 	}
-
-	@Override	
-	public String toString() {		//Ver si realmente es necesario este metodo
-		return "Alumno [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", domicilio=" + domicilio
-				+ ", telefono=" + telefono + ", email=" + email + ", cantAprobaciones="
-				+ cantAprobaciones + "]";	//al devolver ese inscripciones va a explotar
-	}
 	
+	public void setInscripciones(Inscripciones insc)
+	{
+		this.inscripciones=insc;
+	}
+
+
 	//Calcular cuota total del Alumno
 	public float calcularCuotaAlumno()
 	{

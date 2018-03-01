@@ -9,12 +9,12 @@ public class Becado extends Alumno implements Serializable{
 	private String descripcionBeca;
 	
 	//Constructor
-	public Becado(long cedula, String nombre, String apellido, String domicilio, int telefono, String email,
-			Inscripciones inscripcion, int porcentaje, String descripcionBeca) {
+	public Becado(long cedula, String nombre, String apellido, String domicilio, int telefono, String email, int porcentaje, String descripcionBeca) {
 		super(cedula, nombre, apellido, domicilio, telefono, email);
 		this.porcentaje = porcentaje;
-		this.descripcionBeca = descripcionBeca; 
-		
+		this.descripcionBeca = descripcionBeca;
+		Inscripciones insc=new Inscripciones();
+		this.setInscripciones(insc);
 	}
 
 	//get y set
@@ -39,7 +39,6 @@ public class Becado extends Alumno implements Serializable{
 		Inscripciones auxInsAlumno=this.getInscripciones();
 		cuotaTotal=auxInsAlumno.calcularCuotasAlumno();
 		descuento=auxInsAlumno.calcularCuotasAlumno() / this.porcentaje;
-		
 		
 		return cuotaTotal - descuento;
 	}

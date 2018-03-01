@@ -74,8 +74,26 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		}
 		else
 		{
+			alumnos.insert(al);
 			monitor.terminoEscritura();
-			alumnos.insert(al); //Falta ver becado
+		}
+			
+	}
+	
+	public void registrarBecado(Becado bec) throws AlumnoException, RemoteException 
+	{
+		monitor.comienzoEscritura();
+		if (alumnos.member(bec.getCedula()))
+		{
+			//System.out.println("Exception alumno ya registrado.");
+			monitor.terminoEscritura();
+			String msj= "Error: Ya existe un alumno con la cédula en el sistema.";
+			throw new AlumnoException(msj);
+		}
+		else
+		{
+			alumnos.insert(bec);
+			monitor.terminoEscritura();
 		}
 			
 	}
