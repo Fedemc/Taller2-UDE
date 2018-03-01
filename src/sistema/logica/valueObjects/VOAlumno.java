@@ -45,7 +45,7 @@ public class VOAlumno implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cedula: " + cedula + "\nNombre: " + nombre + "\nApellido: " + apellido;
+		return "Cedula: " + cedula + "\nNombre: " + nombre + "\nApellido: " + apellido + "\nTipo alumno: " + tipoAlumno;
 	}
 	
 	

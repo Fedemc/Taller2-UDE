@@ -3,6 +3,7 @@ package sistema.logica.alumnos;
 import java.io.LineNumberInputStream;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.ArrayList;
 import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.inscripciones.Inscripcion;
 import sistema.logica.inscripciones.Inscripciones;
@@ -122,6 +123,7 @@ public class Alumno implements Serializable {
 	{
 		boolean inscripcionValida = true; 
 		Iterator<Inscripcion> it = inscripciones.crearIterador();
+		
 		while ((it.hasNext()) && (inscripcionValida)) 
 		{
 			Inscripcion insAux = it.next();
