@@ -102,7 +102,7 @@ public class VentanaPrincipal {
 		
 		mntmRegistrarAlumno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro vent = new VentanaRegistro();
+				VentanaRegistroAlumno vent = new VentanaRegistroAlumno();
 				vent.setVisible(true);
 			}
 		});

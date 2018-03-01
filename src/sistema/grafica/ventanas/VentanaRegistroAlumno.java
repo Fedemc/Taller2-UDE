@@ -10,8 +10,9 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import sistema.grafica.controladores.ContVentanaRegistroAlumno;
 
-public class VentanaRegistro {
+public class VentanaRegistroAlumno {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -23,6 +24,8 @@ public class VentanaRegistro {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	
+	private ContVentanaRegistroAlumno contVent;
 
 	/**
 	 * Launch the application.
@@ -31,7 +34,7 @@ public class VentanaRegistro {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaRegistro window = new VentanaRegistro();
+					VentanaRegistroAlumno window = new VentanaRegistroAlumno();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +46,7 @@ public class VentanaRegistro {
 	/**
 	 * Create the application.
 	 */
-	public VentanaRegistro() {
+	public VentanaRegistroAlumno() {
 		initialize();
 	}
 
@@ -182,17 +185,37 @@ public class VentanaRegistro {
 		btnGrupoBecado.setSelected(model, true);
 		
 		JButton btnRegistrarAlumno = new JButton("Registrar Alumno");
+		btnRegistrarAlumno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//llamar al validar y registrar
+				validarDatosYRegistrarAlumno();
+			}
+		});
 		frame.getContentPane().add(btnRegistrarAlumno, "10, 34");
 		
 		JButton btnVolverALa = new JButton("Cancelar y volver a la ventana principal");
+		btnVolverALa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		frame.getContentPane().add(btnVolverALa, "10, 38");
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		contVent=new ContVentanaRegistroAlumno(this);
+		
+		
 	}
 	
 	public void setVisible(boolean valor)
 	{
 		frame.setVisible(valor);
+	}
+	
+	private void validarDatosYRegistrarAlumno()
+	{
+		//Verificar campos vacios, si todo OK llamar al ContVent.regAlu();, ver si es becado!
 	}
 
 }
