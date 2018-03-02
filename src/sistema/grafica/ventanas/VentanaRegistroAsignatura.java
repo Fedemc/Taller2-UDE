@@ -8,7 +8,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import sistema.excepciones.AsignaturaException;
-import sistema.grafica.controladores.ControladorVentanaRegistroAsignatura;
+import sistema.grafica.controladores.ContVentanaRegistroAsignatura;
 
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
@@ -28,7 +28,7 @@ public class VentanaRegistroAsignatura {
 	private JButton btnRegistrarAsignatura;
 	private JButton btnCancelarYVolver;
 	
-	private ControladorVentanaRegistroAsignatura contVent;
+	private ContVentanaRegistroAsignatura contVent;
 
 	/**
 	 * Launch the application.
@@ -121,7 +121,7 @@ public class VentanaRegistroAsignatura {
 		
 		frmRegistroDeAsignatura.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		contVent = new ControladorVentanaRegistroAsignatura(this);
+		contVent = new ContVentanaRegistroAsignatura(this);
 	}
 	
 	public void setVisible(boolean valor)
