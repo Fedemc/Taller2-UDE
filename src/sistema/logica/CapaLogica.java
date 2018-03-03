@@ -259,8 +259,8 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 			if (alumnos.member(ced)) 
 			{
 				Alumno alu = alumnos.find(ced);
-				boolean retorno=false;
-				try
+				boolean retorno=true;
+				/*try
 				{
 					retorno=alu.esValidaInscripcion(cod);
 				}
@@ -269,7 +269,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 					monitor.terminoEscritura();
 					throw new InscripcionException(inscEx.darMensaje());
 				}
-				
+				*/
 				if (retorno) 
 				{
 					int nroInscripcion= alu.getInscripciones().getListaInscripciones().size() +1;
@@ -439,9 +439,17 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		monitor.comienzoLectura();
 		if (alumnos.member(ced)) {
 			Alumno aluTemp = alumnos.find(ced);
+			//Verifico que tenga inscripciones, si no tiene ya lo aviso en una excepcion
+			//Esto se hace porque cuando me traigo la consulta de la escolaridad completa, si viene vacio va a ser porque 
+			//las asignaturas no tienen calificacion, NO es porque el alumno no tiene inscripciones.
+			if(aluTemp.getInscripciones().getListaInscripciones().isEmpty())
+			{
+				String msj="No hay inscripciones para este alumno.";
+				throw new InscripcionException(msj);
+			}
 			vois = aluTemp.consultaEscolaridadParcial();
 			if (vois.esVacia()) {
-				String msj = "No hay inscripciones para este alumno.";
+				String msj = "No hay inscripciones para este alumno que tengan calificacion asignada, no se puede mostrar escolaridad parcial";
 				throw new InscripcionException(msj);
 			}
 		}
@@ -458,6 +466,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		monitor.comienzoLectura();
 		if (alumnos.member(ced)) {
 			Alumno aluTemp = alumnos.find(ced);
+			
 			vois = aluTemp.consultaEscolaridadCompleta();
 			if (vois.esVacia()) {
 				String msj = "No hay inscripciones para este alumno.";
