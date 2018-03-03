@@ -1,11 +1,13 @@
 package sistema.logica.inscripciones;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import sistema.logica.valueObjects.VOInscripcion;
 import sistema.logica.valueObjects.VOInscripcionDetallada;
 import sistema.logica.valueObjects.VOInscripciones;
 import java.io.Serializable;
+import sistema.excepciones.InscripcionException;
 
 public class Inscripciones implements Serializable{
 
@@ -123,22 +125,34 @@ public class Inscripciones implements Serializable{
 	}
 	
 	//verificar si hay una inscripcion con el codigo de la asignatura
-	public boolean memberAsig(String codAsig)
+	public boolean memberAsig(String codAsig) throws InscripcionException
 	{
 		boolean existe=true;
 		int i=0;
+		
+		//System.out.println("Llegue al while!");
 		while(existe && i<listaInscripciones.size())
 		{
-			if(listaInscripciones.get(i).getAsignatura().getCodigo().equals(codAsig)) {
-				if(listaInscripciones.get(i).getCalificacion()>5) {
+			if(listaInscripciones.get(i).getAsignatura().getCodigo().equals(codAsig)) 
+			{
+				//System.out.println("Llegue al asigs iguales");
+				//Si existe la misma asignatura me fijo si ya se aprobó
+				if(listaInscripciones.get(i).getCalificacion()>5)
+				{
 					existe = false;
-					System.out.println("El alumno ya aprobo la materia");
-				}else {
-					if(listaInscripciones.get(i).getCalificacion()==0) {
-						System.out.println("El alumno ya se inscribio a la materia en el anio lectivo");
-					}
+					String msj=("El alumno ya aprobo la materia");
+					throw new InscripcionException(msj);
 				}
-					
+				else	//Si no se aprobó me fijo si no tiene calif asignada y no se esta cursando en el mismo año 
+				{
+					//System.out.println("Llegue al else");
+					if(listaInscripciones.get(i).getAnioLectivo() == Calendar.getInstance().get(Calendar.YEAR)) 
+					{
+						existe = false;
+						String msj=("El alumno ya se inscribio a la materia en el año lectivo");
+						throw new InscripcionException(msj);
+					}
+				}		
 			}
 			else
 				i++;

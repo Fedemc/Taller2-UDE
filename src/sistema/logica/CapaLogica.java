@@ -260,7 +260,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 			{
 				Alumno alu = alumnos.find(ced);
 				boolean retorno=true;
-				/*try
+				try
 				{
 					retorno=alu.esValidaInscripcion(cod);
 				}
@@ -269,7 +269,7 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 					monitor.terminoEscritura();
 					throw new InscripcionException(inscEx.darMensaje());
 				}
-				*/
+				
 				if (retorno) 
 				{
 					int nroInscripcion= alu.getInscripciones().getListaInscripciones().size() +1;

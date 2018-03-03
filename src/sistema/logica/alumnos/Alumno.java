@@ -118,7 +118,15 @@ public class Alumno implements Serializable {
 	//Se recorren las inscripciones del alumno para verificar que no la tenga aprobada ni la esté cursando en el mismo año
 	public boolean esValidaInscripcion(String codAsig) throws InscripcionException
 	{
-		boolean inscripcionValida = inscripciones.memberAsig(codAsig);
+		boolean inscripcionValida=false;
+		try
+		{
+			inscripcionValida = inscripciones.memberAsig(codAsig);
+		}
+		catch(InscripcionException inscrEx)
+		{
+			throw new InscripcionException(inscrEx.darMensaje());
+		}
 		
 		return inscripcionValida;
 	}
