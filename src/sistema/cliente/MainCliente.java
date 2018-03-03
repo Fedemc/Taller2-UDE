@@ -37,7 +37,7 @@ public class MainCliente
 			VentanaPrincipal vPrinc = new VentanaPrincipal();
 			vPrinc.setVisible(true);
 			
-			
+			/*
 			//Listo asignaturas desde cliente
 			try
 			{
@@ -52,6 +52,37 @@ public class MainCliente
 			{
 				System.out.println(aEx.darMensaje());
 			}
+			
+			//Prueba inscripciones
+			System.out.println("Voy a ingresar: ");
+			try 
+			{
+				System.out.println("Antes de ingresar");
+				//agrego inscripcion
+				interfazFachada.inscripcionAsignatura((long)1, "asignatura 1",2500);
+				interfazFachada.inscripcionAsignatura((long)1, "asig 2", 5045);
+				System.out.println("Inscripciones realizadas");
+			}
+			catch (AlumnoException a) 
+			{
+				System.out.println(a.darMensaje());
+			}
+			catch (InscripcionException s) 
+			{
+				System.out.println(s.darMensaje());
+			}
+			catch (AsignaturaException e) 
+			{
+				System.out.println(e.darMensaje());
+			}
+			catch(RemoteException remEx)
+			{
+				System.out.println(remEx.toString());
+			}
+			
+			System.out.println("Ingresé!");
+			*/
+			
 		}
 		catch(MalformedURLException mEx)
 		{

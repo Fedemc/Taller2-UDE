@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 public class VentanaListadoAluApe {
 
@@ -84,8 +85,12 @@ public class VentanaListadoAluApe {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),
 				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("max(168dlu;default):grow"),
+				RowSpec.decode("max(31dlu;default)"),
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
@@ -94,16 +99,12 @@ public class VentanaListadoAluApe {
 		lblIngreseApellido = new JLabel("Ingrese apellido");
 		frame.getContentPane().add(lblIngreseApellido, "4, 4, center, default");
 		
-		btnListarAlumnosCon = new JButton("Listar alumnos con el apellido ingresado");
-		frame.getContentPane().add(btnListarAlumnosCon, "8, 4");
-		
 		textField = new JTextField();
 		frame.getContentPane().add(textField, "4, 6, fill, top");
 		textField.setColumns(10);
 		
-		JTable table = new JTable();
-		JScrollPane jsp = new JScrollPane(table);
-		frame.getContentPane().add(jsp, "8, 6, fill, fill");
+		btnListarAlumnosCon = new JButton("Listar alumnos con el apellido ingresado");
+		frame.getContentPane().add(btnListarAlumnosCon, "4, 8");
 		
 		btnListarAlumnosCon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,13 +137,18 @@ public class VentanaListadoAluApe {
 		});
 		
 		btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
-		frame.getContentPane().add(btnCancelarYVolver, "8, 8");
+		btnCancelarYVolver.setVerticalAlignment(SwingConstants.BOTTOM);
+		frame.getContentPane().add(btnCancelarYVolver, "4, 10, default, bottom");
 		
 		btnCancelarYVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
 				frame.dispose();
 			}
 		});
+		
+		JTable table = new JTable();
+		JScrollPane jsp = new JScrollPane(table);
+		frame.getContentPane().add(jsp, "8, 10, fill, fill");
 	}
 	
 	public void mostrarError(String res)
