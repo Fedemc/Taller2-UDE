@@ -122,4 +122,28 @@ public class Inscripciones implements Serializable{
 		return vois;
 	}
 	
+	//verificar si hay una inscripcion con el codigo de la asignatura
+	public boolean memberAsig(String codAsig)
+	{
+		boolean existe=true;
+		int i=0;
+		while(existe && i<listaInscripciones.size())
+		{
+			if(listaInscripciones.get(i).getAsignatura().getCodigo().equals(codAsig)) {
+				if(listaInscripciones.get(i).getCalificacion()>5) {
+					existe = false;
+					System.out.println("El alumno ya aprobo la materia");
+				}else {
+					if(listaInscripciones.get(i).getCalificacion()==0) {
+						System.out.println("El alumno ya se inscribio a la materia en el anio lectivo");
+					}
+				}
+					
+			}
+			else
+				i++;
+		}
+		return existe;
+	}
+	
 }

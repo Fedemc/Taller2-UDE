@@ -118,34 +118,8 @@ public class Alumno implements Serializable {
 	//Se recorren las inscripciones del alumno para verificar que no la tenga aprobada ni la esté cursando en el mismo año
 	public boolean esValidaInscripcion(String codAsig) throws InscripcionException
 	{
-		boolean inscripcionValida = true; 
-		Iterator<Inscripcion> it = inscripciones.crearIterador();
+		boolean inscripcionValida = inscripciones.memberAsig(codAsig);
 		
-		while ((it.hasNext()) && (inscripcionValida)) 
-		{
-			Inscripcion insAux = it.next();
-			Asignatura asigAux = insAux.getAsignatura();
-			if ((inscripcionValida) && (asigAux.getCodigo() == codAsig)) 
-			{
-				if (insAux.getCalificacion() >= 6)
-				{
-					inscripcionValida = false;
-					//System.out.println("Throw exception el alumno ya aprobó la materia.");
-					String msj="Error: El alumno ya aprobó la materia ingresada";
-					throw new InscripcionException(msj);
-				}
-				else 
-				{
-					if ((insAux.getCalificacion() == 0) && (insAux.getAnioLectivo() == Calendar.getInstance().get(Calendar.YEAR)))
-					{
-						inscripcionValida = false;
-						//System.out.println("Throw exception el alumno está cursando la materia en este año.");
-						String msj="Error: El alumno está cursando la materia en el año actual.";
-						throw new InscripcionException(msj);						
-					}
-				}
-			}
-		}
 		return inscripcionValida;
 	}
 	
