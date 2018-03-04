@@ -104,41 +104,9 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		monitor.comienzoEscritura();
 		if (alumnos.member(ced)) 
 		{
-			if (!(dom.isEmpty()))
-			{
-				monitor.terminoEscritura();
-				alumnos.find(ced).setDomicilio(dom);
-			}
-			else
-			{
-				monitor.terminoEscritura();
-				String msj= "Error: No se puede ingresar un domicilio vacío.";
-				throw new AlumnoException(msj);
-			}
-			if (tel != 0)
-			{
-				alumnos.find(ced).setTelefono(tel);
-				monitor.terminoEscritura();
-			}
-				
-			else
-			{
-				monitor.terminoEscritura();
-				String msj= "Error: No se puede ingresar un telefono vacío";
-				throw new AlumnoException(msj);
-			}
-			if (!(email.isEmpty()))
-			{
-				alumnos.find(ced).setEmail(email);
-				monitor.terminoEscritura();
-			}
-				
-			else
-			{
-				monitor.terminoEscritura();
-				String msj= "Error: No se puede ingresar una direccion de correo vacía";
-				throw new AlumnoException(msj);
-			}
+			alumnos.find(ced).setDomicilio(dom);
+			alumnos.find(ced).setTelefono(tel);
+			alumnos.find(ced).setEmail(email);
 		}
 		else
 		{
