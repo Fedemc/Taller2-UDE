@@ -183,6 +183,8 @@ public class VentanaInscripcionAluAAsig {
 	
 	public void mostrarResultado(String res)
 	{
+		
 		JOptionPane.showMessageDialog(frmInscripcinDeAlumno, res, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+		frmInscripcinDeAlumno.dispose();
 	}
 }

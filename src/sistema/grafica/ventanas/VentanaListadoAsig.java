@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.table.*;
+import java.awt.Font;
 
 public class VentanaListadoAsig {
 
@@ -57,58 +58,24 @@ public class VentanaListadoAsig {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 921, 546);
+		frame.setBounds(100, 100, 794, 546);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
 		
 		contVentListAsig=new ContVentanaListadoAsig(this);
+		frame.getContentPane().setLayout(null);
 		
 		JLabel lblListadoDeAsignaturas = new JLabel("Listado de Asignaturas");
-		frame.getContentPane().add(lblListadoDeAsignaturas, "4, 2");
+		lblListadoDeAsignaturas.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
+		lblListadoDeAsignaturas.setBounds(31, 26, 204, 28);
+		frame.getContentPane().add(lblListadoDeAsignaturas);
 		
 		//table = new JTable();
 		//frame.getContentPane().add(table, "4, 4, fill, fill");
 		
 		JTable table = new JTable();
 		JScrollPane jsp = new JScrollPane(table);
-		frame.getContentPane().add(jsp, "4, 4, fill, fill");
+		jsp.setBounds(31, 65, 576, 300);
+		frame.getContentPane().add(jsp);
 		
 		//Creo modelo de tabla y objeto 
 		DefaultTableModel model = new DefaultTableModel();
@@ -129,8 +96,9 @@ public class VentanaListadoAsig {
         }
 		table.setModel(model);
 		
-		JButton btnCancelarVolver = new JButton("Volver a ventana principal");
-		frame.getContentPane().add(btnCancelarVolver, "8, 4, center, top");
+		JButton btnCancelarVolver = new JButton("Volver");
+		btnCancelarVolver.setBounds(450, 396, 157, 23);
+		frame.getContentPane().add(btnCancelarVolver);
 		
 		btnCancelarVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {

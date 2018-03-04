@@ -129,6 +129,7 @@ public class VentanaListadoAlumnoDetallado {
 		frame.getContentPane().add(btnCancelar);		
 		
 		txtArea = new JTextArea();
+		txtArea.setEditable(false);
 		txtArea.setBounds(250, 124, 245, 215);
 		frame.getContentPane().add(txtArea);
 	}

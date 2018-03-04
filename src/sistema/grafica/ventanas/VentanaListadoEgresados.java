@@ -51,7 +51,7 @@ public class VentanaListadoEgresados {
 	private void initialize() {
 		frmListadoDeEgresados = new JFrame();
 		frmListadoDeEgresados.setTitle("Listado de egresados");
-		frmListadoDeEgresados.setBounds(100, 100, 815, 432);
+		frmListadoDeEgresados.setBounds(100, 100, 815, 488);
 		frmListadoDeEgresados.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmListadoDeEgresados.getContentPane().setLayout(null);
 		
@@ -61,7 +61,7 @@ public class VentanaListadoEgresados {
 		frmListadoDeEgresados.getContentPane().add(lblListadoDeEgresados);
 		
 		table = new JTable();
-		table.setBounds(30, 104, 565, 278);
+		table.setBounds(30, 104, 734, 278);
 		frmListadoDeEgresados.getContentPane().add(table);
 		
 		JButton btnNewButton = new JButton("Listado PARCIAL");
@@ -78,7 +78,7 @@ public class VentanaListadoEgresados {
 				frmListadoDeEgresados.dispose();
 			}
 		});
-		btnSalir.setBounds(605, 359, 144, 23);
+		btnSalir.setBounds(620, 415, 144, 23);
 		frmListadoDeEgresados.getContentPane().add(btnSalir);
 	}
 	public void setVisible(boolean valor)

@@ -6,10 +6,20 @@ import javax.swing.JFrame;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import sistema.excepciones.AlumnoException;
+import sistema.excepciones.InscripcionException;
+import sistema.grafica.controladores.ControladorRegistroCalificacion;
+
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.awt.event.ActionEvent;
 
 public class VentanaRegistroCalificacion {
 
@@ -17,6 +27,7 @@ public class VentanaRegistroCalificacion {
 	private JTextField textFieldCedulaAlumno;
 	private JTextField textFieldCalificacion;
 	private JTextField textFieldNroInscripcion;
+	private ControladorRegistroCalificacion contRegCalif;
 
 	/**
 	 * Launch the application.
@@ -45,73 +56,82 @@ public class VentanaRegistroCalificacion {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
+		
 		frmRegistroDeCalificacin = new JFrame();
 		frmRegistroDeCalificacin.setTitle("Registro de calificaci\u00F3n");
-		frmRegistroDeCalificacin.setBounds(100, 100, 511, 349);
+		frmRegistroDeCalificacin.setBounds(100, 100, 469, 349);
 		frmRegistroDeCalificacin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmRegistroDeCalificacin.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		frmRegistroDeCalificacin.getContentPane().setLayout(null);
+		
+		contRegCalif = new ControladorRegistroCalificacion(this);
 		
 		JLabel lblCedulaDelAlumno = new JLabel("Cedula del alumno");
-		frmRegistroDeCalificacin.getContentPane().add(lblCedulaDelAlumno, "8, 4");
+		lblCedulaDelAlumno.setBounds(57, 73, 143, 14);
+		frmRegistroDeCalificacin.getContentPane().add(lblCedulaDelAlumno);
 		
 		textFieldCedulaAlumno = new JTextField();
-		frmRegistroDeCalificacin.getContentPane().add(textFieldCedulaAlumno, "12, 4, fill, default");
+		textFieldCedulaAlumno.setBounds(259, 70, 112, 20);
+		frmRegistroDeCalificacin.getContentPane().add(textFieldCedulaAlumno);
 		textFieldCedulaAlumno.setColumns(10);
 		
 		JLabel lblCalificacin = new JLabel("Calificaci\u00F3n");
-		frmRegistroDeCalificacin.getContentPane().add(lblCalificacin, "8, 8");
+		lblCalificacin.setBounds(57, 135, 143, 14);
+		frmRegistroDeCalificacin.getContentPane().add(lblCalificacin);
 		
 		textFieldCalificacion = new JTextField();
-		frmRegistroDeCalificacin.getContentPane().add(textFieldCalificacion, "12, 8, fill, default");
+		textFieldCalificacion.setBounds(259, 132, 112, 20);
+		frmRegistroDeCalificacin.getContentPane().add(textFieldCalificacion);
 		textFieldCalificacion.setColumns(10);
 		
 		JLabel lblNroDeInscripcin = new JLabel("Nro. de inscripci\u00F3n");
-		frmRegistroDeCalificacin.getContentPane().add(lblNroDeInscripcin, "8, 12");
+		lblNroDeInscripcin.setBounds(57, 104, 143, 14);
+		frmRegistroDeCalificacin.getContentPane().add(lblNroDeInscripcin);
 		
 		textFieldNroInscripcion = new JTextField();
-		frmRegistroDeCalificacin.getContentPane().add(textFieldNroInscripcion, "12, 12, fill, default");
+		textFieldNroInscripcion.setBounds(259, 101, 112, 20);
+		frmRegistroDeCalificacin.getContentPane().add(textFieldNroInscripcion);
 		textFieldNroInscripcion.setColumns(10);
 		
-		JButton btnRegistrarCalificacin = new JButton("Registrar calificaci\u00F3n");
-		frmRegistroDeCalificacin.getContentPane().add(btnRegistrarCalificacin, "12, 16");
 		
-		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
-		frmRegistroDeCalificacin.getContentPane().add(btnCancelarYVolver, "12, 20");
+		
+		JButton btnRegistrarCalificacin = new JButton("Registrar");
+		btnRegistrarCalificacin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				long ced = Long.parseLong(textFieldCedulaAlumno.getText());
+				int nroIns = Integer.parseInt(textFieldNroInscripcion.getText());
+				int nota = Integer.parseInt(textFieldCalificacion.getText());
+				
+				if ((textFieldCedulaAlumno.getText().isEmpty()) || (textFieldNroInscripcion.getText().isEmpty()) || (textFieldCalificacion.getText().isEmpty())) {
+					JOptionPane.showMessageDialog(frmRegistroDeCalificacin, "No se pueden dejar campos vacíos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					try {
+						contRegCalif.registrarCalificacion(ced, nroIns, nota);
+					} catch (RemoteException | AlumnoException | InscripcionException e1) {
+						JOptionPane.showMessageDialog(frmRegistroDeCalificacin, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					}					
+				}				
+			}
+		});
+		
+		btnRegistrarCalificacin.setBounds(57, 189, 112, 23);
+		frmRegistroDeCalificacin.getContentPane().add(btnRegistrarCalificacin);
+		
+		JButton btnCancelarYVolver = new JButton("Cancelar");
+		btnCancelarYVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmRegistroDeCalificacin.dispose();
+			}
+		});
+		btnCancelarYVolver.setBounds(204, 189, 112, 23);
+		frmRegistroDeCalificacin.getContentPane().add(btnCancelarYVolver);
+		
+		JLabel lblNewLabel = new JLabel("Registro de Calificacion");
+		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 18));
+		lblNewLabel.setBounds(100, 11, 192, 31);
+		frmRegistroDeCalificacin.getContentPane().add(lblNewLabel);
 		
 		frmRegistroDeCalificacin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
@@ -121,4 +141,16 @@ public class VentanaRegistroCalificacion {
 		frmRegistroDeCalificacin.setVisible(valor);
 	}
 
+	public void mostrarError(String res)
+	{
+		JOptionPane.showMessageDialog(frmRegistroDeCalificacin, res, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mostrarResultado(String res)
+	{
+		
+		JOptionPane.showMessageDialog(frmRegistroDeCalificacin, res, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+		frmRegistroDeCalificacin.dispose();
+	}
+	
 }

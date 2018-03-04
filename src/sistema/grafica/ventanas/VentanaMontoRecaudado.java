@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class VentanaMontoRecaudado {
 
@@ -56,71 +57,64 @@ public class VentanaMontoRecaudado {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 428);
+		frame.setBounds(100, 100, 414, 333);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(131dlu;default):grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(0dlu;default)"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(6dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(18dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(19dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(27dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(22dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("fill:max(77dlu;default):grow"),}));
+		frame.getContentPane().setLayout(null);
 		
 		lblCedulaDelAlumno = new JLabel("Cedula del alumno:");
-		frame.getContentPane().add(lblCedulaDelAlumno, "6, 4");
+		lblCedulaDelAlumno.setBounds(56, 78, 121, 14);
+		frame.getContentPane().add(lblCedulaDelAlumno);
 		
 		textCI = new JTextField();
-		frame.getContentPane().add(textCI, "6, 6, fill, default");
+		textCI.setBounds(56, 103, 121, 20);
+		frame.getContentPane().add(textCI);
 		textCI.setColumns(10);
-		
-		JTextArea textArea = new JTextArea();
-		frame.getContentPane().add(textArea, "6, 6, fill, fill");
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		lblAoLectivo = new JLabel("A\u00F1o lectivo:");
-		frame.getContentPane().add(lblAoLectivo, "6, 8");
+		lblAoLectivo.setBounds(226, 78, 89, 14);
+		frame.getContentPane().add(lblAoLectivo);
 		
 		textAnio = new JTextField();
-		frame.getContentPane().add(textAnio, "6, 10, fill, default");
+		textAnio.setBounds(226, 103, 121, 20);
+		frame.getContentPane().add(textAnio);
 		textAnio.setColumns(10);
 		
-		btnConsultarMonto = new JButton("Consultar monto");
+		btnConsultarMonto = new JButton("Consultar");
+		btnConsultarMonto.setBounds(226, 134, 121, 23);
 		btnConsultarMonto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validarCamposYCalcularMonto();
 			}
 		});
 		
-		frame.getContentPane().add(btnConsultarMonto, "6, 12, center, fill");
+		frame.getContentPane().add(btnConsultarMonto);
 		
-		JLabel lblElMontoTotal = new JLabel("El monto total recaudado por concepto de inscripciones es: ");
-		frame.getContentPane().add(lblElMontoTotal, "6, 14");
+		JLabel lblElMontoTotal = new JLabel("El total recaudado es:");
+		lblElMontoTotal.setBounds(56, 178, 151, 14);
+		lblElMontoTotal.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(lblElMontoTotal);
 		
 		contVentMontoRec=new ContVentanaMontoRecaudado(this);
 		
 		txtArea = new JTextArea();
-		frame.getContentPane().add(txtArea, "6, 16, fill, fill");
+		txtArea.setEditable(false);
+		txtArea.setBounds(226, 175, 121, 20);
+		frame.getContentPane().add(txtArea);
+		
+		JButton btnNewButton = new JButton("Volver");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
+		btnNewButton.setBounds(226, 260, 121, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Consultar Monto Recaudado");
+		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 18));
+		lblNewLabel.setBounds(56, 11, 272, 39);
+		frame.getContentPane().add(lblNewLabel);
 	}
 	
 	public void setVisible(boolean valor)
@@ -167,5 +161,4 @@ public class VentanaMontoRecaudado {
 			JOptionPane.showMessageDialog(frame, "Ingrese una cedula de alumno", "ERROR!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }
