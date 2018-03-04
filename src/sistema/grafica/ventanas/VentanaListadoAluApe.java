@@ -106,6 +106,10 @@ public class VentanaListadoAluApe {
 		btnListarAlumnosCon = new JButton("Listar alumnos con el apellido ingresado");
 		frame.getContentPane().add(btnListarAlumnosCon, "4, 8");
 		
+		JTable table = new JTable();
+		JScrollPane jsp = new JScrollPane(table);
+		frame.getContentPane().add(jsp, "8, 10, fill, fill");
+		
 		btnListarAlumnosCon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ape = textField.getText();
@@ -146,9 +150,7 @@ public class VentanaListadoAluApe {
 			}
 		});
 		
-		JTable table = new JTable();
-		JScrollPane jsp = new JScrollPane(table);
-		frame.getContentPane().add(jsp, "8, 10, fill, fill");
+		
 	}
 	
 	public void mostrarError(String res)
