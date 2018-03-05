@@ -9,7 +9,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import sistema.excepciones.AlumnoException;
 import sistema.excepciones.InscripcionException;
-import sistema.grafica.controladores.ControladorRegistroCalificacion;
+import sistema.grafica.controladores.ContRegistroCalificacion;
 
 import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
@@ -27,7 +27,7 @@ public class VentanaRegistroCalificacion {
 	private JTextField textFieldCedulaAlumno;
 	private JTextField textFieldCalificacion;
 	private JTextField textFieldNroInscripcion;
-	private ControladorRegistroCalificacion contRegCalif;
+	private ContRegistroCalificacion contRegCalif;
 
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class VentanaRegistroCalificacion {
 		frmRegistroDeCalificacin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistroDeCalificacin.getContentPane().setLayout(null);
 		
-		contRegCalif = new ControladorRegistroCalificacion(this);
+		contRegCalif = new ContRegistroCalificacion(this);
 		
 		JLabel lblCedulaDelAlumno = new JLabel("Cedula del alumno");
 		lblCedulaDelAlumno.setBounds(57, 73, 143, 14);
