@@ -69,21 +69,22 @@ public class VentanaEscolaridad {
 		
 		JLabel lblIngreseCedula = new JLabel("Ingrese cedula");
 		lblIngreseCedula.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblIngreseCedula.setBounds(31, 56, 103, 14);
+		lblIngreseCedula.setBounds(34, 91, 103, 14);
 		frmConsultaDeEscolaridad.getContentPane().add(lblIngreseCedula);
 		
 		txtCI = new JTextField();
-		txtCI.setBounds(144, 53, 97, 20);
+		txtCI.setBounds(147, 88, 97, 20);
 		frmConsultaDeEscolaridad.getContentPane().add(txtCI);
 		txtCI.setColumns(10);
 		
-		ButtonGroup btnGrupoModoListado = new ButtonGroup();
+		
 		
 		tblDatos = new JTable();
-		tblDatos.setBounds(31, 121, 387, 324);
+		tblDatos.setBounds(31, 121, 584, 288);
 		frmConsultaDeEscolaridad.getContentPane().add(tblDatos);
 		
 		JButton btnParcial = new JButton("Listado PARCIAL");
+		btnParcial.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnParcial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//validarDatos
@@ -97,10 +98,11 @@ public class VentanaEscolaridad {
 				}		
 			}
 		});
-		btnParcial.setBounds(251, 52, 167, 23);
+		btnParcial.setBounds(254, 87, 167, 23);
 		frmConsultaDeEscolaridad.getContentPane().add(btnParcial);
 		
 		JButton btnCompleto = new JButton("Listado COMPLETO");
+		btnCompleto.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnCompleto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//validarDatos
@@ -114,17 +116,23 @@ public class VentanaEscolaridad {
 				}
 			}
 		});
-		btnCompleto.setBounds(251, 87, 167, 23);
+		btnCompleto.setBounds(431, 87, 167, 23);
 		frmConsultaDeEscolaridad.getContentPane().add(btnCompleto);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmConsultaDeEscolaridad.dispose();
 			}
 		});
-		btnCancelar.setBounds(466, 422, 132, 23);
+		btnCancelar.setBounds(448, 420, 167, 23);
 		frmConsultaDeEscolaridad.getContentPane().add(btnCancelar);
+		
+		JLabel lblNewLabel = new JLabel("Consulta de Escolaridad");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 24));
+		lblNewLabel.setBounds(191, 24, 253, 26);
+		frmConsultaDeEscolaridad.getContentPane().add(lblNewLabel);
 		
 		
 		contVentanaEsc=new ContVentanaEscolaridad(this);

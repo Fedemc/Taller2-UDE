@@ -85,7 +85,7 @@ public class VentanaListadoAlumnoDetallado {
 		miCont = new ContVentAlumnoDet(this);
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
-		frame.setBounds(100, 100, 760, 413);
+		frame.setBounds(100, 100, 535, 413);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -96,20 +96,21 @@ public class VentanaListadoAlumnoDetallado {
 		frame.getContentPane().add(lblNewLabel);
 		
 		txtCI = new JTextField();
-		txtCI.setBounds(144, 56, 112, 20);
+		txtCI.setBounds(157, 56, 127, 20);
 
 		frame.getContentPane().add(txtCI);
 		txtCI.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Listado detallado del Alumno");
-		lblNewLabel_1.setBounds(202, 11, 293, 20);
+		lblNewLabel_1.setBounds(114, 11, 262, 20);
 		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		
 		
 		JButton btnMostrarDatos = new JButton("Mostrar Datos");
-		btnMostrarDatos.setBounds(280, 55, 157, 23);
+		btnMostrarDatos.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnMostrarDatos.setBounds(294, 55, 157, 23);
 		
 		btnMostrarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -120,7 +121,8 @@ public class VentanaListadoAlumnoDetallado {
 		frame.getContentPane().add(btnMostrarDatos);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(454, 55, 157, 23);
+		btnCancelar.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnCancelar.setBounds(294, 302, 157, 23);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
@@ -129,8 +131,9 @@ public class VentanaListadoAlumnoDetallado {
 		frame.getContentPane().add(btnCancelar);		
 		
 		txtArea = new JTextArea();
+		txtArea.setFont(new Font("Calibri", Font.PLAIN, 16));
 		txtArea.setEditable(false);
-		txtArea.setBounds(250, 124, 245, 215);
+		txtArea.setBounds(22, 87, 262, 203);
 		frame.getContentPane().add(txtArea);
 	}
 	

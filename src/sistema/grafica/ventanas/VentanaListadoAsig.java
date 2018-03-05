@@ -58,15 +58,15 @@ public class VentanaListadoAsig {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 794, 546);
+		frame.setBounds(100, 100, 701, 455);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		contVentListAsig=new ContVentanaListadoAsig(this);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblListadoDeAsignaturas = new JLabel("Listado de Asignaturas");
-		lblListadoDeAsignaturas.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 18));
-		lblListadoDeAsignaturas.setBounds(31, 26, 204, 28);
+		lblListadoDeAsignaturas.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		lblListadoDeAsignaturas.setBounds(237, 26, 204, 28);
 		frame.getContentPane().add(lblListadoDeAsignaturas);
 		
 		//table = new JTable();
@@ -74,7 +74,7 @@ public class VentanaListadoAsig {
 		
 		JTable table = new JTable();
 		JScrollPane jsp = new JScrollPane(table);
-		jsp.setBounds(31, 65, 576, 300);
+		jsp.setBounds(31, 65, 576, 271);
 		frame.getContentPane().add(jsp);
 		
 		//Creo modelo de tabla y objeto 
@@ -96,8 +96,9 @@ public class VentanaListadoAsig {
         }
 		table.setModel(model);
 		
-		JButton btnCancelarVolver = new JButton("Volver");
-		btnCancelarVolver.setBounds(450, 396, 157, 23);
+		JButton btnCancelarVolver = new JButton("Cancelar");
+		btnCancelarVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnCancelarVolver.setBounds(450, 361, 157, 23);
 		frame.getContentPane().add(btnCancelarVolver);
 		
 		btnCancelarVolver.addActionListener(new ActionListener() {

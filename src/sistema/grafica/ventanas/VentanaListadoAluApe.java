@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.border.BevelBorder;
 
 public class VentanaListadoAluApe {
 
@@ -62,53 +64,32 @@ public class VentanaListadoAluApe {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 680, 539);
+		frame.setBounds(100, 100, 535, 484);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("200dlu:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(168dlu;default):grow"),
-				RowSpec.decode("max(31dlu;default)"),
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		contVentListAluApe=new ContVentanaListadoAluApe(this);
+		frame.getContentPane().setLayout(null);
 		
 		lblIngreseApellido = new JLabel("Ingrese apellido");
-		frame.getContentPane().add(lblIngreseApellido, "4, 4, center, default");
+		lblIngreseApellido.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblIngreseApellido.setBounds(30, 68, 109, 14);
+		frame.getContentPane().add(lblIngreseApellido);
 		
 		textField = new JTextField();
-		frame.getContentPane().add(textField, "4, 6, fill, top");
+		textField.setBounds(149, 65, 188, 20);
+		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		btnListarAlumnosCon = new JButton("Listar alumnos con el apellido ingresado");
-		frame.getContentPane().add(btnListarAlumnosCon, "4, 8");
+		btnListarAlumnosCon = new JButton("Buscar");
+		btnListarAlumnosCon.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnListarAlumnosCon.setBounds(347, 64, 113, 23);
+		frame.getContentPane().add(btnListarAlumnosCon);
 		
 		JTable table = new JTable();
 		JScrollPane jsp = new JScrollPane(table);
-		frame.getContentPane().add(jsp, "8, 10, fill, fill");
+		jsp.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		jsp.setBounds(30, 105, 429, 265);
+		frame.getContentPane().add(jsp);
 		
 		btnListarAlumnosCon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,9 +121,15 @@ public class VentanaListadoAluApe {
 			}
 		});
 		
-		btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
-		btnCancelarYVolver.setVerticalAlignment(SwingConstants.BOTTOM);
-		frame.getContentPane().add(btnCancelarYVolver, "4, 10, default, bottom");
+		btnCancelarYVolver = new JButton("Cancelar");
+		btnCancelarYVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnCancelarYVolver.setBounds(347, 381, 113, 23);
+		frame.getContentPane().add(btnCancelarYVolver);
+		
+		JLabel lblNewLabel = new JLabel("Listado de Alumnos por Apellido");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(116, 11, 290, 30);
+		frame.getContentPane().add(lblNewLabel);
 		
 		btnCancelarYVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -162,5 +149,4 @@ public class VentanaListadoAluApe {
 	{
 		frame.setVisible(valor);
 	}
-
 }

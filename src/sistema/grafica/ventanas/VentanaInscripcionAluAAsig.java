@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import sistema.grafica.controladores.ContVentanaInscripcionAluAAsig;
+import java.awt.Font;
 
 public class VentanaInscripcionAluAAsig {
 
@@ -55,68 +56,46 @@ public class VentanaInscripcionAluAAsig {
 	private void initialize() {
 		frmInscripcinDeAlumno = new JFrame();
 		frmInscripcinDeAlumno.setTitle("Inscripci\u00F3n de alumno a asignatura");
-		frmInscripcinDeAlumno.setBounds(100, 100, 534, 334);
+		frmInscripcinDeAlumno.setBounds(100, 100, 405, 291);
 		frmInscripcinDeAlumno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmInscripcinDeAlumno.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		contInscripcion=new ContVentanaInscripcionAluAAsig(this);
+		frmInscripcinDeAlumno.getContentPane().setLayout(null);
 		
 		JLabel lblCedulaDelAlumno = new JLabel("Cedula del alumno");
-		frmInscripcinDeAlumno.getContentPane().add(lblCedulaDelAlumno, "8, 4");
+		lblCedulaDelAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblCedulaDelAlumno.setBounds(38, 87, 132, 14);
+		frmInscripcinDeAlumno.getContentPane().add(lblCedulaDelAlumno);
 		
 		textFieldCedulaAlumno = new JTextField();
-		frmInscripcinDeAlumno.getContentPane().add(textFieldCedulaAlumno, "12, 4, fill, default");
+		textFieldCedulaAlumno.setBounds(192, 84, 113, 20);
+		frmInscripcinDeAlumno.getContentPane().add(textFieldCedulaAlumno);
 		textFieldCedulaAlumno.setColumns(10);
 		
 		JLabel lblCdigoDeAsignatura = new JLabel("C\u00F3digo de asignatura");
-		frmInscripcinDeAlumno.getContentPane().add(lblCdigoDeAsignatura, "8, 8");
+		lblCdigoDeAsignatura.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblCdigoDeAsignatura.setBounds(38, 118, 144, 14);
+		frmInscripcinDeAlumno.getContentPane().add(lblCdigoDeAsignatura);
 		
 		textFieldCodigoAsignatura = new JTextField();
-		frmInscripcinDeAlumno.getContentPane().add(textFieldCodigoAsignatura, "12, 8, fill, default");
+		textFieldCodigoAsignatura.setBounds(192, 115, 113, 20);
+		frmInscripcinDeAlumno.getContentPane().add(textFieldCodigoAsignatura);
 		textFieldCodigoAsignatura.setColumns(10);
 		
-		JLabel lblMontoBaseDe = new JLabel("Monto base de inscripci\u00F3n");
-		frmInscripcinDeAlumno.getContentPane().add(lblMontoBaseDe, "8, 12");
+		JLabel lblMontoBaseDe = new JLabel("Monto base");
+		lblMontoBaseDe.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblMontoBaseDe.setBounds(38, 149, 123, 14);
+		frmInscripcinDeAlumno.getContentPane().add(lblMontoBaseDe);
 		
 		textFieldMontoBase = new JTextField();
-		frmInscripcinDeAlumno.getContentPane().add(textFieldMontoBase, "12, 12, fill, default");
+		textFieldMontoBase.setBounds(192, 146, 113, 20);
+		frmInscripcinDeAlumno.getContentPane().add(textFieldMontoBase);
 		textFieldMontoBase.setColumns(10);
 		
-		JButton btnInscribirAlumno = new JButton("Inscribir alumno");
-		frmInscripcinDeAlumno.getContentPane().add(btnInscribirAlumno, "12, 16");
+		JButton btnInscribirAlumno = new JButton("Inscribir");
+		btnInscribirAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnInscribirAlumno.setBounds(192, 177, 113, 23);
+		frmInscripcinDeAlumno.getContentPane().add(btnInscribirAlumno);
 		
 		btnInscribirAlumno.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -135,8 +114,15 @@ public class VentanaInscripcionAluAAsig {
 			}
 		});
 		
-		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
-		frmInscripcinDeAlumno.getContentPane().add(btnCancelarYVolver, "12, 20");
+		JButton btnCancelarYVolver = new JButton("Cancelar");
+		btnCancelarYVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnCancelarYVolver.setBounds(192, 211, 113, 23);
+		frmInscripcinDeAlumno.getContentPane().add(btnCancelarYVolver);
+		
+		JLabel lblNewLabel = new JLabel("Inscripcion a Asignatura");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(89, 11, 216, 38);
+		frmInscripcinDeAlumno.getContentPane().add(lblNewLabel);
 		
 		btnCancelarYVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {

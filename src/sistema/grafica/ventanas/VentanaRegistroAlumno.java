@@ -11,6 +11,7 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import sistema.grafica.controladores.ContVentanaRegistroAlumno;
+import java.awt.Font;
 
 public class VentanaRegistroAlumno {
 
@@ -56,128 +57,109 @@ public class VentanaRegistroAlumno {
 	 */
 	private void initialize() {
 		frame = new JFrame("Registro de alumno");
-		frame.setBounds(100, 100, 677, 543);
+		frame.setBounds(100, 100, 716, 357);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		frame.getContentPane().setLayout(null);
 		
 		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos del alumno en los campos");
-		frame.getContentPane().add(lblIngreseLosDatos, "10, 2");
+		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblIngreseLosDatos.setBounds(34, 57, 295, 20);
+		frame.getContentPane().add(lblIngreseLosDatos);
 		
 		JLabel lblCedula = new JLabel("Cedula");
-		frame.getContentPane().add(lblCedula, "6, 6");
+		lblCedula.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblCedula.setBounds(34, 88, 67, 14);
+		frame.getContentPane().add(lblCedula);
 		
 		txtCI = new JTextField();
-		frame.getContentPane().add(txtCI, "10, 6, fill, center");
+		txtCI.setBounds(100, 85, 128, 20);
+		frame.getContentPane().add(txtCI);
 		txtCI.setColumns(10);
 		
 		JLabel lblNom = new JLabel("Nombre");
-		frame.getContentPane().add(lblNom, "6, 8");
+		lblNom.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblNom.setBounds(238, 88, 73, 14);
+		frame.getContentPane().add(lblNom);
 		
 		txtNom = new JTextField();
-		frame.getContentPane().add(txtNom, "10, 8, fill, default");
+		txtNom.setBounds(304, 85, 128, 20);
+		frame.getContentPane().add(txtNom);
 		txtNom.setColumns(10);
 		
 		JLabel lblApe = new JLabel("Apellido");
-		frame.getContentPane().add(lblApe, "6, 10");
+		lblApe.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblApe.setBounds(466, 88, 73, 14);
+		frame.getContentPane().add(lblApe);
 		
 		txtApe = new JTextField();
-		frame.getContentPane().add(txtApe, "10, 10, fill, default");
+		txtApe.setBounds(536, 85, 128, 20);
+		frame.getContentPane().add(txtApe);
 		txtApe.setColumns(10);
 		
 		JLabel lblDomicilio = new JLabel("Domicilio");
-		frame.getContentPane().add(lblDomicilio, "6, 12");
+		lblDomicilio.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblDomicilio.setBounds(34, 119, 82, 14);
+		frame.getContentPane().add(lblDomicilio);
 		
 		txtDom = new JTextField();
-		frame.getContentPane().add(txtDom, "10, 12, fill, default");
+		txtDom.setBounds(100, 116, 332, 20);
+		frame.getContentPane().add(txtDom);
 		txtDom.setColumns(10);
 		
 		JLabel lblTelefono = new JLabel("Telefono");
-		frame.getContentPane().add(lblTelefono, "6, 14");
+		lblTelefono.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblTelefono.setBounds(466, 119, 67, 14);
+		frame.getContentPane().add(lblTelefono);
 		
 		txtTel = new JTextField();
-		frame.getContentPane().add(txtTel, "10, 14, fill, default");
+		txtTel.setBounds(536, 113, 128, 20);
+		frame.getContentPane().add(txtTel);
 		txtTel.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email");
-		frame.getContentPane().add(lblEmail, "6, 16");
+		lblEmail.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblEmail.setBounds(34, 150, 53, 14);
+		frame.getContentPane().add(lblEmail);
 		
 		txtMail = new JTextField();
-		frame.getContentPane().add(txtMail, "10, 16, fill, default");
+		txtMail.setBounds(100, 147, 332, 20);
+		frame.getContentPane().add(txtMail);
 		txtMail.setColumns(10);
 		
-		JLabel lblSiEsBecado = new JLabel("Si es becado, indiquelo debajo");
-		frame.getContentPane().add(lblSiEsBecado, "10, 20");
+		JLabel lblSiEsBecado = new JLabel("Calidad del Alumno");
+		lblSiEsBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblSiEsBecado.setBounds(34, 178, 143, 20);
+		frame.getContentPane().add(lblSiEsBecado);
 		
 		JLabel lblPorcentajeDeDescuento = new JLabel("Descuento");
-		frame.getContentPane().add(lblPorcentajeDeDescuento, "6, 28");
+		lblPorcentajeDeDescuento.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblPorcentajeDeDescuento.setBounds(34, 209, 82, 14);
+		frame.getContentPane().add(lblPorcentajeDeDescuento);
 		
 		txtDescuento = new JTextField();
-		frame.getContentPane().add(txtDescuento, "10, 28, fill, default");
+		txtDescuento.setBounds(126, 206, 128, 20);
+		frame.getContentPane().add(txtDescuento);
 		txtDescuento.setColumns(10);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
-		frame.getContentPane().add(lblDescripcin, "6, 30");
+		lblDescripcin.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblDescripcin.setBounds(277, 209, 90, 14);
+		frame.getContentPane().add(lblDescripcin);
 		
 		txtDescripcion = new JTextField();
-		frame.getContentPane().add(txtDescripcion, "10, 30, fill, default");
+		txtDescripcion.setBounds(377, 206, 287, 20);
+		frame.getContentPane().add(txtDescripcion);
 		txtDescripcion.setColumns(10);
 		
 		rdbtnNoBecado = new JRadioButton("No becado");
-		frame.getContentPane().add(rdbtnNoBecado, "6, 24");
+		rdbtnNoBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
+		rdbtnNoBecado.setBounds(267, 177, 100, 23);
+		frame.getContentPane().add(rdbtnNoBecado);
 		
 		rdbtnBecado = new JRadioButton("Becado");
-		frame.getContentPane().add(rdbtnBecado, "10, 24");
+		rdbtnBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
+		rdbtnBecado.setBounds(183, 177, 82, 23);
+		frame.getContentPane().add(rdbtnBecado);
 		
 		ButtonGroup btnGrupoBecado = new ButtonGroup();
 		btnGrupoBecado.add(rdbtnBecado);
@@ -185,22 +167,31 @@ public class VentanaRegistroAlumno {
 		ButtonModel model = rdbtnNoBecado.getModel();
 		btnGrupoBecado.setSelected(model, true);
 		
-		JButton btnRegistrarAlumno = new JButton("Registrar Alumno");
+		JButton btnRegistrarAlumno = new JButton("Registrar");
+		btnRegistrarAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnRegistrarAlumno.setBounds(398, 284, 128, 23);
 		btnRegistrarAlumno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//llamar al validar y registrar
 				validarDatosYRegistrarAlumno(rdbtnBecado.isSelected());
 			}
 		});
-		frame.getContentPane().add(btnRegistrarAlumno, "10, 34");
+		frame.getContentPane().add(btnRegistrarAlumno);
 		
-		JButton btnVolverALa = new JButton("Cancelar y volver a la ventana principal");
+		JButton btnVolverALa = new JButton("Cancelar");
+		btnVolverALa.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnVolverALa.setBounds(536, 284, 128, 23);
 		btnVolverALa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 			}
 		});
-		frame.getContentPane().add(btnVolverALa, "10, 38");
+		frame.getContentPane().add(btnVolverALa);
+		
+		JLabel lblNewLabel = new JLabel("Registro de Alumno");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(238, 11, 178, 20);
+		frame.getContentPane().add(lblNewLabel);
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		

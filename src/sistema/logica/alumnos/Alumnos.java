@@ -78,15 +78,15 @@ public class Alumnos implements Serializable{
 		return vobd;
 	}
 	
-	public VOAlumnos listadoEgresadosParcial() {
-		VOAlumnos voas = new VOAlumnos();
+	public VOEgresados listadoEgresadosParcial() {
+		VOEgresados voas = new VOEgresados();
 		Iterator it = arbol.keySet().iterator();
 		while (it.hasNext()) {
 			Long clave = (Long) it.next();
 			Alumno tempAlu = arbol.get(clave);
 			if (tempAlu.getCantAprobaciones() == 10) {
 				VOAlumno voa = new VOAlumno(clave,tempAlu.getNombre(),tempAlu.getApellido());
-				voas.insert(voa);
+				voas.insert((VOEgresadoPromedioCal) voa);
 			}
 		}
 		return voas;

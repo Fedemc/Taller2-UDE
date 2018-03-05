@@ -61,39 +61,43 @@ public class VentanaRegistroAsignatura {
 		
 		frmRegistroDeAsignatura = new JFrame();
 		frmRegistroDeAsignatura.setTitle("Registro de Asignatura");
-		frmRegistroDeAsignatura.setBounds(100, 100, 610, 337);
+		frmRegistroDeAsignatura.setBounds(100, 100, 614, 241);
 		frmRegistroDeAsignatura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistroDeAsignatura.getContentPane().setLayout(null);
 		
 		JLabel lblCodigo = new JLabel("Codigo");
-		lblCodigo.setBounds(81, 71, 54, 14);
+		lblCodigo.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblCodigo.setBounds(69, 71, 54, 14);
 		frmRegistroDeAsignatura.getContentPane().add(lblCodigo);
 		
 		textFieldCodigoAsig = new JTextField();
-		textFieldCodigoAsig.setBounds(166, 68, 272, 20);
+		textFieldCodigoAsig.setBounds(168, 68, 137, 20);
 		frmRegistroDeAsignatura.getContentPane().add(textFieldCodigoAsig);
 		textFieldCodigoAsig.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(81, 113, 54, 14);
+		lblNombre.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblNombre.setBounds(326, 71, 54, 14);
 		frmRegistroDeAsignatura.getContentPane().add(lblNombre);
 		
 		textFieldNombreAsig = new JTextField();
-		textFieldNombreAsig.setBounds(166, 110, 272, 20);
+		textFieldNombreAsig.setBounds(405, 68, 137, 20);
 		frmRegistroDeAsignatura.getContentPane().add(textFieldNombreAsig);
 		textFieldNombreAsig.setColumns(10);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
-		lblDescripcin.setBounds(81, 156, 102, 14);
+		lblDescripcin.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblDescripcin.setBounds(69, 109, 89, 14);
 		frmRegistroDeAsignatura.getContentPane().add(lblDescripcin);
 		
 		textFieldDescripcionAsig = new JTextField();
-		textFieldDescripcionAsig.setBounds(166, 153, 272, 20);
+		textFieldDescripcionAsig.setBounds(168, 106, 374, 20);
 		frmRegistroDeAsignatura.getContentPane().add(textFieldDescripcionAsig);
 		textFieldDescripcionAsig.setColumns(10);
 		
 		btnRegistrarAsignatura = new JButton("Registrar");
-		btnRegistrarAsignatura.setBounds(166, 206, 131, 23);
+		btnRegistrarAsignatura.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnRegistrarAsignatura.setBounds(270, 162, 131, 23);
 		btnRegistrarAsignatura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(validarDatos()) {
@@ -106,7 +110,8 @@ public class VentanaRegistroAsignatura {
 		frmRegistroDeAsignatura.getContentPane().add(btnRegistrarAsignatura);
 		
 		btnCancelarYVolver = new JButton("Cancelar");
-		btnCancelarYVolver.setBounds(307, 206, 131, 23);
+		btnCancelarYVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnCancelarYVolver.setBounds(411, 162, 131, 23);
 		btnCancelarYVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmRegistroDeAsignatura.dispose();
