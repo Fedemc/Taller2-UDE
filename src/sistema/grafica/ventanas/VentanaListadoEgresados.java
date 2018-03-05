@@ -19,6 +19,7 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
@@ -30,12 +31,24 @@ import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
+import sistema.logica.valueObjects.VOAlumnos;
+import sistema.logica.valueObjects.VOAlumno;
+import sistema.logica.valueObjects.VOEgresadoPromedioCal;
+import sistema.logica.valueObjects.VOEgresados;
+import sistema.logica.valueObjects.VOInscripcion;
+import sistema.logica.valueObjects.VOInscripcionDetallada;
+import sistema.grafica.controladores.ContVentanaListadoEgresado;
+
 public class VentanaListadoEgresados {
 
 	private JFrame frmListadoDeEgresados;
 	private JTable table;
 	
 	ContVentanaListadoEgresado contVentEgre;
+	private JTable tblDatos;
+	
+
+
 
 	/**
 	 * Launch the application.
@@ -75,6 +88,7 @@ public class VentanaListadoEgresados {
 		lblListadoDeEgresados.setBounds(31, 74, 155, 14);
 		frmListadoDeEgresados.getContentPane().add(lblListadoDeEgresados);
 		
+
 		table = new JTable();
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table.setBounds(30, 104, 734, 278);
@@ -89,17 +103,33 @@ public class VentanaListadoEgresados {
 		});
 		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnNewButton.setBounds(196, 70, 164, 23);
+
+		tblDatos = new JTable();
+		tblDatos.setBounds(30, 104, 734, 278);
+		frmListadoDeEgresados.getContentPane().add(tblDatos);
+		
+		JButton btnNewButton = new JButton("Listado PARCIAL");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//llamo al generarParcial
+			}
+		});
+		btnNewButton.setBounds(196, 31, 144, 23);
+
 		frmListadoDeEgresados.getContentPane().add(btnNewButton);
 		
 		JButton btnListadoCompleto = new JButton("Listado COMPLETO");
 		btnListadoCompleto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				
 				listadoCompleto();
 			}
 		});
 		btnListadoCompleto.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnListadoCompleto.setBounds(370, 70, 164, 23);
+		btnListadoCompleto.setBounds(196, 65, 144, 23);
+
 		frmListadoDeEgresados.getContentPane().add(btnListadoCompleto);
 		
 		JButton btnSalir = new JButton("Cancelar");
@@ -111,12 +141,15 @@ public class VentanaListadoEgresados {
 		});
 		btnSalir.setBounds(620, 415, 144, 23);
 		frmListadoDeEgresados.getContentPane().add(btnSalir);
+		
+		contVentEgre=new ContVentanaListadoEgresado(this);
 	}
 	public void setVisible(boolean valor)
 	{
 		frmListadoDeEgresados.setVisible(valor);
 	}
 	
+
 	public void mostrarError(String res)
 	{
 		JOptionPane.showMessageDialog(frmListadoDeEgresados, res, "Resultado", JOptionPane.ERROR_MESSAGE);
@@ -148,7 +181,7 @@ public class VentanaListadoEgresados {
 	{
 
 	
-		VOEgresados listadoAlu = contVentEgre.crearListadoEgresados(false);
+		VOEgresados listadoAlu = contVentEgre.generarListado(false);
 		
 		DefaultTableModel modelo=new DefaultTableModel();
 		modelo.addColumn("Cedula");
@@ -171,4 +204,46 @@ public class VentanaListadoEgresados {
 		table.setModel(modelo);
 	}
 
+
+	public void mostrarVOEgrParcial(VOAlumnos voAls)
+	{
+		//me traigo el VO de Alumnos y lo recorro, tiro cada dato a la tabla
+		DefaultTableModel modelo=new DefaultTableModel();
+		modelo.addColumn("Apellido");
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Cedula");
+		Object rowData[]= new Object[3];
+		
+		for(VOAlumno voAl: voAls.getVOAlumnosArray())
+		{
+			rowData[0] = voAl.getNombre();
+			rowData[1] = voAl.getApellido();
+			rowData[2] = voAl.getCedula();
+			modelo.addRow(rowData);
+		}		
+		tblDatos.setModel(modelo);
+	}
+	
+	public void mostrarVOEgrCompleto(VOEgresados voEgrs)
+	{
+		//me traigo el VO de Egresados y lo recorro, tiro cada dato a la tabla
+		DefaultTableModel modelo=new DefaultTableModel();
+		modelo.addColumn("Apellido");
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Cedula");
+		modelo.addColumn("Promedio total");
+		modelo.addColumn("Promedio aprobaciones");
+		Object rowData[]= new Object[5];
+		
+		for(VOEgresadoPromedioCal voEgr: voEgrs.getVOEgresadosArray())
+		{
+			rowData[0] = voEgr.getNombre();
+			rowData[1] = voEgr.getApellido();
+			rowData[2] = voEgr.getCedula();
+			rowData[3] = voEgr.getPromedioTotal();
+			rowData[4] = voEgr.getPromedioAprob();
+			modelo.addRow(rowData);
+		}		
+		tblDatos.setModel(modelo);
+	}
 }

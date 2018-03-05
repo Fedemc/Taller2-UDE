@@ -18,12 +18,12 @@ import sistema.logica.inscripciones.Inscripciones;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
 import sistema.logica.valueObjects.VOInscripciones;
 
-public class ControladorRegistroCalificacion{
+public class ContRegistroCalificacion{
 
 	private ICapaLogica interfazFachada;
 	private VentanaRegistroCalificacion ventRegCalif;
 	
-	public ControladorRegistroCalificacion(VentanaRegistroCalificacion vRegCal) {
+	public ContRegistroCalificacion(VentanaRegistroCalificacion vRegCal) {
 		ventRegCalif = vRegCal;
 		
 		try
