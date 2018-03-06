@@ -243,5 +243,11 @@ public class VentanaRegistroAlumno {
 	{
 		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.ERROR_MESSAGE);
 	}
+	
+	public void mostrarResultado(String res)
+	{
+		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+		frame.dispose();
+	}
 
 }

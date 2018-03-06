@@ -271,10 +271,13 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 	public void registrarResultadoAsignatura(long ced, int codIns, int nota) throws AlumnoException, InscripcionException, RemoteException
 	{
 		monitor.comienzoEscritura();
-		if(alumnos.member(ced)) {
-			if(alumnos.find(ced).getInscripciones().member(codIns)) {
+		if(alumnos.member(ced)) 
+		{
+			if(alumnos.find(ced).getInscripciones().member(codIns)) 
+			{
 				if(alumnos.find(ced).getInscripciones().find(codIns).getCalificacion()>0) 
 				{
+					monitor.terminoEscritura();
 					String msj="Error: El alumno ya tuvo calificacion para esta inscripcion.";
 					throw new InscripcionException(msj);
 				}
@@ -289,10 +292,14 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 			}
 			else 
 			{
+				monitor.terminoEscritura();
 				String msj="Error: El alumno no tiene una inscripcion con el codigo dado.";
 				throw new InscripcionException(msj);
 			}	
-		}else {
+		}
+		else 
+		{
+			monitor.terminoEscritura();
 			String msj="Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
@@ -322,11 +329,11 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 				float porcentaje=((Becado)aluTemp).getPorcentaje() / 100;
 				montoTotal=montoTotal - (montoTotal * porcentaje);
 			}
-			monitor.terminoEscritura();
+			monitor.terminoLectura();
 		}
 		else
 		{
-			monitor.terminoEscritura();
+			monitor.terminoLectura();
 			String msj="Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
@@ -402,26 +409,33 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 	
 	
 	/*Req. 11: Consulta parcial o completa de escolaridad de un alumno*/
-	public VOInscripciones consultaEscolaridadParcial(Long ced) throws InscripcionException, AlumnoException, RemoteException {
+	public VOInscripciones consultaEscolaridadParcial(Long ced) throws InscripcionException, AlumnoException, RemoteException 
+	{
 		VOInscripciones vois = new VOInscripciones();
 		monitor.comienzoLectura();
-		if (alumnos.member(ced)) {
+		if (alumnos.member(ced)) 
+		{
 			Alumno aluTemp = alumnos.find(ced);
 			//Verifico que tenga inscripciones, si no tiene ya lo aviso en una excepcion
 			//Esto se hace porque cuando me traigo la consulta de la escolaridad completa, si viene vacio va a ser porque 
 			//las asignaturas no tienen calificacion, NO es porque el alumno no tiene inscripciones.
 			if(aluTemp.getInscripciones().getListaInscripciones().isEmpty())
 			{
+				monitor.terminoLectura();
 				String msj="No hay inscripciones para este alumno.";
 				throw new InscripcionException(msj);
 			}
 			vois = aluTemp.consultaEscolaridadParcial();
-			if (vois.esVacia()) {
+			if (vois.esVacia()) 
+			{
+				monitor.terminoLectura();
 				String msj = "No hay inscripciones para este alumno que tengan calificacion asignada, no se puede mostrar escolaridad parcial";
 				throw new InscripcionException(msj);
 			}
 		}
-		else {
+		else 
+		{
+			monitor.terminoLectura();
 			String msj = "Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
@@ -429,19 +443,25 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 		return vois;
 	}
 	
-	public VOInscripciones consultaEscolaridadCompleta(Long ced) throws InscripcionException, AlumnoException, RemoteException {
+	public VOInscripciones consultaEscolaridadCompleta(Long ced) throws InscripcionException, AlumnoException, RemoteException 
+	{
 		VOInscripciones vois = new VOInscripciones();
 		monitor.comienzoLectura();
-		if (alumnos.member(ced)) {
+		if (alumnos.member(ced)) 
+		{
 			Alumno aluTemp = alumnos.find(ced);
 			
 			vois = aluTemp.consultaEscolaridadCompleta();
-			if (vois.esVacia()) {
+			if (vois.esVacia()) 
+			{
+				monitor.terminoLectura();
 				String msj = "No hay inscripciones para este alumno.";
 				throw new InscripcionException(msj);
 			}
 		}
-		else {
+		else 
+		{
+			monitor.terminoLectura();
 			String msj = "Error: No existe un alumno con esa cedula en el sistema.";
 			throw new AlumnoException(msj);
 		}
@@ -450,27 +470,34 @@ public class CapaLogica extends UnicastRemoteObject implements ICapaLogica
 	}
 	
 	/*Req. 12: Listado parcial o completo de alumnos egresados*/
-	public VOAlumnos listadoEgresadosParcial() throws AlumnoException, RemoteException {
+	public VOAlumnos listadoEgresadosParcial() throws AlumnoException, RemoteException 
+	{
 		VOAlumnos voas = new VOAlumnos();
 		monitor.comienzoLectura();
 		voas = alumnos.listadoEgresadosParcial();
-		monitor.terminoLectura();
-		if (voas.esVacia()) {
+		
+		if (voas.esVacia()) 
+		{
+			monitor.terminoLectura();
 			String msj = "Error: No hay alumnos egresados en el sistema.";
 			throw new AlumnoException(msj);
 		}
+		monitor.terminoLectura();
 		return voas;
 	}
 	
-	public VOEgresados listadoEgresadosCompleto() throws AlumnoException, RemoteException {
+	public VOEgresados listadoEgresadosCompleto() throws AlumnoException, RemoteException 
+	{
 		VOEgresados voegs = new VOEgresados();
 		monitor.comienzoLectura();
 		voegs = alumnos.listadoEgresadosCompleto();
-		monitor.terminoLectura();
-		if (voegs.esVacia()) {
+		if (voegs.esVacia()) 
+		{
+			monitor.terminoLectura();
 			String msj = "Error: No hay alumnos egresados en el sistema.";
 			throw new AlumnoException(msj);
 		}
+		monitor.terminoLectura();
 		return voegs;
 	}
 

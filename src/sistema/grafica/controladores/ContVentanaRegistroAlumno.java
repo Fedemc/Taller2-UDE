@@ -64,7 +64,7 @@ public class ContVentanaRegistroAlumno
 		try
 		{
 			interfazFachada.registrarAlumno(alu);
-			ventRegAlu.mostrarError("Alumno ingresado correctamente!");
+			ventRegAlu.mostrarResultado("Alumno ingresado correctamente!");
 		}
 		catch(AlumnoException alEx)
 		{
@@ -84,7 +84,7 @@ public class ContVentanaRegistroAlumno
 		{
 			//interfazFachada.registrarAlumno(bec, true);
 			interfazFachada.registrarBecado(bec);
-			ventRegAlu.mostrarError("Becado ingresado correctamente!");
+			ventRegAlu.mostrarResultado("Becado ingresado correctamente!");
 		}
 		catch(AlumnoException alEx)
 		{
