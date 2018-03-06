@@ -24,6 +24,7 @@ import sistema.logica.valueObjects.VOInscripcion;
 import sistema.logica.valueObjects.VOInscripcionDetallada;
 import sistema.logica.valueObjects.VOInscripciones;
 import java.util.ArrayList;
+import javax.swing.JScrollPane;
 
 
 public class VentanaEscolaridad {
@@ -77,12 +78,6 @@ public class VentanaEscolaridad {
 		frmConsultaDeEscolaridad.getContentPane().add(txtCI);
 		txtCI.setColumns(10);
 		
-		
-		
-		tblDatos = new JTable();
-		tblDatos.setBounds(31, 121, 584, 288);
-		frmConsultaDeEscolaridad.getContentPane().add(tblDatos);
-		
 		JButton btnParcial = new JButton("Listado PARCIAL");
 		btnParcial.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnParcial.addActionListener(new ActionListener() {
@@ -133,6 +128,19 @@ public class VentanaEscolaridad {
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 24));
 		lblNewLabel.setBounds(191, 24, 253, 26);
 		frmConsultaDeEscolaridad.getContentPane().add(lblNewLabel);
+		
+		tblDatos = new JTable();
+		tblDatos.setBounds(31, 121, 584, 288);
+		frmConsultaDeEscolaridad.getContentPane().add(tblDatos);
+		
+		JScrollPane scrollPane = new JScrollPane(tblDatos);
+		scrollPane.setBounds(30, 119, 585, 288);
+		frmConsultaDeEscolaridad.getContentPane().add(scrollPane);
+		
+		
+		
+		
+		
 		
 		
 		contVentanaEsc=new ContVentanaEscolaridad(this);

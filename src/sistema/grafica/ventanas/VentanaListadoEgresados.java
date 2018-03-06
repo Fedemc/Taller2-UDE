@@ -15,6 +15,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -74,6 +76,10 @@ public class VentanaListadoEgresados {
 		tblDatos = new JTable();
 		tblDatos.setBounds(30, 104, 734, 278);
 		frmListadoDeEgresados.getContentPane().add(tblDatos);
+		
+		JScrollPane scrollPane = new JScrollPane(tblDatos);
+		scrollPane.setBounds(30, 119, 666, 288);
+		frmListadoDeEgresados.getContentPane().add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Listado PARCIAL");
 		btnNewButton.addActionListener(new ActionListener() {
