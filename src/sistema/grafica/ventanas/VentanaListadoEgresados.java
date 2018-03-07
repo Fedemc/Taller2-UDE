@@ -78,7 +78,7 @@ public class VentanaListadoEgresados {
 		frmListadoDeEgresados.getContentPane().add(tblDatos);
 		
 		JScrollPane scrollPane = new JScrollPane(tblDatos);
-		scrollPane.setBounds(30, 119, 666, 288);
+		scrollPane.setBounds(30, 119, 734, 288);
 		frmListadoDeEgresados.getContentPane().add(scrollPane);
 		
 		JButton btnNewButton = new JButton("Listado PARCIAL");

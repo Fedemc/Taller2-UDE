@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class VentanaModificarAlumno {
 
@@ -53,81 +54,56 @@ public class VentanaModificarAlumno {
 	private void initialize() {
 		frmModificacinDatosDe = new JFrame();
 		frmModificacinDatosDe.setTitle("Modificaci\u00F3n de datos de un alumno");
-		frmModificacinDatosDe.setBounds(100, 100, 575, 397);
+		frmModificacinDatosDe.setBounds(100, 100, 521, 297);
 		frmModificacinDatosDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmModificacinDatosDe.getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("200dlu"),
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		contVentModAlu = new ContVentanaModificarAlumno(this);
+		frmModificacinDatosDe.getContentPane().setLayout(null);
 		
-		JLabel lblCedulaDelAlumno = new JLabel("Cedula del alumno");
-		frmModificacinDatosDe.getContentPane().add(lblCedulaDelAlumno, "8, 4");
+		JLabel lblCedulaDelAlumno = new JLabel("Cedula");
+		lblCedulaDelAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblCedulaDelAlumno.setBounds(49, 102, 66, 14);
+		frmModificacinDatosDe.getContentPane().add(lblCedulaDelAlumno);
 		
 		textFieldCedulaAlumno = new JTextField();
-		frmModificacinDatosDe.getContentPane().add(textFieldCedulaAlumno, "12, 4, fill, default");
+		textFieldCedulaAlumno.setBounds(137, 99, 88, 20);
+		frmModificacinDatosDe.getContentPane().add(textFieldCedulaAlumno);
 		textFieldCedulaAlumno.setColumns(10);
 		
 		JLabel lblDireccin = new JLabel("Direcci\u00F3n");
-		frmModificacinDatosDe.getContentPane().add(lblDireccin, "8, 8");
+		lblDireccin.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblDireccin.setBounds(49, 138, 78, 14);
+		frmModificacinDatosDe.getContentPane().add(lblDireccin);
 		
 		textFieldDireccionAlumno = new JTextField();
-		frmModificacinDatosDe.getContentPane().add(textFieldDireccionAlumno, "12, 8, fill, default");
+		textFieldDireccionAlumno.setBounds(137, 135, 294, 20);
+		frmModificacinDatosDe.getContentPane().add(textFieldDireccionAlumno);
 		textFieldDireccionAlumno.setColumns(10);
 		
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
-		frmModificacinDatosDe.getContentPane().add(lblTelfono, "8, 12");
+		lblTelfono.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblTelfono.setBounds(261, 102, 72, 14);
+		frmModificacinDatosDe.getContentPane().add(lblTelfono);
 		
 		textFieldTelefonoAlumno = new JTextField();
-		frmModificacinDatosDe.getContentPane().add(textFieldTelefonoAlumno, "12, 12, fill, default");
+		textFieldTelefonoAlumno.setBounds(343, 99, 88, 20);
+		frmModificacinDatosDe.getContentPane().add(textFieldTelefonoAlumno);
 		textFieldTelefonoAlumno.setColumns(10);
 		
-		JLabel lblCorreoElectrnico = new JLabel("Correo electr\u00F3nico");
-		frmModificacinDatosDe.getContentPane().add(lblCorreoElectrnico, "8, 16");
+		JLabel lblCorreoElectrnico = new JLabel("Email");
+		lblCorreoElectrnico.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblCorreoElectrnico.setBounds(49, 169, 66, 14);
+		frmModificacinDatosDe.getContentPane().add(lblCorreoElectrnico);
 		
 		textFieldEmailAlumno = new JTextField();
-		frmModificacinDatosDe.getContentPane().add(textFieldEmailAlumno, "12, 16, fill, default");
+		textFieldEmailAlumno.setBounds(137, 166, 294, 20);
+		frmModificacinDatosDe.getContentPane().add(textFieldEmailAlumno);
 		textFieldEmailAlumno.setColumns(10);
 		
 		JButton btnModificarDatos = new JButton("Modificar datos");
-		frmModificacinDatosDe.getContentPane().add(btnModificarDatos, "12, 20");
+		btnModificarDatos.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnModificarDatos.setBounds(137, 208, 142, 23);
+		frmModificacinDatosDe.getContentPane().add(btnModificarDatos);
 		
 		btnModificarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -147,8 +123,15 @@ public class VentanaModificarAlumno {
 			}
 		});
 		
-		JButton btnCancelarYVolver = new JButton("Cancelar y volver a la ventana principal");
-		frmModificacinDatosDe.getContentPane().add(btnCancelarYVolver, "12, 24");
+		JButton btnCancelarYVolver = new JButton("Volver");
+		btnCancelarYVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnCancelarYVolver.setBounds(289, 208, 142, 23);
+		frmModificacinDatosDe.getContentPane().add(btnCancelarYVolver);
+		
+		JLabel lblNewLabel = new JLabel("Modificaci\u00F3n de Datos del Alumno");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(116, 24, 294, 33);
+		frmModificacinDatosDe.getContentPane().add(lblNewLabel);
 		
 		btnCancelarYVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
@@ -204,5 +187,4 @@ public class VentanaModificarAlumno {
 		textFieldTelefonoAlumno.setText("");
 		textFieldEmailAlumno.setText("");
 	}
-	
 }
