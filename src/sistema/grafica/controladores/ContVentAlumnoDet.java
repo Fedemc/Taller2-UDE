@@ -1,25 +1,15 @@
 package sistema.grafica.controladores;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.util.Properties;
 
+import java.rmi.RemoteException;
 import sistema.excepciones.AlumnoException;
-import sistema.excepciones.AsignaturaException;
-import sistema.excepciones.InscripcionException;
-import sistema.excepciones.PersistenciaException;
+
 import sistema.grafica.ventanas.VentanaListadoAlumnoDetallado;
+
 import sistema.logica.ICapaLogica;
-import sistema.logica.alumnos.Alumno;
-import sistema.logica.asignaturas.Asignatura;
 import sistema.logica.valueObjects.VOAlumnoDetallado;
-import sistema.logica.valueObjects.VOAlumnos;
-import sistema.logica.valueObjects.VOAsignaturas;
 import sistema.logica.valueObjects.VOBecadoDetallado;
-import sistema.logica.valueObjects.VOEgresados;
-import sistema.logica.valueObjects.VOInscripciones;
+
 
 public class ContVentAlumnoDet {
 
@@ -28,25 +18,7 @@ public class ContVentAlumnoDet {
 	
 	public ContVentAlumnoDet(VentanaListadoAlumnoDetallado ventAlum) {
 		ventAlumDet = ventAlum;
-		
-		try
-		{
-			//Intento conectarme
-			Properties p=new Properties();
-			String nomArch="config/config.properties";
-			p.load(new FileInputStream(nomArch));
-			String ip=p.getProperty("ipServidor");
-			String puerto=p.getProperty("puertoServidor");
-			String ruta="//"+ip+":"+puerto+"/fachada";
-			
-			//Voy a buscar el objeto remoto
-			interfazFachada = (ICapaLogica) Naming.lookup(ruta);
-			
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	
+		interfazFachada=ContSingleton.getInstancia().getInterfazFachada();	
 	}
 	
 	public void generarListado(long ced)

@@ -51,9 +51,9 @@ public class MainServidor
 				fachada.crearColeccionesFachada();
 			}
 			
-			System.out.println("Antes de publicar.");
+			//System.out.println("Antes de publicar.");
 			Naming.rebind(ruta, fachada);
-			System.out.println("Luego de publicar.");
+			//System.out.println("Luego de publicar.");
 			
 			/*
 			//Prueba inscripciones

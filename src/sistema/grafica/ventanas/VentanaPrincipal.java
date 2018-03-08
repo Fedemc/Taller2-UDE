@@ -204,9 +204,7 @@ public class VentanaPrincipal {
 		JLabel logotipo = new JLabel("");
 		Image logoSmall = new ImageIcon(this.getClass().getResource("/LogoSmall.png")).getImage();
 		logotipo.setIcon(new ImageIcon(logoSmall));
-		frmChefGourmetUruguay.getContentPane().add(logotipo);
-		
-			
+		frmChefGourmetUruguay.getContentPane().add(logotipo);	
 	}
 	
 	public void setVisible(boolean valor)

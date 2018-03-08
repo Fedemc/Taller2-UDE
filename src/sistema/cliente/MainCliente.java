@@ -14,13 +14,19 @@ import sistema.logica.valueObjects.*;
 import sistema.excepciones.*;
 
 import  sistema.grafica.ventanas.*;
+import sistema.grafica.controladores.ContSingleton;
 
 public class MainCliente
 {
+	private ICapaLogica interfazFachada;
+	private ContSingleton singleton;
+	
 	public static void main(String[] args)
 	{
+		/*
 		try
 		{
+			
 			//Intento conectarme
 			Properties p=new Properties();
 			String nomArch="config/config.properties";
@@ -31,11 +37,12 @@ public class MainCliente
 			
 			//Voy a buscar el objeto remoto
 			ICapaLogica interfazFachada= (ICapaLogica) Naming.lookup(ruta);
-			
+			*/
 			
 			//Llamar ventana
 			VentanaPrincipal vPrinc = new VentanaPrincipal();
 			vPrinc.setVisible(true);
+			
 			
 			/*
 			//Listo asignaturas desde cliente
@@ -83,18 +90,6 @@ public class MainCliente
 			System.out.println("Ingresé!");
 			*/
 			
-		}
-		catch(MalformedURLException mEx)
-		{
-			mEx.printStackTrace();			
-		}
-		catch(IOException ioEx)
-		{
-			ioEx.printStackTrace();			
-		}
-		catch(NotBoundException nobEx)
-		{
-			nobEx.printStackTrace();
-		}
+		
 	}
 }
