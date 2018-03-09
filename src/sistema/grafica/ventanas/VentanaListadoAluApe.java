@@ -86,6 +86,7 @@ public class VentanaListadoAluApe {
 		frame.getContentPane().add(btnListarAlumnosCon);
 		
 		JTable table = new JTable();
+		table.setEnabled(false);
 		JScrollPane jsp = new JScrollPane(table);
 		jsp.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		jsp.setBounds(30, 105, 429, 265);

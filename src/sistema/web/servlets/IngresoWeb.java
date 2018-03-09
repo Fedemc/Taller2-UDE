@@ -1,6 +1,7 @@
 package sistema.web.servlets;
 
-public class borrar1
-{
 
+public class IngresoWeb  {
+
+	
 }

@@ -73,6 +73,7 @@ public class VentanaListadoAsig {
 		//frame.getContentPane().add(table, "4, 4, fill, fill");
 		
 		JTable table = new JTable();
+		table.setEnabled(false);
 		JScrollPane jsp = new JScrollPane(table);
 		jsp.setBounds(31, 65, 576, 271);
 		frame.getContentPane().add(jsp);

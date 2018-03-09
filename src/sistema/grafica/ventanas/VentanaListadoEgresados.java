@@ -74,6 +74,7 @@ public class VentanaListadoEgresados {
 		frmListadoDeEgresados.getContentPane().add(lblListadoDeEgresados);
 		
 		tblDatos = new JTable();
+		tblDatos.setEnabled(false);
 		tblDatos.setBounds(30, 104, 734, 278);
 		frmListadoDeEgresados.getContentPane().add(tblDatos);
 		

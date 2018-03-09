@@ -130,6 +130,7 @@ public class VentanaEscolaridad {
 		frmConsultaDeEscolaridad.getContentPane().add(lblNewLabel);
 		
 		tblDatos = new JTable();
+		tblDatos.setEnabled(false);
 		tblDatos.setBounds(31, 121, 584, 288);
 		frmConsultaDeEscolaridad.getContentPane().add(tblDatos);
 		
@@ -165,12 +166,14 @@ public class VentanaEscolaridad {
 		ArrayList<VOInscripcion> arrayInscripciones=voIns.getVOInscripcionesArray();
 		
 		DefaultTableModel modelo=new DefaultTableModel();
+		
 		modelo.addColumn("NroInscripcion");
 		modelo.addColumn("Asignatura");
 		modelo.addColumn("Año lectivo");
 		modelo.addColumn("Calificación");	
 		modelo.addColumn("Monto base");
 		Object rowData[]= new Object[5];
+		
 		
 		for(VOInscripcion voInsDec: arrayInscripciones)
 		{
@@ -180,9 +183,12 @@ public class VentanaEscolaridad {
 			rowData[3] = voInsDec.getCalificacion();
 			rowData[4] = ((VOInscripcionDetallada)voInsDec).getMontoBase();
 			modelo.addRow(rowData);
+			
 		}
 		
 		tblDatos.setModel(modelo);
+		
+		
 	}
 	
 	public void listadoParcial()
@@ -216,4 +222,7 @@ public class VentanaEscolaridad {
 	{
 		JOptionPane.showMessageDialog(frmConsultaDeEscolaridad, res, "Error", JOptionPane.ERROR_MESSAGE);
 	}
+	public boolean isCellEditable(int rowIndex, int colIndex) {
+        return false; 
+    }
 }

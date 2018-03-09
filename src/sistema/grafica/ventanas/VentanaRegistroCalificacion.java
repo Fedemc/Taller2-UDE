@@ -103,16 +103,19 @@ public class VentanaRegistroCalificacion {
 		btnRegistrarCalificacin.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnRegistrarCalificacin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				long ced = Long.parseLong(textFieldCedulaAlumno.getText());
-				int nroIns = Integer.parseInt(textFieldNroInscripcion.getText());
-				int nota = Integer.parseInt(textFieldCalificacion.getText());
+				String ced = textFieldCedulaAlumno.getText();
+				String nroIns = textFieldNroInscripcion.getText();
+				String nota = textFieldCalificacion.getText();
 				
-				if ((textFieldCedulaAlumno.getText().isEmpty()) || (textFieldNroInscripcion.getText().isEmpty()) || (textFieldCalificacion.getText().isEmpty())) {
+				if (ced.isEmpty() || nroIns.isEmpty() || nota.isEmpty()) {
 					JOptionPane.showMessageDialog(frmRegistroDeCalificacin, "No se pueden dejar campos vacíos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
 				}
 				else {
 					try {
-						contRegCalif.registrarCalificacion(ced, nroIns, nota);
+						long ci = Long.parseLong(ced);
+						int nroInsc = Integer.parseInt(nroIns);
+						int calif = Integer.parseInt(nota);
+						contRegCalif.registrarCalificacion(ci, nroInsc, calif);
 					} catch (RemoteException | AlumnoException | InscripcionException e1) {
 						JOptionPane.showMessageDialog(frmRegistroDeCalificacin, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 					}					
