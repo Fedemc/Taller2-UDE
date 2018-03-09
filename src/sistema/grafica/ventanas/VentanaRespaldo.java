@@ -45,12 +45,12 @@ public class VentanaRespaldo {
 	 */
 	private void initialize() {
 		frame = new JFrame("Respaldar Datos");
-		frame.setSize(315, 237);
+		frame.setSize(275, 213);
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnRespaldar = new JButton("Respaldar");
 		btnRespaldar.setFont(new Font("Calibri", Font.PLAIN, 16));
-		btnRespaldar.setBounds(62, 82, 178, 41);
+		btnRespaldar.setBounds(43, 41, 178, 41);
 		frame.getContentPane().add(btnRespaldar);
 		
 		btnRespaldar.addActionListener
@@ -66,13 +66,8 @@ public class VentanaRespaldo {
 		
 		JButton btnVolver = new JButton("Cancelar");
 		btnVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
-		btnVolver.setBounds(62, 134, 178, 37);
+		btnVolver.setBounds(43, 93, 178, 37);
 		frame.getContentPane().add(btnVolver);
-		
-		JLabel lblNewLabel = new JLabel("Respaldar los Datos");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(62, 28, 178, 26);
-		frame.getContentPane().add(lblNewLabel);
 		
 		btnVolver.addActionListener
 		(

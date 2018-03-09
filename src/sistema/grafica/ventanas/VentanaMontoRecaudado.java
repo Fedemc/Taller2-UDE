@@ -19,7 +19,7 @@ import java.awt.Font;
 
 public class VentanaMontoRecaudado {
 
-	private JFrame frame;
+	private JFrame frmConsultarMontoRecaudado;
 	
 	private ContVentanaMontoRecaudado contVentMontoRec;
 	private JTextField textCI;
@@ -37,7 +37,7 @@ public class VentanaMontoRecaudado {
 			public void run() {
 				try {
 					VentanaMontoRecaudado window = new VentanaMontoRecaudado();
-					window.frame.setVisible(true);
+					window.frmConsultarMontoRecaudado.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,75 +56,71 @@ public class VentanaMontoRecaudado {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 393, 333);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmConsultarMontoRecaudado = new JFrame();
+		frmConsultarMontoRecaudado.setTitle("Consultar Monto Recaudado");
+		frmConsultarMontoRecaudado.setBounds(100, 100, 393, 272);
+		frmConsultarMontoRecaudado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConsultarMontoRecaudado.getContentPane().setLayout(null);
 		
 		lblCedulaDelAlumno = new JLabel("Cedula del alumno");
 		lblCedulaDelAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblCedulaDelAlumno.setBounds(56, 78, 139, 14);
-		frame.getContentPane().add(lblCedulaDelAlumno);
+		lblCedulaDelAlumno.setBounds(38, 34, 139, 14);
+		frmConsultarMontoRecaudado.getContentPane().add(lblCedulaDelAlumno);
 		
 		textCI = new JTextField();
-		textCI.setBounds(205, 75, 121, 20);
-		frame.getContentPane().add(textCI);
+		textCI.setBounds(205, 31, 121, 20);
+		frmConsultarMontoRecaudado.getContentPane().add(textCI);
 		textCI.setColumns(10);
 		
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmConsultarMontoRecaudado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		lblAoLectivo = new JLabel("A\u00F1o lectivo");
 		lblAoLectivo.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblAoLectivo.setBounds(56, 106, 115, 14);
-		frame.getContentPane().add(lblAoLectivo);
+		lblAoLectivo.setBounds(38, 65, 115, 14);
+		frmConsultarMontoRecaudado.getContentPane().add(lblAoLectivo);
 		
 		textAnio = new JTextField();
-		textAnio.setBounds(205, 103, 121, 20);
-		frame.getContentPane().add(textAnio);
+		textAnio.setBounds(205, 62, 121, 20);
+		frmConsultarMontoRecaudado.getContentPane().add(textAnio);
 		textAnio.setColumns(10);
 		
 		btnConsultarMonto = new JButton("Consultar");
 		btnConsultarMonto.setFont(new Font("Calibri", Font.PLAIN, 16));
-		btnConsultarMonto.setBounds(205, 134, 121, 23);
+		btnConsultarMonto.setBounds(205, 93, 121, 23);
 		btnConsultarMonto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validarCamposYCalcularMonto();
 			}
 		});
 		
-		frame.getContentPane().add(btnConsultarMonto);
+		frmConsultarMontoRecaudado.getContentPane().add(btnConsultarMonto);
 		
 		JLabel lblElMontoTotal = new JLabel("Total Recaudado");
-		lblElMontoTotal.setBounds(56, 177, 132, 14);
+		lblElMontoTotal.setBounds(38, 152, 132, 14);
 		lblElMontoTotal.setFont(new Font("Calibri", Font.PLAIN, 18));
-		frame.getContentPane().add(lblElMontoTotal);
+		frmConsultarMontoRecaudado.getContentPane().add(lblElMontoTotal);
 		
 		contVentMontoRec=new ContVentanaMontoRecaudado(this);
 		
 		txtArea = new JTextArea();
 		txtArea.setFont(new Font("Calibri", Font.PLAIN, 16));
 		txtArea.setEditable(false);
-		txtArea.setBounds(205, 173, 121, 20);
-		frame.getContentPane().add(txtArea);
+		txtArea.setBounds(205, 148, 121, 20);
+		frmConsultarMontoRecaudado.getContentPane().add(txtArea);
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 16));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
+				frmConsultarMontoRecaudado.dispose();
 			}
 		});
-		btnNewButton.setBounds(205, 249, 121, 23);
-		frame.getContentPane().add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("Consultar Monto Recaudado");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(56, 11, 272, 39);
-		frame.getContentPane().add(lblNewLabel);
+		btnNewButton.setBounds(205, 179, 121, 23);
+		frmConsultarMontoRecaudado.getContentPane().add(btnNewButton);
 	}
 	
 	public void setVisible(boolean valor)
 	{
-		frame.setVisible(valor);
+		frmConsultarMontoRecaudado.setVisible(valor);
 	}
 	
 	public void buscarTextoMontoRecaudado(long ci, int anio)
@@ -144,7 +140,7 @@ public class VentanaMontoRecaudado {
 	
 	public void mostrarError(String res)
 	{
-		JOptionPane.showMessageDialog(frame, res, "ERROR!", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(frmConsultarMontoRecaudado, res, "ERROR!", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	private void validarCamposYCalcularMonto()
@@ -158,12 +154,12 @@ public class VentanaMontoRecaudado {
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(frame, "Ingrese un año lectivo", "ERROR!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(frmConsultarMontoRecaudado, "Ingrese un año lectivo", "ERROR!", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(frame, "Ingrese una cedula de alumno", "ERROR!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frmConsultarMontoRecaudado, "Ingrese una cedula de alumno", "ERROR!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

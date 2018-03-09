@@ -64,17 +64,17 @@ public class VentanaEscolaridad {
 	private void initialize() {
 		frmConsultaDeEscolaridad = new JFrame();
 		frmConsultaDeEscolaridad.setTitle("Consulta de escolaridad");
-		frmConsultaDeEscolaridad.setBounds(100, 100, 678, 511);
+		frmConsultaDeEscolaridad.setBounds(100, 100, 678, 464);
 		frmConsultaDeEscolaridad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmConsultaDeEscolaridad.getContentPane().setLayout(null);
 		
 		JLabel lblIngreseCedula = new JLabel("Ingrese cedula");
 		lblIngreseCedula.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblIngreseCedula.setBounds(34, 91, 103, 14);
+		lblIngreseCedula.setBounds(30, 44, 103, 14);
 		frmConsultaDeEscolaridad.getContentPane().add(lblIngreseCedula);
 		
 		txtCI = new JTextField();
-		txtCI.setBounds(147, 88, 97, 20);
+		txtCI.setBounds(143, 41, 97, 20);
 		frmConsultaDeEscolaridad.getContentPane().add(txtCI);
 		txtCI.setColumns(10);
 		
@@ -93,7 +93,7 @@ public class VentanaEscolaridad {
 				}		
 			}
 		});
-		btnParcial.setBounds(254, 87, 167, 23);
+		btnParcial.setBounds(250, 40, 167, 23);
 		frmConsultaDeEscolaridad.getContentPane().add(btnParcial);
 		
 		JButton btnCompleto = new JButton("Listado COMPLETO");
@@ -111,7 +111,7 @@ public class VentanaEscolaridad {
 				}
 			}
 		});
-		btnCompleto.setBounds(431, 87, 167, 23);
+		btnCompleto.setBounds(427, 40, 167, 23);
 		frmConsultaDeEscolaridad.getContentPane().add(btnCompleto);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -121,13 +121,8 @@ public class VentanaEscolaridad {
 				frmConsultaDeEscolaridad.dispose();
 			}
 		});
-		btnCancelar.setBounds(448, 420, 167, 23);
+		btnCancelar.setBounds(448, 377, 167, 23);
 		frmConsultaDeEscolaridad.getContentPane().add(btnCancelar);
-		
-		JLabel lblNewLabel = new JLabel("Consulta de Escolaridad");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 24));
-		lblNewLabel.setBounds(191, 24, 253, 26);
-		frmConsultaDeEscolaridad.getContentPane().add(lblNewLabel);
 		
 		tblDatos = new JTable();
 		tblDatos.setEnabled(false);
@@ -135,7 +130,7 @@ public class VentanaEscolaridad {
 		frmConsultaDeEscolaridad.getContentPane().add(tblDatos);
 		
 		JScrollPane scrollPane = new JScrollPane(tblDatos);
-		scrollPane.setBounds(30, 119, 585, 288);
+		scrollPane.setBounds(30, 78, 585, 288);
 		frmConsultaDeEscolaridad.getContentPane().add(scrollPane);
 		
 		

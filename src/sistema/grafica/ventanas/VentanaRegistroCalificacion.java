@@ -61,7 +61,7 @@ public class VentanaRegistroCalificacion {
 		
 		frmRegistroDeCalificacin = new JFrame();
 		frmRegistroDeCalificacin.setTitle("Registro de calificaci\u00F3n");
-		frmRegistroDeCalificacin.setBounds(100, 100, 407, 281);
+		frmRegistroDeCalificacin.setBounds(100, 100, 396, 215);
 		frmRegistroDeCalificacin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistroDeCalificacin.getContentPane().setLayout(null);
 		
@@ -69,31 +69,31 @@ public class VentanaRegistroCalificacion {
 		
 		JLabel lblCedulaDelAlumno = new JLabel("Cedula del alumno");
 		lblCedulaDelAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblCedulaDelAlumno.setBounds(57, 73, 143, 14);
+		lblCedulaDelAlumno.setBounds(57, 35, 143, 14);
 		frmRegistroDeCalificacin.getContentPane().add(lblCedulaDelAlumno);
 		
 		textFieldCedulaAlumno = new JTextField();
-		textFieldCedulaAlumno.setBounds(210, 70, 112, 20);
+		textFieldCedulaAlumno.setBounds(210, 32, 112, 20);
 		frmRegistroDeCalificacin.getContentPane().add(textFieldCedulaAlumno);
 		textFieldCedulaAlumno.setColumns(10);
 		
 		JLabel lblCalificacin = new JLabel("Calificaci\u00F3n");
 		lblCalificacin.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblCalificacin.setBounds(57, 135, 143, 14);
+		lblCalificacin.setBounds(57, 97, 143, 14);
 		frmRegistroDeCalificacin.getContentPane().add(lblCalificacin);
 		
 		textFieldCalificacion = new JTextField();
-		textFieldCalificacion.setBounds(210, 132, 112, 20);
+		textFieldCalificacion.setBounds(210, 94, 112, 20);
 		frmRegistroDeCalificacin.getContentPane().add(textFieldCalificacion);
 		textFieldCalificacion.setColumns(10);
 		
 		JLabel lblNroDeInscripcin = new JLabel("Nro. de inscripci\u00F3n");
 		lblNroDeInscripcin.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblNroDeInscripcin.setBounds(57, 104, 143, 14);
+		lblNroDeInscripcin.setBounds(57, 66, 143, 14);
 		frmRegistroDeCalificacin.getContentPane().add(lblNroDeInscripcin);
 		
 		textFieldNroInscripcion = new JTextField();
-		textFieldNroInscripcion.setBounds(210, 101, 112, 20);
+		textFieldNroInscripcion.setBounds(210, 63, 112, 20);
 		frmRegistroDeCalificacin.getContentPane().add(textFieldNroInscripcion);
 		textFieldNroInscripcion.setColumns(10);
 		
@@ -123,7 +123,7 @@ public class VentanaRegistroCalificacion {
 			}
 		});
 		
-		btnRegistrarCalificacin.setBounds(88, 189, 112, 23);
+		btnRegistrarCalificacin.setBounds(88, 125, 112, 23);
 		frmRegistroDeCalificacin.getContentPane().add(btnRegistrarCalificacin);
 		
 		JButton btnCancelarYVolver = new JButton("Cancelar");
@@ -133,13 +133,8 @@ public class VentanaRegistroCalificacion {
 				frmRegistroDeCalificacin.dispose();
 			}
 		});
-		btnCancelarYVolver.setBounds(210, 189, 112, 23);
+		btnCancelarYVolver.setBounds(210, 125, 112, 23);
 		frmRegistroDeCalificacin.getContentPane().add(btnCancelarYVolver);
-		
-		JLabel lblNewLabel = new JLabel("Registro de Calificacion");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(100, 11, 216, 31);
-		frmRegistroDeCalificacin.getContentPane().add(lblNewLabel);
 		
 		frmRegistroDeCalificacin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

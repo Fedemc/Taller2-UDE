@@ -28,10 +28,9 @@ public class ContVentanaRegistroAsignatura {
 		}
 		catch(AsignaturaException res)
 		{
-			ventRegAsignatura.mostrarError(res.toString());;
+			ventRegAsignatura.mostrarError(res.darMensaje());;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ventRegAsignatura.mostrarError(e.toString());
 		}
 	}
 	

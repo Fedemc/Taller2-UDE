@@ -25,7 +25,7 @@ import java.awt.Font;
 
 public class VentanaListadoAsig {
 
-	private JFrame frame;
+	private JFrame frmListadoDeAsignaturas;
 	private JTable table;
 	private JButton btnListarAsignaturas;
 	private ContVentanaListadoAsig contVentListAsig;
@@ -38,7 +38,7 @@ public class VentanaListadoAsig {
 			public void run() {
 				try {
 					VentanaListadoAsig window = new VentanaListadoAsig();
-					window.frame.setVisible(true);
+					window.frmListadoDeAsignaturas.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,17 +57,18 @@ public class VentanaListadoAsig {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 701, 455);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmListadoDeAsignaturas = new JFrame();
+		frmListadoDeAsignaturas.setTitle("Listado de Asignaturas");
+		frmListadoDeAsignaturas.setBounds(100, 100, 653, 385);
+		frmListadoDeAsignaturas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		contVentListAsig=new ContVentanaListadoAsig(this);
-		frame.getContentPane().setLayout(null);
+		frmListadoDeAsignaturas.getContentPane().setLayout(null);
 		
-		JLabel lblListadoDeAsignaturas = new JLabel("Listado de Asignaturas");
+		JLabel lblListadoDeAsignaturas = new JLabel("");
 		lblListadoDeAsignaturas.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
 		lblListadoDeAsignaturas.setBounds(237, 26, 204, 28);
-		frame.getContentPane().add(lblListadoDeAsignaturas);
+		frmListadoDeAsignaturas.getContentPane().add(lblListadoDeAsignaturas);
 		
 		//table = new JTable();
 		//frame.getContentPane().add(table, "4, 4, fill, fill");
@@ -75,8 +76,8 @@ public class VentanaListadoAsig {
 		JTable table = new JTable();
 		table.setEnabled(false);
 		JScrollPane jsp = new JScrollPane(table);
-		jsp.setBounds(31, 65, 576, 271);
-		frame.getContentPane().add(jsp);
+		jsp.setBounds(30, 26, 576, 271);
+		frmListadoDeAsignaturas.getContentPane().add(jsp);
 		
 		//Creo modelo de tabla y objeto 
 		DefaultTableModel model = new DefaultTableModel();
@@ -99,21 +100,21 @@ public class VentanaListadoAsig {
 		
 		JButton btnCancelarVolver = new JButton("Cancelar");
 		btnCancelarVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
-		btnCancelarVolver.setBounds(450, 361, 157, 23);
-		frame.getContentPane().add(btnCancelarVolver);
+		btnCancelarVolver.setBounds(449, 308, 157, 23);
+		frmListadoDeAsignaturas.getContentPane().add(btnCancelarVolver);
 		
 		btnCancelarVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				frame.dispose();
+				frmListadoDeAsignaturas.dispose();
 			}
 		});
 		
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmListadoDeAsignaturas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	public void setVisible(boolean valor)
 	{
-		frame.setVisible(valor);
+		frmListadoDeAsignaturas.setVisible(valor);
 	}
 	
 	public JTable getTable() {
@@ -122,7 +123,7 @@ public class VentanaListadoAsig {
 	
 	public void mostrarError(String res)
 	{
-		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(frmListadoDeAsignaturas, res, "Resultado", JOptionPane.ERROR_MESSAGE);
 	}
 
 }

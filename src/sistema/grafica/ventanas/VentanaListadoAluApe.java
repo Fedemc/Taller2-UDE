@@ -28,7 +28,7 @@ import javax.swing.border.BevelBorder;
 
 public class VentanaListadoAluApe {
 
-	private JFrame frame;
+	private JFrame frmListadoDeAlumnos;
 	private JLabel lblIngreseApellido;
 	private JTextField textField;
 	private JButton btnListarAlumnosCon;
@@ -44,7 +44,7 @@ public class VentanaListadoAluApe {
 			public void run() {
 				try {
 					VentanaListadoAluApe window = new VentanaListadoAluApe();
-					window.frame.setVisible(true);
+					window.frmListadoDeAlumnos.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,34 +63,35 @@ public class VentanaListadoAluApe {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 535, 484);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmListadoDeAlumnos = new JFrame();
+		frmListadoDeAlumnos.setTitle("Listado de Alumnos por Apellido");
+		frmListadoDeAlumnos.setBounds(100, 100, 525, 432);
+		frmListadoDeAlumnos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		contVentListAluApe=new ContVentanaListadoAluApe(this);
-		frame.getContentPane().setLayout(null);
+		frmListadoDeAlumnos.getContentPane().setLayout(null);
 		
 		lblIngreseApellido = new JLabel("Ingrese apellido");
 		lblIngreseApellido.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblIngreseApellido.setBounds(30, 68, 109, 14);
-		frame.getContentPane().add(lblIngreseApellido);
+		lblIngreseApellido.setBounds(30, 30, 109, 14);
+		frmListadoDeAlumnos.getContentPane().add(lblIngreseApellido);
 		
 		textField = new JTextField();
-		textField.setBounds(149, 65, 188, 20);
-		frame.getContentPane().add(textField);
+		textField.setBounds(148, 27, 188, 20);
+		frmListadoDeAlumnos.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		btnListarAlumnosCon = new JButton("Buscar");
 		btnListarAlumnosCon.setFont(new Font("Calibri", Font.PLAIN, 16));
-		btnListarAlumnosCon.setBounds(347, 64, 113, 23);
-		frame.getContentPane().add(btnListarAlumnosCon);
+		btnListarAlumnosCon.setBounds(346, 26, 113, 23);
+		frmListadoDeAlumnos.getContentPane().add(btnListarAlumnosCon);
 		
 		JTable table = new JTable();
 		table.setEnabled(false);
 		JScrollPane jsp = new JScrollPane(table);
 		jsp.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		jsp.setBounds(30, 105, 429, 265);
-		frame.getContentPane().add(jsp);
+		jsp.setBounds(30, 72, 429, 265);
+		frmListadoDeAlumnos.getContentPane().add(jsp);
 		
 		btnListarAlumnosCon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,23 +119,18 @@ public class VentanaListadoAluApe {
 					table.setModel(model);
 				}
 				else
-					JOptionPane.showMessageDialog(frame, "No se puede dejar el campo apellido vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(frmListadoDeAlumnos, "No se puede dejar el campo apellido vacío", "Campo vacío", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		
 		btnCancelarYVolver = new JButton("Cancelar");
 		btnCancelarYVolver.setFont(new Font("Calibri", Font.PLAIN, 16));
-		btnCancelarYVolver.setBounds(347, 381, 113, 23);
-		frame.getContentPane().add(btnCancelarYVolver);
-		
-		JLabel lblNewLabel = new JLabel("Listado de Alumnos por Apellido");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(116, 11, 290, 30);
-		frame.getContentPane().add(lblNewLabel);
+		btnCancelarYVolver.setBounds(346, 348, 113, 23);
+		frmListadoDeAlumnos.getContentPane().add(btnCancelarYVolver);
 		
 		btnCancelarYVolver.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				frame.dispose();
+				frmListadoDeAlumnos.dispose();
 			}
 		});
 		
@@ -143,11 +139,11 @@ public class VentanaListadoAluApe {
 	
 	public void mostrarError(String res)
 	{
-		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(frmListadoDeAlumnos, res, "Resultado", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public void setVisible(boolean valor)
 	{
-		frame.setVisible(valor);
+		frmListadoDeAlumnos.setVisible(valor);
 	}
 }

@@ -24,8 +24,8 @@ public class VentanaRegistroAlumno {
 	private JTextField txtMail;
 	private JTextField txtDescuento;
 	private JTextField txtDescripcion;
-	private JRadioButton rdbtnNoBecado;
-	private JRadioButton rdbtnBecado;
+	private JCheckBox checkBecado;
+	boolean becado=false;
 	
 	private ContVentanaRegistroAlumno contVent;
 
@@ -63,7 +63,7 @@ public class VentanaRegistroAlumno {
 		
 		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos del alumno en los campos");
 		lblIngreseLosDatos.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblIngreseLosDatos.setBounds(34, 57, 295, 20);
+		lblIngreseLosDatos.setBounds(34, 38, 295, 20);
 		frame.getContentPane().add(lblIngreseLosDatos);
 		
 		JLabel lblCedula = new JLabel("Cedula");
@@ -126,46 +126,53 @@ public class VentanaRegistroAlumno {
 		frame.getContentPane().add(txtMail);
 		txtMail.setColumns(10);
 		
-		JLabel lblSiEsBecado = new JLabel("Calidad del Alumno");
-		lblSiEsBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblSiEsBecado.setBounds(34, 178, 143, 20);
-		frame.getContentPane().add(lblSiEsBecado);
-		
-		JLabel lblPorcentajeDeDescuento = new JLabel("Descuento");
-		lblPorcentajeDeDescuento.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblPorcentajeDeDescuento.setBounds(34, 209, 82, 14);
-		frame.getContentPane().add(lblPorcentajeDeDescuento);
+		JLabel lblDescuento = new JLabel("Descuento");
+		lblDescuento.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblDescuento.setBounds(34, 209, 82, 14);
+		lblDescuento.setVisible(false);
+		frame.getContentPane().add(lblDescuento);
 		
 		txtDescuento = new JTextField();
 		txtDescuento.setBounds(126, 206, 128, 20);
 		frame.getContentPane().add(txtDescuento);
 		txtDescuento.setColumns(10);
+		//
+		txtDescuento.setVisible(false);
 		
-		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
-		lblDescripcin.setFont(new Font("Calibri", Font.PLAIN, 16));
-		lblDescripcin.setBounds(277, 209, 90, 14);
-		frame.getContentPane().add(lblDescripcin);
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
+		lblDescripcion.setFont(new Font("Calibri", Font.PLAIN, 16));
+		lblDescripcion.setBounds(277, 209, 90, 14);
+		lblDescripcion.setVisible(false);
+		frame.getContentPane().add(lblDescripcion);
 		
 		txtDescripcion = new JTextField();
 		txtDescripcion.setBounds(377, 206, 287, 20);
 		frame.getContentPane().add(txtDescripcion);
 		txtDescripcion.setColumns(10);
+		txtDescripcion.setVisible(false);
 		
-		rdbtnNoBecado = new JRadioButton("No becado");
-		rdbtnNoBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
-		rdbtnNoBecado.setBounds(267, 177, 100, 23);
-		frame.getContentPane().add(rdbtnNoBecado);
-		
-		rdbtnBecado = new JRadioButton("Becado");
-		rdbtnBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
-		rdbtnBecado.setBounds(183, 177, 82, 23);
-		frame.getContentPane().add(rdbtnBecado);
-		
-		ButtonGroup btnGrupoBecado = new ButtonGroup();
-		btnGrupoBecado.add(rdbtnBecado);
-		btnGrupoBecado.add(rdbtnNoBecado);
-		ButtonModel model = rdbtnNoBecado.getModel();
-		btnGrupoBecado.setSelected(model, true);
+		JCheckBox checkBecado = new JCheckBox("Es Becado");
+		checkBecado.setFont(new Font("Calibri", Font.PLAIN, 16));
+		checkBecado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(checkBecado.isSelected()) {
+					txtDescripcion.setVisible(true);
+					txtDescuento.setVisible(true);
+					lblDescripcion.setVisible(true);
+					lblDescuento.setVisible(true);
+					becado=true;
+				}
+				else {
+					txtDescripcion.setVisible(false);
+					txtDescuento.setVisible(false);
+					lblDescripcion.setVisible(false);
+					lblDescuento.setVisible(false);
+					becado = false;
+				}
+			}
+		});
+		checkBecado.setBounds(532, 146, 97, 23);
+		frame.getContentPane().add(checkBecado);
 		
 		JButton btnRegistrarAlumno = new JButton("Registrar");
 		btnRegistrarAlumno.setFont(new Font("Calibri", Font.PLAIN, 16));
@@ -173,7 +180,7 @@ public class VentanaRegistroAlumno {
 		btnRegistrarAlumno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//llamar al validar y registrar
-				validarDatosYRegistrarAlumno(rdbtnBecado.isSelected());
+				validarDatosYRegistrarAlumno();
 			}
 		});
 		frame.getContentPane().add(btnRegistrarAlumno);
@@ -188,10 +195,11 @@ public class VentanaRegistroAlumno {
 		});
 		frame.getContentPane().add(btnVolverALa);
 		
-		JLabel lblNewLabel = new JLabel("Registro de Alumno");
-		lblNewLabel.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(238, 11, 178, 20);
-		frame.getContentPane().add(lblNewLabel);
+		
+		
+		JLabel lblNewLabel_1 = new JLabel("(Marque la opcion si es becado)");
+		lblNewLabel_1.setBounds(466, 168, 198, 14);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -205,19 +213,30 @@ public class VentanaRegistroAlumno {
 		frame.setVisible(valor);
 	}
 	
-	private void validarDatosYRegistrarAlumno(boolean esBecado)
+	private void validarDatosYRegistrarAlumno()
 	{
 		//Verificar campos vacios, si todo OK llamar al ContVent.regAlu();, ver si es becado!
 		//Verificar el valor del rdbtn
-		boolean validaciones=!txtCI.getText().isEmpty() && !txtNom.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtDom.getText().isEmpty() && !txtTel.getText().isEmpty() && !txtMail.getText().isEmpty();
-		
+		//boolean validaciones=!txtCI.getText().isEmpty() && !txtNom.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtDom.getText().isEmpty() && !txtTel.getText().isEmpty() && !txtMail.getText().isEmpty();
 		//Validaciones para becado, agrego al chequeo
-		if(esBecado)
+		if(becado)
 		{
-			validaciones= validaciones && !txtDescuento.getText().isEmpty() && !txtDescripcion.getText().isEmpty();
+			if(!txtCI.getText().isEmpty() && !txtNom.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtDom.getText().isEmpty() && !txtTel.getText().isEmpty() && !txtMail.getText().isEmpty()&&!txtDescuento.getText().isEmpty() && !txtDescripcion.getText().isEmpty()){
+				contVent.crearBecado(Long.parseLong(txtCI.getText()), txtNom.getText(), txtApe.getText(), txtDom.getText(), Integer.parseInt(txtTel.getText()), txtMail.getText(), Integer.parseInt(txtDescuento.getText()), txtDescripcion.getText());
+			}else {
+				mostrarError("Debe completar todos los campos.");
+			}
+			
+		}else {
+			if(!txtCI.getText().isEmpty() && !txtNom.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtDom.getText().isEmpty() && !txtTel.getText().isEmpty() && !txtMail.getText().isEmpty()){
+				contVent.crearAlumno(Long.parseLong(txtCI.getText()), txtNom.getText(), txtApe.getText(), txtDom.getText(), Integer.parseInt(txtTel.getText()), txtMail.getText());
+			}else {
+				mostrarError("Debe completar todos los campos.");
+			}
+			
 		}
 		
-		
+		/*
 		if(validaciones)
 		{
 			//llamo al metodo del controlador pasandole los datos
@@ -236,7 +255,7 @@ public class VentanaRegistroAlumno {
 		else
 		{
 			mostrarError("Debe completar todos los campos.");
-		}
+		}*/
 	}
 	
 	public void mostrarError(String res)
@@ -249,5 +268,4 @@ public class VentanaRegistroAlumno {
 		JOptionPane.showMessageDialog(frame, res, "Resultado", JOptionPane.INFORMATION_MESSAGE);
 		frame.dispose();
 	}
-
 }
